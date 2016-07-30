@@ -1,0 +1,44 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.novoda:bintray-release:0.3.4'
+        classpath 'me.tatarka:gradle-retrolambda:3.2.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    rootProject.ext.applicationId = "com.jzzq.broker"
+
+    minSdkVersion = 15
+    targetSdkVersion = 24 //23
+    compileSdkVersion = 24 //23
+    buildToolsVersion =  '24.0.0' //'23.0.3'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    versionCode = 0
+    versionName = '0.1.0'
+
+    supportLibVersion = '24.1.1' //'23.4.0'
+    playLibVersion = '8.4.0'
+}

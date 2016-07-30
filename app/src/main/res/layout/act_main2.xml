@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/bottombar_height_with_txt"
+        android:layout_height="match_parent"/>
+
+    <com.jzzq.broker.view.BottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottombar_height_with_txt"
+        android:layout_gravity="bottom"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/divider_line"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/bottombar_height_with_txt"
+        android:layout_height="1px"/>
+</FrameLayout>
