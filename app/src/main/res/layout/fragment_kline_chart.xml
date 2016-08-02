@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_512da8"
+    android:gravity="bottom|right"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_change_orientation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_color_red"
+        android:gravity="center"
+        android:text="K 线图表 切换显示方式"
+        android:textColor="@color/text_color_white"
+        android:textSize="@dimen/text_size_largexx" />
+
+    <!---->
+</LinearLayout>

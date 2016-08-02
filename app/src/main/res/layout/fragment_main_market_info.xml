@@ -7,10 +7,11 @@
     android:background="@color/bg_color">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        android:elevation="6dp">
+        android:elevation="6dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbarLayout"
@@ -18,15 +19,7 @@
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <RelativeLayout
-                android:id="@+id/market_info_layout"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="?attr/actionBarSize"
-                android:background="@color/trade_red"
-                android:minHeight="100dp">
-
-            </RelativeLayout>
+            <include layout="@layout/view_market_data_info" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -35,11 +28,7 @@
                 app:layout_collapseMode="pin"
                 app:theme="@style/Theme.ToolBar.Base">
 
-                <TextView
-                    style="@style/tv_white_and_small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Clock" />
+                <include layout="@layout/toolbar_content_market"/>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -54,122 +43,28 @@
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
     </android.support.design.widget.AppBarLayout>
 
+    <!--
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>-->
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
         android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/fl_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_marginBottom="@dimen/bottombar_height_with_txt" />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/et_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Username" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/et_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Password" />
-            </android.support.design.widget.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/img_drawable_compat1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageView
-                android:id="@+id/img_drawable_compat2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/btn_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AAAAA" />
-
-            <Button
-                android:id="@+id/btn_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BBBBB" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yo Yo" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yo Yo" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yo Yo" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yo Yo" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yo Yo" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yo Yo" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yo Yo" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yo Yo" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yo Yo" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yo Yo" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yo Yo" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yo Yo" />
-        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+
+    <include layout="@layout/view_market_operate_actionbar" />
 
 </android.support.design.widget.CoordinatorLayout>

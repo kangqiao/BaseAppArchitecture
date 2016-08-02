@@ -52,6 +52,7 @@ public class MainFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
+        EventBus.getDefault().register(this);
         if (savedInstanceState == null) {
             mFragments[FIRST] = HomeFragment.newInstance();
             mFragments[SECOND] = ContactsFragment.newInstance();
@@ -77,8 +78,6 @@ public class MainFragment extends BaseFragment {
 
     @Override
     protected void onBindView(Bundle savedInstanceState) {
-        EventBus.getDefault().register(this);
-
         mBottomBar.addItem(new BottomBarTab(_mActivity, R.mipmap.ic_bar_home, "首页"))
                 .addItem(new BottomBarTab(_mActivity, R.mipmap.ic_bar_contacter, "联系人"))
                 .addItem(new BottomBarTab(_mActivity, R.mipmap.ic_bar_message, "消息"))

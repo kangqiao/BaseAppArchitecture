@@ -2,8 +2,6 @@ package com.jzzq.broker.ui.market;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,23 +12,17 @@ import com.jzzq.broker.base.BaseLazyFragment;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
-import butterknife.BindView;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * Created by zhaopan on 16/7/30.
  * e-mail: kangqiao610@gmail.com
  */
-public class TimeKFragment extends BaseLazyFragment implements SwipeRefreshLayout.OnRefreshListener{
-
-    @BindView(R.id.refresh_layout)
-    SwipeRefreshLayout refreshLayout;
-    @BindView(R.id.recyclerview)
-    RecyclerView recyclerView;
+public class KLineFragment extends BaseLazyFragment {
 
     public static SupportFragment newInstance() {
         Bundle args = new Bundle();
-        TimeKFragment fragment = new TimeKFragment();
+        KLineFragment fragment = new KLineFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -38,11 +30,8 @@ public class TimeKFragment extends BaseLazyFragment implements SwipeRefreshLayou
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_time_market_info, container, false);
+        View view = inflater.inflate(R.layout.fragment_kline_market_info, container, false);
         EventBus.getDefault().register(this);
-        if (savedInstanceState == null) {
-            loadRootFragment(R.id.fl_container, KLineChartFragment.newInstance());
-        }
         return view;
     }
 
@@ -57,23 +46,13 @@ public class TimeKFragment extends BaseLazyFragment implements SwipeRefreshLayou
         //TODO 加载数据到View上.
     }
 
-    @Override
-    public void onRefresh() {
-        //TODO 刷新你的列表.
-        /*refreshLayout.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                refreshLayout.setRefreshing(false);
-            }
-        }, 2500);*/
-    }
 
     /**
      * Reselected Tab
      */
     @Subscribe
     public void onMarketTabSelectedEvent(MarketTabSelectedEvent event) {
-        if (event.position != MainMarketInfoFragment.FIRST) return;
+        if (event.position != MainMarketInfoFragment.SECOND) return;
 
         //TODO
         /*if (mInAtTop) {
