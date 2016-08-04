@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 
+import com.jzzq.broker.AppManager;
 import com.jzzq.broker.R;
 import com.jzzq.broker.utils.SpUtil;
 
@@ -28,7 +29,8 @@ public abstract class BaseActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         isNight = SpUtil.isNight();
         setTheme(isNight ? R.style.AppThemeNight : R.style.AppThemeDay);
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);  //?不需要再加setSupportActionBar(toolbar);
+        AppManager.getInstance().addActivity(this);
+        //supportRequestWindowFeature(Window.FEATURE_NO_TITLE);  //?不需要再加setSupportActionBar(toolbar);
         setContentView(getLayoutId());
         //绑定View控件.
         mUnBinder = ButterKnife.bind(this);
@@ -44,11 +46,13 @@ public abstract class BaseActivity extends SwipeBackActivity {
     protected void onDestroy() {
         super.onDestroy();
         mUnBinder.unbind();
+        AppManager.getInstance().finishActivity(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        //MobclickAgent.onResume(this);
         if (isNight != SpUtil.isNight()) reload();
     }
 

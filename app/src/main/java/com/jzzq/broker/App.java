@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.multidex.MultiDex;
-
 import com.jzzq.broker.utils.SpUtil;
 
 /**

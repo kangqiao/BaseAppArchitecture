@@ -92,7 +92,7 @@ public class BaseFragment extends SwipeBackFragment {
     /////监听屏幕方向改变功能实现/////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////
     private float SCREEN_ORIENTATION_CHANGE_SENSITIVITY = 0.05f; // 0.01~0.99 数值越小敏感度越低.
-    private int DELAY_UPDATE_ORIENTATION_CHANGE_EVENT = 1500; // 延时上报屏幕方向改变时间, 必须保持手机不动且在这个时间范围内才能发生
+    private int DELAY_UPDATE_ORIENTATION_CHANGE_EVENT = 1000; // 延时上报屏幕方向改变时间, 必须保持手机不动且在这个时间范围内才能发生
     protected OrientationEventListener mOrientationEventListener;
     protected ScreenOrientationChangeListener mScreenOrientationChangeListener;
 

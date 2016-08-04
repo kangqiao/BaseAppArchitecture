@@ -33,6 +33,18 @@ android {
         jumboMode = true
         javaMaxHeapSize "4g"
     }
+
+    sourceSets{
+        main{
+            res.srcDirs =
+                    [
+                            'src/main/res/layout/market',
+                            'src/main/res/layout/contacts',
+                            'src/main/res/layout',
+                            'src/main/res'
+                    ]
+        }
+    }
 }
 
 dependencies {
@@ -79,4 +91,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3+'
     //WebView
     compile 'com.thefinestartist:finestwebview:1.0.6'
+    compile 'com.umeng.analytics:analytics:6.0.1'
 }
