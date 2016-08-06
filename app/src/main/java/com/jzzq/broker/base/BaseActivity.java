@@ -29,9 +29,10 @@ public abstract class BaseActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         isNight = SpUtil.isNight();
         setTheme(isNight ? R.style.AppThemeNight : R.style.AppThemeDay);
-        AppManager.getInstance().addActivity(this);
         //supportRequestWindowFeature(Window.FEATURE_NO_TITLE);  //?不需要再加setSupportActionBar(toolbar);
         setContentView(getLayoutId());
+        //这句必须在setContentView()调用之后,否则抛 android.util.SuperNotCalledException, 莫名其妙啊?
+        AppManager.getInstance().addActivity(this);
         //绑定View控件.
         mUnBinder = ButterKnife.bind(this);
         mContext = this;

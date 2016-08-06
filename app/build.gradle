@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'com.android.databinding' //MVVM
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -40,11 +41,16 @@ android {
                     [
                             'src/main/res/layout/market',
                             'src/main/res/layout/contacts',
+                            'src/main/res/layout/test',
                             'src/main/res/layout',
                             'src/main/res'
                     ]
         }
     }
+
+//    dataBinding {
+//        enable = true
+//    }
 }
 
 dependencies {
@@ -91,5 +97,9 @@ dependencies {
     compile 'org.greenrobot:eventbus:3+'
     //WebView
     compile 'com.thefinestartist:finestwebview:1.0.6'
-    compile 'com.umeng.analytics:analytics:6.0.1'
+
+    //compile 'com.umeng.analytics:analytics:6.0.1'
+
+    //看代码比较用的
+    compile 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
 }
