@@ -28,7 +28,7 @@ task clean(type: Delete) {
 }
 
 ext {
-    rootProject.ext.applicationId = "com.jzzq.broker"
+    rootProject.ext.applicationId = "com.jzsec.broker"
 
     minSdkVersion = 15
     targetSdkVersion = 24 //23

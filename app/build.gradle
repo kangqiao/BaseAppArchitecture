@@ -39,9 +39,17 @@ android {
         main{
             res.srcDirs =
                     [
-                            'src/main/res/layout/market',
+                            'src/main/res/layout/login',
+                            'src/main/res/layout/toolbar',
+                            'src/main/res/layout/home',
                             'src/main/res/layout/contacts',
-                            'src/main/res/layout/test',
+                            'src/main/res/layout/message',
+                            'src/main/res/layout/my',
+
+                            'src/main/res/layout/market', //行情包
+                            'src/main/res/layout/test', //这是测试代码所用的包
+
+                            //以下两条必须放在最后
                             'src/main/res/layout',
                             'src/main/res'
                     ]

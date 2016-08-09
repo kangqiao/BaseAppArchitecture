@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.jzzq.broker">
+    package="com.jzsec.broker">
 
     <!-- 读取联系人权限 -->
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
