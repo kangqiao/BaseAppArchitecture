@@ -2,5 +2,5 @@
 
 # Local configuration file (sdk path, etc)
 local.properties
-/src/test
-/src/androidTest
+src/test
+src/androidTest
