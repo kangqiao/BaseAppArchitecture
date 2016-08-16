@@ -61,10 +61,10 @@ public class MainActivity2 extends BaseActivity {
             mFragments[FOURTH] = findFragment(MyFragment.class);
         }
 
-        mBottomBar.addItem(new BottomBarTab(this, R.mipmap.ic_bar_home, "首页"))
-                .addItem(new BottomBarTab(this, R.mipmap.ic_bar_contacter, "联系人"))
-                .addItem(new BottomBarTab(this, R.mipmap.ic_bar_message, "消息"))
-                .addItem(new BottomBarTab(this, R.mipmap.ic_bar_my, "我的"));
+        mBottomBar.addItem(new BottomBarTab(this, R.mipmap.main_tab_home, "首页"))
+                .addItem(new BottomBarTab(this, R.mipmap.main_tab_contacts, "联系人"))
+                .addItem(new BottomBarTab(this, R.mipmap.main_tab_message, "消息"))
+                .addItem(new BottomBarTab(this, R.mipmap.main_tab_my, "我的"));
 
         mBottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
             @Override

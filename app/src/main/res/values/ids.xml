@@ -6,4 +6,5 @@
     <item name="action_about" type="id">false</item>
 
 
+    <item name="common_tab_bar" type="id">false</item>
 </resources>

@@ -78,15 +78,16 @@ public class MainFragment extends BaseFragment {
 
     @Override
     protected void onBindView(Bundle savedInstanceState) {
-        mBottomBar.addItem(new BottomBarTab(_mActivity, R.mipmap.ic_bar_home, "首页"))
-                .addItem(new BottomBarTab(_mActivity, R.mipmap.ic_bar_contacter, "联系人"))
-                .addItem(new BottomBarTab(_mActivity, R.mipmap.ic_bar_message, "消息"))
-                .addItem(new BottomBarTab(_mActivity, R.mipmap.ic_bar_my, "我的"));
+        mBottomBar.addItem(new BottomBarTab(_mActivity, R.drawable.selector_main_tab_home, "首页"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.selector_main_tab_contacts, "联系人"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.selector_main_tab_message, "消息"))
+                .addItem(new BottomBarTab(_mActivity, R.drawable.selector_main_tab_my, "我的"));
 
         mBottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position, int prePosition) {
                 showHideFragment(mFragments[position], mFragments[prePosition]);
+                mBottomBar.getItem(THIRD).setRedPoint(true);
             }
 
             @Override
