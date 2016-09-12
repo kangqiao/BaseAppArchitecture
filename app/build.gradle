@@ -39,16 +39,19 @@ android {
         main{
             res.srcDirs =
                     [
+                            'src/main/res/layout/common',
+
+                            //模块包
                             'src/main/res/layout/login',
-                            'src/main/res/layout/toolbar',
                             'src/main/res/layout/home',
                             'src/main/res/layout/contacts',
                             'src/main/res/layout/message',
                             'src/main/res/layout/my',
 
                             'src/main/res/layout/market', //行情包
-                            'src/main/res/layout/test', //这是测试代码所用的包
 
+                            //这是测试代码所用的包 被废弃的.
+                            'src/main/res/layout/test',
                             //以下两条必须放在最后
                             'src/main/res/layout',
                             'src/main/res'
@@ -105,6 +108,14 @@ dependencies {
     compile 'org.greenrobot:eventbus:3+'
     //WebView
     compile 'com.thefinestartist:finestwebview:1.0.6'
+
+    /**
+     * 实现类似微信WebView的上拉下拉弹跳效果和iOS的ListView的果冻效果
+     * https://github.com/kangqiao182/SlidingLayout
+     * 其中包含了包 [[[  compile 'com.nineoldandroids:library:2.4.0'  ]]]
+     * http://blog.csdn.net/xiaanming/article/details/18311877
+     */
+    compile 'homhomlin.lib:sldinglayout:0.9.0'
 
     //compile 'com.umeng.analytics:analytics:6.0.1'
 

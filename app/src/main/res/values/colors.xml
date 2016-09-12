@@ -33,6 +33,8 @@
     <color name="transparent80">#80000000</color>
     <color name="theme_black_7f">#7f000000</color>
 
+    <color name="gray">#C9C9C9</color>
+    <color name="gray_light">#99C9C9C9</color>
 
     <!--文字-->
     <color name="text_color_gray_3">#333333</color>
@@ -50,6 +52,7 @@
     <!--actionBar 样式颜色-->
     <color name="tab_select">@color/color_cd3e3a</color>
     <color name="tab_unselect">#c9c9c9</color>
+    <color name="tab_text_color_blue">#4377bf</color>
 
     <!--Toolbar-->
     <color name="toolbar_background">@color/colorPrimary</color>

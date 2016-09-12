@@ -28,10 +28,11 @@ public class TimeKFragment extends BaseLazyFragment implements SwipeRefreshLayou
     @BindView(R.id.recyclerview)
     RecyclerView recyclerView;
 
-    public static SupportFragment newInstance() {
-        Bundle args = new Bundle();
-        TimeKFragment fragment = new TimeKFragment();
-        fragment.setArguments(args);
+    public static SupportFragment newInstance(Bundle bundle) {
+        Bundle arg = new Bundle();
+        if (null != bundle) MarketHelper.transferMarketParam(arg, bundle);
+        SupportFragment fragment = new TimeKFragment();
+        fragment.setArguments(arg);
         return fragment;
     }
 

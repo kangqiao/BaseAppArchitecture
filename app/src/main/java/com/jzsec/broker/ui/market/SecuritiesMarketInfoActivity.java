@@ -32,7 +32,7 @@ public class SecuritiesMarketInfoActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
 
         if (savedInstanceState == null) {
-            loadRootFragment(R.id.fl_container, MainMarketInfoFragment.newInstance());
+            loadRootFragment(R.id.fl_container, MainMarketInfoFragment.newInstance(getIntent().getExtras()));
         }
         //RootActivity不需要Back功能.
         setSwipeBackEnable(false);

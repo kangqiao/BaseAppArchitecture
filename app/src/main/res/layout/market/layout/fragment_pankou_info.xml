@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/color_4bae4f"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:gravity="center"
+        style="@style/tv_red_and_normalx"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="盘口信息界面"/>
+</LinearLayout>

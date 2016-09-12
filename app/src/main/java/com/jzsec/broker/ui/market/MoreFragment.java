@@ -13,10 +13,11 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 public class MoreFragment extends BaseLazyFragment {
 
-    public static SupportFragment newInstance() {
-        Bundle args = new Bundle();
-        MoreFragment fragment = new MoreFragment();
-        fragment.setArguments(args);
+    public static SupportFragment newInstance(Bundle bundle) {
+        Bundle arg = new Bundle();
+        if (null != bundle) MarketHelper.transferMarketParam(arg, bundle);
+        SupportFragment fragment = new MoreFragment();
+        fragment.setArguments(arg);
         return fragment;
     }
 

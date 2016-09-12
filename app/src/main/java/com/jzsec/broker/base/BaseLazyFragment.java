@@ -25,7 +25,7 @@ public abstract class BaseLazyFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         mSavedInstanceState = savedInstanceState;
         //懒加载Fragment时 大多适用于TabLayout中, 此是Swipe操作由TabLayout控制切换, 不需要Back操作.
-        setSwipeBackEnable(false);
+        //setSwipeBackEnable(false);
     }
 
     @Override

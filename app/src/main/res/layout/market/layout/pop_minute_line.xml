@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="60dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_small"
+    android:background="@mipmap/bg_popwin_down"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_minute_60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/margin_small"
+        android:text="60分钟" />
+
+    <View
+        android:layout_width="60dp"
+        android:layout_height="1px"
+        android:background="@color/divider_line" />
+
+    <TextView
+        android:id="@+id/tv_minute_30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/margin_small"
+        android:text="30分钟" />
+
+    <View
+        android:layout_width="60dp"
+        android:layout_height="1px"
+        android:background="@color/divider_line" />
+
+    <TextView
+        android:id="@+id/tv_minute_15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/margin_small"
+        android:text="15分钟" />
+
+    <View
+        android:layout_width="60dp"
+        android:layout_height="1px"
+        android:background="@color/divider_line" />
+
+    <TextView
+        android:id="@+id/tv_minute_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/margin_small"
+        android:text="5分钟" />
+
+    <View
+        android:layout_width="60dp"
+        android:layout_height="@dimen/margin_huge" />
+</LinearLayout>

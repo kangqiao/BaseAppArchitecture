@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<lib.homhomlib.design.SlidingLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/slidingLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    app:background_view="@layout/bg_sliding_refresh"
+    app:sliding_mode="both"
+    app:sliding_pointer_mode="more">
 
-    <Button
-        android:id="@+id/btn_open_h5"
-        style="@style/tv_red_and_normal"
-        android:layout_gravity="center"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/margin_normal"
-        android:text="打开FinestWebView页面" />
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:background="@color/bg_color"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_brokerage_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_dark"
+            android:padding="@dimen/margin_normal"
+            android:text="佣金调整记录" />
+
+
+    </LinearLayout>
+</lib.homhomlib.design.SlidingLayout>

@@ -20,10 +20,11 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 public class ProfilesF10Fragment extends BaseLazyFragment {
 
-    public static SupportFragment newInstance() {
-        Bundle args = new Bundle();
-        ProfilesF10Fragment fragment = new ProfilesF10Fragment();
-        fragment.setArguments(args);
+    public static SupportFragment newInstance(Bundle bundle) {
+        Bundle arg = new Bundle();
+        if (null != bundle) MarketHelper.transferMarketParam(arg, bundle);
+        SupportFragment fragment = new ProfilesF10Fragment();
+        fragment.setArguments(arg);
         return fragment;
     }
 

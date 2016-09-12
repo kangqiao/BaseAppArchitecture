@@ -33,26 +33,24 @@ public class MainMarketInfoFragment extends BaseFragment {
 
     private SupportFragment[] mFragments = new SupportFragment[4];
 
+    private SupportFragment panKouFragment;
+    private SupportFragment toolbarFragment;
+
     @BindView(R.id.collapsingToolbarLayout)
     CollapsingToolbarLayout collapsingToolbarLayout;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
-    /*@BindView(R.id.viewPager)
-    ViewPager viewPager;*/
-    @BindView(R.id.marketInfo_layout)
-    RelativeLayout marketInfoLayout;
-    @BindView(R.id.bottom_Layout)
-    RelativeLayout bottomLayout;
 
+    Bundle mBundle;
     String[] mTabs = new String[]{"分时", "K线", "简况F10", "更多>"};
 
-
-    public static SupportFragment newInstance() {
-        Bundle args = new Bundle();
-        MainMarketInfoFragment fragment = new MainMarketInfoFragment();
-        fragment.setArguments(args);
+    public static SupportFragment newInstance(Bundle bundle) {
+        Bundle arg = new Bundle();
+        if (null != bundle) MarketHelper.transferMarketParam(arg, bundle);
+        SupportFragment fragment = new MainMarketInfoFragment();
+        fragment.setArguments(arg);
         return fragment;
     }
 
@@ -60,26 +58,43 @@ public class MainMarketInfoFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_market_info, container, false);
+        mBundle = getArguments();
 
         EventBus.getDefault().register(this);
         if (savedInstanceState == null) {
-            mFragments[FIRST] = TimeKFragment.newInstance();
-            mFragments[SECOND] = KLineFragment.newInstance();
-            mFragments[THIRD] = ProfilesF10Fragment.newInstance();
-            mFragments[FOURTH] = MoreFragment.newInstance();
+            mFragments[FIRST] = TimeKFragment.newInstance(mBundle);
+            mFragments[SECOND] = KLineFragment.newInstance(mBundle);
+            mFragments[THIRD] = ProfilesF10Fragment.newInstance(mBundle);
+            mFragments[FOURTH] = MoreFragment.newInstance(mBundle);
 
             loadMultipleRootFragment(R.id.fl_container, FIRST,
                     mFragments[FIRST],
                     mFragments[SECOND],
                     mFragments[THIRD],
                     mFragments[FOURTH]);
+
+            panKouFragment = PanKouFragment.newInstance(mBundle);
+            loadRootFragment(R.id.fl_pankou_container, panKouFragment);
+            toolbarFragment = ToolBarFragment.newInstance(mBundle);
+            loadRootFragment(R.id.fl_toolbar_container, toolbarFragment);
         } else {
             // 这里我们需要拿到mFragments的引用,也可以通过getChildFragmentManager.getFragments()自行进行判断查找(效率更高些),用下面的方法查找更方便些
             mFragments[FIRST] = findFragment(TimeKFragment.class);
             mFragments[SECOND] = findFragment(KLineFragment.class);
             mFragments[THIRD] = findFragment(ProfilesF10Fragment.class);
             mFragments[FOURTH] = findFragment(MoreFragment.class);
+            panKouFragment = findFragment(PanKouFragment.class);
         }
+
+        if(!mBundle.isEmpty()) {
+            MarketHelper.transferMarketParam(panKouFragment, this);
+            //向子fragment传递参数.
+            for (SupportFragment fragment : mFragments) {
+                MarketHelper.transferMarketParam(fragment.getArguments(), mBundle);
+            }
+
+        }
+
         return view;
     }
 

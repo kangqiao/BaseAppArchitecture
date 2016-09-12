@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <include layout="@layout/view_market_data_info" />
+            <include layout="@layout/view_market_pankou_info" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -36,9 +36,13 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/color_005eaa"
+            android:background="#ebf6ff"
             app:tabGravity="fill"
-            app:tabIndicatorColor="#ffffffff"
+            app:tabTextColor="#000000"
+            app:tabTextAppearance="@style/tv_gray3_and_small"
+            app:tabSelectedTextColor="#4377bf"
+            app:tabIndicatorColor="#4377bf"
+            app:tabIndicatorHeight="4px"
             app:tabMode="fixed"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
     </android.support.design.widget.AppBarLayout>
@@ -65,6 +69,6 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <include layout="@layout/view_market_operate_actionbar" />
+    <include layout="@layout/layout_market_toolbar" />
 
 </android.support.design.widget.CoordinatorLayout>

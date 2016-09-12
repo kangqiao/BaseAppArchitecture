@@ -124,6 +124,10 @@
     </style>
 
     <!--tv_gray3_-->
+    <style name="tv_gray3_and_small">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
     <style name="tv_gray3_and_normal">
         <item name="android:textColor">@color/text_color_gray_6</item>
         <item name="android:textSize">@dimen/text_size_normal</item>
@@ -199,5 +203,10 @@
         <item name="android:textSize">@dimen/text_size_normalx</item>
     </style>
     <!-- End 以颜色和大小定义TextView -->
+
+    <style name="pop_win_anim">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
 
 </resources>

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseLazyFragment;
 import com.jzsec.broker.ui.market.SecuritiesMarketInfoActivity;
+import com.thefinestartist.finestwebview.FinestWebView;
 
 /**
  * Created by zhaopan on 16/7/27.
@@ -35,6 +36,10 @@ public class MessageFragment extends BaseLazyFragment {
     protected void initLazyView(@Nullable Bundle savedInstanceState) {
         $(R.id.btn_open_market).setOnClickListener((v) -> {
             SecuritiesMarketInfoActivity.open(_mActivity);
+        });
+
+        $(R.id.btn_open_h5).setOnClickListener((v) -> {
+            new FinestWebView.Builder(_mActivity).show("http://www.baidu.com");
         });
     }
 }
