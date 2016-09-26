@@ -53,8 +53,8 @@ public class ProfilesF10Fragment extends BaseLazyFragment {
      */
     @Subscribe
     public void onMarketTabSelectedEvent(MarketTabSelectedEvent event) {
-        if (event.position != MainMarketInfoFragment.SECOND) return;
-
+        //if (event.position != MainMarketInfoFragment.SECOND) return;
+        if (event.fragment != this) return;
         //TODO
         /*if (mInAtTop) {
             refreshLayout.setRefreshing(true);

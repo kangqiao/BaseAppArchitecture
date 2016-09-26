@@ -74,8 +74,8 @@ public class TimeKFragment extends BaseLazyFragment implements SwipeRefreshLayou
      */
     @Subscribe
     public void onMarketTabSelectedEvent(MarketTabSelectedEvent event) {
-        if (event.position != MainMarketInfoFragment.FIRST) return;
-
+        //if (event.position != MainMarketInfoFragment.FIRST) return;
+        if (event.fragment != this) return;
         //TODO
         /*if (mInAtTop) {
             refreshLayout.setRefreshing(true);

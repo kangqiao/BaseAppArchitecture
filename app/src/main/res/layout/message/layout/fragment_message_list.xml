@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:background="@color/bg_color_red"
     android:orientation="vertical">
 
     <Button
@@ -20,4 +20,9 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/margin_normal"
         android:text="打开FinestWebView页面" />
+
+    <com.jzsec.broker.view.chart.KLineChartView
+        android:layout_width="match_parent"
+        android:background="@color/text_color_blue"
+        android:layout_height="@dimen/kline_container_height"/>
 </LinearLayout>

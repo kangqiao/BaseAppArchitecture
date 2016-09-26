@@ -19,6 +19,12 @@ public class MarketHelper {
     public static final int TYPE_MINUTE_KCHART_15 = 10;
     public static final int TYPE_MINUTE_KCHART_30 = 11;
     public static final int TYPE_MINUTE_KCHART_60 = 12;
+    public static final int TYPE_MINUTE_KCHART_NONE = -1000;
+
+    public static final int TYPE_COMPLEX_RiGHT_NONE = ComplexRightChangeListener.TYPE_COMPLEX_RiGHT_NONE;
+    public static final int TYPE_COMPLEX_EX_RiGHT = ComplexRightChangeListener.TYPE_COMPLEX_EX_RiGHT;
+    public static final int TYPE_COMPLEX_BEFORE_RIGHT = ComplexRightChangeListener.TYPE_COMPLEX_BEFORE_RIGHT;
+    public static final int TYPE_COMPLEX_AFTER_RiGHT = ComplexRightChangeListener.TYPE_COMPLEX_AFTER_RiGHT;
 
     public static void transferMarketParam(Fragment to, Fragment from){
         if( null != to && null != from){

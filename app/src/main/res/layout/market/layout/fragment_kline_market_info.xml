@@ -6,89 +6,212 @@
     android:background="@color/bg_color"
     android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/text_color_yellow" />
-
+    <!-- MA5 MA10 MA20 -->
     <LinearLayout
+        android:id="@+id/fragment_chart_horizontal_chart_layout_ma_ll"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/finestGray"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:background="@color/bg_color_white"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp">
 
-        <RadioGroup
-            android:id="@+id/rg_kline"
-            android:background="@drawable/shape_bg_tab_not_checked"
-            android:orientation="horizontal"
-            android:layout_margin="1px"
+        <LinearLayout
+            android:id="@+id/fragment_chart_horizontal_chart_layout_ma5_ll"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <RadioButton
-                android:id="@+id/rb_day_line"
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:button="@null"
-                android:checked="true"
-                android:layout_weight="1"
-                android:padding="@dimen/margin_small"
-                android:background="@drawable/selector_shape_bg_tab"
-                android:text="日线" />
+                android:layout_height="wrap_content"
+                android:text="MA5:"
+                android:textColor="#000000"
+                android:textSize="12sp" />
 
-            <RadioButton
-                android:id="@+id/rb_week_line"
+            <TextView
+                android:id="@+id/fragment_chart_horizontal_chart_layout_ma5_tv"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:button="@null"
-                android:layout_weight="1"
-                android:padding="@dimen/margin_small"
-                android:background="@drawable/selector_shape_bg_tab"
-                android:text="周线" />
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="#000000"
+                android:textSize="12sp" />
+        </LinearLayout>
 
-            <RadioButton
-                android:id="@+id/rb_month_line"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:button="@null"
-                android:layout_weight="1"
-                android:padding="@dimen/margin_small"
-                android:background="@drawable/selector_shape_bg_tab"
-                android:text="月线" />
-
-            <RadioButton
-                android:id="@+id/rb_minute_line"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/selector_shape_bg_tab"
-                android:button="@null"
-                android:layout_weight="1"
-                android:padding="@dimen/margin_small"
-                android:drawableRight="@mipmap/ic_triangle"
-                android:gravity="center"
-                android:text="分钟" />
-        </RadioGroup>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-        <TextView
-            style="@style/tv_blue_and_normal"
+        <LinearLayout
+            android:id="@+id/fragment_chart_horizontal_chart_layout_ma10_ll"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="right"
-            android:padding="@dimen/margin_small"
-            android:background="@drawable/shape_bg_tab_checked"
-            android:gravity="center_vertical"
-            android:text="前复权" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="10:"
+                android:textColor="#ffb31a"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/fragment_chart_horizontal_chart_layout_ma10_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="#ffb31a"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_chart_horizontal_chart_layout_ma20_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="20:"
+                android:textColor="#1f5299"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/fragment_chart_horizontal_chart_layout_ma20_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="#1f5299"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_chart_horizontal_chart_layout_ma60_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="60:"
+                android:textColor="#f23d97"
+                android:textSize="12sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/fragment_chart_horizontal_chart_layout_ma60_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="#f23d97"
+                android:textSize="12sp"
+                android:visibility="visible" />
+        </LinearLayout>
 
     </LinearLayout>
 
-    <View
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/trade_red" />
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/fl_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/kline_tab_height"
+            android:layout_marginTop="@dimen/kline_main_height"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/rg_kline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1px"
+                android:background="@color/gray_light"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_day_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_shape_bg_tab"
+                    android:button="@null"
+                    android:checked="true"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="日线"
+                    android:textColor="@color/text_color_blue" />
+
+                <RadioButton
+                    android:id="@+id/rb_week_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_shape_bg_tab"
+                    android:button="@null"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="周线" />
+
+                <RadioButton
+                    android:id="@+id/rb_month_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_shape_bg_tab"
+                    android:button="@null"
+                    android:paddingLeft="12dp"
+                    android:paddingRight="12dp"
+                    android:text="月线" />
+
+                <FrameLayout
+                    android:layout_width="54dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <RadioButton
+                        android:id="@+id/rb_minute_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/selector_shape_bg_tab"
+                        android:button="@null"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:text="分钟" />
+
+                    <TextView
+                        android:id="@+id/tv_minute_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="30分钟"
+                        android:textColor="@color/transparent" />
+                </FrameLayout>
+            </RadioGroup>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_shape_top_and_bottom_line" />
+
+            <TextView
+                android:id="@+id/tv_complex_right"
+                style="@style/tv_blue_and_small"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:background="@drawable/shape_bg_tab_checked"
+                android:gravity="center"
+                android:padding="@dimen/margin_small"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+    </FrameLayout>
 </LinearLayout>

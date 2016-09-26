@@ -122,5 +122,10 @@ dependencies {
     //看代码比较用的
     compile 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
 
+    //https://github.com/HpWens/BaseRecyclerAdapter
     compile 'com.github.baserecycleradapter:library:1.0.9'
+
+    //http://www.jianshu.com/p/b4a8b3d4f587
+    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
+    compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
 }

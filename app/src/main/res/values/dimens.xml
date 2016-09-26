@@ -54,17 +54,22 @@
     <dimen name="bottombar_height_with_txt">52dp</dimen>
 
     <!-- 行情页面参数列表 -->
-    <dimen name="market_toolbar_height">50dp</dimen>
+    <!--KLine区域高度-->
     <dimen name="kline_container_height">500dp</dimen>
     <dimen name="kline_main_height">270dp</dimen>
     <dimen name="kline_sub_height">100dp</dimen>
     <dimen name="kline_sub2_height">100dp</dimen>
     <dimen name="kline_tab_height">30dp</dimen>
     <dimen name="kline_horizontal_btn_margin_top_height">210dp</dimen>
-    <dimen name="fenshi_container_height">300dp</dimen>
+
+    <dimen name="fenshi_container_height">370dp</dimen>
     <dimen name="fenshi_main_height">200dp</dimen>
     <dimen name="fenshi_sub_height">100dp</dimen>
     <dimen name="fenshi_buy_height">150dp</dimen>
-    <!--长按 K线 分时 图表区域-交叉十字线时, 弹出信息窗口高度-->
+    <dimen name="fenshi_horizontal_btn_margin_top_height">200dp</dimen>
+    <!--长按 K线 分时 图表区域-交叉十字线时, 弹出信息窗口高度 -->
     <dimen name="kline_cross_popup_info_height">35dp</dimen>
+
+    <dimen name="market_toolbar_height">50dp</dimen>
+    <dimen name="market_operate_height">50dp</dimen>
 </resources>

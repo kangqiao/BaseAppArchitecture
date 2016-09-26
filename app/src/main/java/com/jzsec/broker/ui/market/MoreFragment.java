@@ -17,6 +17,7 @@ import com.github.library.BaseViewHolder;
 import com.github.library.listener.RequestLoadMoreListener;
 import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseLazyFragment;
+import com.jzsec.broker.utils.Zlog;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import me.yokeyword.fragmentation.SupportFragment;
  * e-mail: kangqiao610@gmail.com
  */
 public class MoreFragment extends BaseLazyFragment implements SwipeRefreshLayout.OnRefreshListener, RequestLoadMoreListener {
+    private static final String TAG = "MoreFragment";
 
     //delayMillis
     private static final int DELAY_MILLIS = 1500;
@@ -76,8 +78,13 @@ public class MoreFragment extends BaseLazyFragment implements SwipeRefreshLayout
     }
 
     @Override
-    protected void initLazyView(@Nullable Bundle savedInstanceState) {
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+    }
 
+    @Override
+    protected void initLazyView(@Nullable Bundle savedInstanceState) {
+        Zlog.d(TAG, "initLazyView()");
     }
 
     private void addHeaderView() {

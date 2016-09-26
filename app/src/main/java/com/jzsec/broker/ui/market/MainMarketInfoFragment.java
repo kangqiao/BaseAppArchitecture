@@ -1,17 +1,24 @@
 package com.jzsec.broker.ui.market;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.RelativeLayout;
 
 import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseFragment;
+import com.jzsec.broker.utils.Zlog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -36,6 +43,8 @@ public class MainMarketInfoFragment extends BaseFragment {
     private SupportFragment panKouFragment;
     private SupportFragment toolbarFragment;
 
+    @BindView(R.id.appBarLayout)
+    AppBarLayout appBarLayout;
     @BindView(R.id.collapsingToolbarLayout)
     CollapsingToolbarLayout collapsingToolbarLayout;
     @BindView(R.id.toolbar)
@@ -98,6 +107,7 @@ public class MainMarketInfoFragment extends BaseFragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onBindView(Bundle savedInstanceState) {
         tabLayout.addTab(tabLayout.newTab().setText(mTabs[FIRST]));
@@ -128,7 +138,7 @@ public class MainMarketInfoFragment extends BaseFragment {
         });
 
         // 启用监听屏幕方向改变, 若切换为横屏, 横屏打开K线图.
-        enableScreenOrientationChangeFunction(new ScreenOrientationChangeListener() {
+        /*enableScreenOrientationChangeFunction(new ScreenOrientationChangeListener() {
             @Override
             public void onChangeHorizontal(boolean isLeft) {
                 //EventBus.getDefault().post(new StartMarketBrotherEvent(LandSpaceKLineChartFragment.newInstance()));
@@ -141,10 +151,32 @@ public class MainMarketInfoFragment extends BaseFragment {
             @Override
             public void onChangeVertical(boolean isNormal) {
             }
-        });
+        });*/
 
         //TODO
 
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                //final int insetTop = mLastInsets != null ? mLastInsets.getSystemWindowInsetTop() : 0;
+                final int expandRange = collapsingToolbarLayout.getHeight() - ViewCompat.getMinimumHeight(collapsingToolbarLayout)/* - insetTop*/;
+
+                if(false) Zlog.e(TAG, "onOffsetChanged - appBarLayout.height="+appBarLayout.getHeight()
+                        + ", collapsingToolbarLayout.height="+collapsingToolbarLayout.getHeight()
+                        + ", expandRange="+expandRange
+                        + ", ViewCompat.getMinimumHeight(collapsingToolbarLayout)="+ViewCompat.getMinimumHeight(collapsingToolbarLayout)
+                        +", verticalOffset=" + verticalOffset);
+            }
+        });
+
+
+
+        collapsingToolbarLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                Zlog.e(TAG, "onScrollChange - View v.height="+v.getHeight()+", scrollX=" + scrollX + ", scrollY="+ scrollY+", oldScrollX="+oldScrollX+", oldScrollY="+oldScrollY);
+            }
+        });
     }
 
     /**

@@ -37,9 +37,7 @@ public class KLineChartFragment extends BaseFragment {
 
     @Override
     protected void onBindView(Bundle savedInstanceState) {
-        $(R.id.tv_change_orientation).setOnClickListener((v) -> {
-            EventBus.getDefault().post(new StartMarketBrotherEvent(LandSpaceKLineChartFragment.newInstance()));
-        });
+
     }
 
     @Override

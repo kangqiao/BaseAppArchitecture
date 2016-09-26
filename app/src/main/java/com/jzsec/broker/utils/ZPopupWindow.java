@@ -21,13 +21,30 @@ public abstract class ZPopupWindow<Data> extends PopupWindow {
     private static final String TAG = "ZPopupWindow";
 
     protected View contentView;
+    private LayoutInflater mInflater;
 
     public ZPopupWindow(Activity context) {
-        contentView = onCreatePopupView(LayoutInflater.from(context));
+        //super(context);
+        mInflater = LayoutInflater.from(context);
+        contentView = onCreatePopupView(mInflater);
         setContentView(contentView);
 
+        /*
+        //int h = context.getWindowManager().getDefaultDisplay().getHeight();
+        //int w = context.getWindowManager().getDefaultDisplay().getWidth();
+        //定义DisplayMetrics 对象
+        DisplayMetrics  dm = new DisplayMetrics();
+        //取得窗口属性
+        context.getWindowManager().getDefaultDisplay().getMetrics(dm);
+        //窗口的宽度
+        int mScreenWidth = dm.widthPixels;
+        //窗口高度
+        int mScreenHeight = dm.heightPixels;
+        Zlog.d(TAG, "ScreenWidth=" + mScreenWidth + ", ScreenHeight=" + mScreenHeight);
+        */
+
         // 设置PopupWindow弹出窗体的宽
-        this.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         // 设置PopupWindow弹出窗体的高
         this.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -41,8 +58,10 @@ public abstract class ZPopupWindow<Data> extends PopupWindow {
         // 设置PopupWindow弹出窗体动画效果
         this.setAnimationStyle(R.style.pop_win_anim);
 
-        setDismissable();
+        initView();
     }
+
+    protected void initView(){};
 
     public void setDismissable(){
         // 实例化一个ColorDrawable颜色为半透明
