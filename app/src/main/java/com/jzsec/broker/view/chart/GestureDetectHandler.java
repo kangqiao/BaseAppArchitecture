@@ -112,10 +112,10 @@ public class GestureDetectHandler extends GestureDetector.SimpleOnGestureListene
     @Deprecated
     public boolean onTouch(View v, MotionEvent event) {
         final int action = event.getAction();
-        if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
+        if (action == MotionEvent.ACTION_CANCEL) {
             loge("onTouch", actionToStr(action));
-            //这里主要针对长按进行延时清理操作, 因为长按后滑动和长按滑动后onFling, 这两个操作后续没有明确的结束回调, 即Up或Cancel时GestureDetector并不回调操作.
-            //sendDelayedCancelMessage();
+            //当mDetectedView的onTouchEvent事件突然交到父控件处理时, 紧急执行清理操作.
+            dispatchCancel();
         }
         //改由GestureDetector的每一步单独处理, 减少重复的绘制操作.
         //mGestureOptListener.postInvalidate();
@@ -143,8 +143,13 @@ public class GestureDetectHandler extends GestureDetector.SimpleOnGestureListene
 
     private void dispatchScaleBegin() {
         mDetectedView.getParent().requestDisallowInterceptTouchEvent(true);
-        mInLongPressProgress = false;
         mInScaleProgress = true;
+        if(mInLongPressProgress) {
+            mInLongPressProgress = false;
+            mHandler.removeMessages(LONG_PRESS);
+            mGestureOptListener.onUpOrCancel();
+            mGestureOptListener.postInvalidate();
+        }
     }
 
     //ACTION_CANCEL and ACTION_UP
@@ -453,7 +458,7 @@ public class GestureDetectHandler extends GestureDetector.SimpleOnGestureListene
      */
     @Override
     public boolean onScale(ScaleGestureDetector detector) {
-        if (mInScaleProgress) { //长按后的缩放
+        if (mInScaleProgress) { //缩放中...
             float distance = detector.getCurrentSpan() - lastSpan;
             if (Math.abs(distance) > MIN_SCALE_DISTANCE) {
                 lastSpan = detector.getCurrentSpan();
