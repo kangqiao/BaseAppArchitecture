@@ -22,6 +22,14 @@
             android:padding="@dimen/margin_normal"
             android:text="佣金调整记录" />
 
+        <TextView
+            android:id="@+id/tv_switch_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_dark"
+            android:padding="@dimen/margin_normal"
+            android:text="Switch切换开关实例" />
+
 
     </LinearLayout>
 

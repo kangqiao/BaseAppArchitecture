@@ -612,6 +612,53 @@ public class GestureDetectHandler extends GestureDetector.SimpleOnGestureListene
          * 重绘UI
          */
         void postInvalidate();
+    }
 
+    public static class SimpleGestureOperateListener implements GestureOperateListener{
+
+        @Override
+        public void onUpOrCancel() {
+
+        }
+
+        @Override
+        public void onZoom(ScaleGestureDetector detector) {
+
+        }
+
+        @Override
+        public void onMove(MotionEvent downEvent, MotionEvent event, float distanceX, float distanceY) {
+
+        }
+
+        @Override
+        public void onMoveAfterLongPress(MotionEvent event) {
+
+        }
+
+        @Override
+        public void onLongPress(MotionEvent event) {
+
+        }
+
+        @Override
+        public void onClick(MotionEvent event) {
+
+        }
+
+        @Override
+        public void onDoubleClick(MotionEvent event) {
+
+        }
+
+        @Override
+        public void onFling(MotionEvent downEvent, MotionEvent event, float velocityX, float velocityY) {
+
+        }
+
+        @Override
+        public void postInvalidate() {
+
+        }
     }
 }

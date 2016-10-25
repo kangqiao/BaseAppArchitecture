@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.gson.Gson;
 import com.jzsec.broker.base.BaseActivity;
+import com.jzsec.broker.data.entity.LoginInfo;
 
 /**
  * Created by zhaopan on 2016/4/5.
@@ -26,11 +28,11 @@ public class SpUtil {
             ((BaseActivity) context).reload();
     }
 
-/*    public static _User getUser() {
-        return new Gson().fromJson(prefs.getString("user", ""), _User.class);
+    public static LoginInfo getLoginInfo() {
+        return new Gson().fromJson(prefs.getString("loginInfo", ""), LoginInfo.class);
     }
 
-    public static void setUser(_User user) {
-        prefs.edit().putString("user", new Gson().toJson(user)).commit();
-    }*/
+    public static void setLoginInfo(LoginInfo loginInfo) {
+        prefs.edit().putString("loginInfo", new Gson().toJson(loginInfo)).commit();
+    }
 }

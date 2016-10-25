@@ -7,6 +7,26 @@ import android.util.DisplayMetrics;
  * Created by zhaopan on 16/7/27.
  */
 public interface GlobalConfig {
+
+    /**
+     * appType：客户端类型
+     * 5 - 经济宝-静态页文档包
+     * 3 - 经济宝-WindowsPhone
+     * 2 - 经济宝-iOS
+     * 1 - 经济宝-安卓
+     * 13 - Capp-WindowsPhone
+     * 12 - Capp-iOS
+     * 11 - Capp-安卓
+     */
+    int APP_TYPE = 1;
+
+    /**
+     * envType：是否检测版本更新
+     * 0 -  不检测
+     * 1 -  检测
+     */
+    int ENV_TYPE = 0;
+
     String DEFAULT_HOME_PAGE = "file:///android_asset/www/home/index.html";
     // web首页版本号
     String HOME_PAGE_VER = "home_page_ver";

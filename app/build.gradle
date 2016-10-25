@@ -23,6 +23,16 @@ android {
         }
     }
 
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/maven/com.belerweb/pinyin4j/pom.xml'
+        exclude 'META-INF/maven/com.belerweb/pinyin4j/pom.properties'
+    }
+
     compileOptions {
         sourceCompatibility rootProject.ext.sourceCompatibility
         targetCompatibility rootProject.ext.targetCompatibility
@@ -104,11 +114,20 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3+'
     //RxJava
     compile 'io.reactivex:rxandroid:1+'
+    //https://github.com/jeasonlzy/okhttp-OkGo OkHttpUtils-2.0.0 升级后改名 OkGo，全新完美支持RxJava，比Retrofit更简单易用。
+    compile 'com.lzy.net:okgo:+'
+    //版本号使用 + 可以自动引用最新版
+    compile 'com.lzy.net:okrx:+'
+    //版本号使用 + 可以自动引用最新版
+    compile 'com.lzy.net:okserver:+'
+    //版本号使用 + 可以自动引用最新版
+    //https://github.com/jeasonlzy/ImagePicker 完全仿微信的图片选择，并且提供了多种图片加载接口，选择图片后可以旋转，可以裁剪成矩形或圆形，可以配置各种其他的参数
+    compile 'com.lzy.widget:imagepicker:+'
+    //最新版本
     //EventBus
     compile 'org.greenrobot:eventbus:3+'
     //WebView
     compile 'com.thefinestartist:finestwebview:1.0.6'
-
     /**
      * 实现类似微信WebView的上拉下拉弹跳效果和iOS的ListView的果冻效果
      * https://github.com/kangqiao182/SlidingLayout
@@ -116,16 +135,13 @@ dependencies {
      * http://blog.csdn.net/xiaanming/article/details/18311877
      */
     compile 'homhomlin.lib:sldinglayout:0.9.0'
-
     //compile 'com.umeng.analytics:analytics:6.0.1'
-
     //看代码比较用的
     compile 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
-
     //https://github.com/HpWens/BaseRecyclerAdapter
     compile 'com.github.baserecycleradapter:library:1.0.9'
-
     //http://www.jianshu.com/p/b4a8b3d4f587
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
     compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    compile 'com.belerweb:pinyin4j:2.5.1'
 }

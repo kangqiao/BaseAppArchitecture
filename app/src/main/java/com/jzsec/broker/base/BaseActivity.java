@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.jzsec.broker.R;
 import com.jzsec.broker.AppManager;
+import com.jzsec.broker.base.mvp.IPresenter;
 import com.jzsec.broker.utils.SpUtil;
 
 import butterknife.ButterKnife;

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/jzsec/broker/ui/my/MainActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/jzsec/broker/view/switch_btn/CheckSwitchButton.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/jzsec/broker/view/switch_btn/SlideSwitchView.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/jzsec/broker/view/switch_btn/SlideSwitchView.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/jzsec/broker/view/switch_btn/SwitchButton.java" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

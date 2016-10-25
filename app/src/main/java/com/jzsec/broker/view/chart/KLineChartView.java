@@ -72,7 +72,7 @@ public class KLineChartView extends LinearLayout {
     }
 
 
-    private GestureOperateListener supportGestureOperate = new GestureOperateListener() {
+    private GestureOperateListener supportGestureOperate = new GestureDetectHandler.SimpleGestureOperateListener() {
         @Override
         public void onUpOrCancel() {
             loge("onUpOrCancel");

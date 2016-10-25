@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.jzsec.broker.GlobalConfig;
+import com.jzsec.broker.base.mvp.TUtil;
 import com.jzsec.broker.view.layout.TRecyclerView;
 
 

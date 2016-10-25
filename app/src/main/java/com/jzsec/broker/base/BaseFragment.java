@@ -77,7 +77,7 @@ public class BaseFragment extends SwipeBackFragment {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
+                switch_btn (item.getItemId()) {
                     case R.id.action_hierarchy:
                         _mActivity.showFragmentStackHierarchyView();
                         _mActivity.logFragmentStackHierarchy(TAG);

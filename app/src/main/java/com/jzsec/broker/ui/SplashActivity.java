@@ -7,6 +7,7 @@ import android.view.animation.AlphaAnimation;
 
 import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseActivity;
+import com.jzsec.broker.ui.login.LoginActivity;
 import com.jzsec.broker.utils.AnimationUtil;
 import com.jzsec.broker.utils.StatusBarUtil;
 
@@ -38,7 +39,7 @@ public class SplashActivity extends BaseActivity {
         anim.setDuration(2000);
         view.startAnimation(anim);
         AnimationUtil.setAnimationListener(anim, () -> {
-            startActivity(new Intent(mContext, MainActivity.class));
+            startActivity(new Intent(mContext, LoginActivity.class));
             finish();
         });
     }

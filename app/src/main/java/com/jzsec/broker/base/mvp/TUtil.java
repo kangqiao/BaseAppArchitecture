@@ -1,4 +1,4 @@
-package com.jzsec.broker.base;
+package com.jzsec.broker.base.mvp;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
