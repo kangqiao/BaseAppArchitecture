@@ -29,6 +29,13 @@
             android:thumb="@drawable/switch_thumb"
             android:track="@drawable/switch_track" />
 
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:thumb="@drawable/switch_thumb_stock"
+            android:track="@drawable/switch_track_stock" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"

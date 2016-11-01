@@ -21,11 +21,11 @@ import com.jzsec.broker.view.anim.FrameAnimationController;
 
 /**
  * @author https://github.com/Issacw0ng/SwitchButton
- * @describe Ê¹ÓÃÁËµÚÈı·½µÄ SwitchButton£¬Ìí¼ÓÁËÏà¹ØÊôĞÔµÄ×¢ÊÍ£¬¸üÈİÒ×¿´¶®
+ * @describe ä½¿ç”¨äº†ç¬¬ä¸‰æ–¹çš„ SwitchButtonï¼Œæ·»åŠ äº†ç›¸å…³å±æ€§çš„æ³¨é‡Šï¼Œæ›´å®¹æ˜“çœ‹æ‡‚
  */
 public class CheckSwitchButton extends CheckBox {
     /**
-     * »­±Ê
+     * ç”»ç¬”
      */
     private Paint mPaint;
     private ViewParent mParent;
@@ -34,59 +34,59 @@ public class CheckSwitchButton extends CheckBox {
     private Bitmap mBtnPressed;
     private Bitmap mBtnNormal;
     /**
-     * ÕûÌå¿ò¼Ü
+     * æ•´ä½“æ¡†æ¶
      */
     private Bitmap mFrame;
     /**
-     * ÒõÓ°²ã£¬²»ÄÜµã»÷µÄÊ±ºòÏÔÊ¾
+     * é˜´å½±å±‚ï¼Œä¸èƒ½ç‚¹å‡»çš„æ—¶å€™æ˜¾ç¤º
      */
     private Bitmap mMask;
     /**
-     * ±£´æ²¼¾ÖµÄ¾ØÕó
+     * ä¿å­˜å¸ƒå±€çš„çŸ©é˜µ
      */
     private RectF mSaveLayerRectF;
     /**
-     * ²¼¾ÖÖ®¼äµş²ã£¬ºÃ±È±³¾°ºÍ±³¾°ÉÏµÄÍ¼Æ¬Ğ§¹û
+     * å¸ƒå±€ä¹‹é—´å å±‚ï¼Œå¥½æ¯”èƒŒæ™¯å’ŒèƒŒæ™¯ä¸Šçš„å›¾ç‰‡æ•ˆæœ
      */
     private PorterDuffXfermode mXfermode;
     /**
-     * Ê×´Î°´ÏÂµÄY
+     * é¦–æ¬¡æŒ‰ä¸‹çš„Y
      */
     private float mFirstDownY;
     /**
-     * Ê×´Î°´ÏÂµÄX
+     * é¦–æ¬¡æŒ‰ä¸‹çš„X
      */
     private float mFirstDownX;
     /**
-     * Í¼Æ¬µÄ»æÖÆÎ»ÖÃ
+     * å›¾ç‰‡çš„ç»˜åˆ¶ä½ç½®
      */
     private float mRealPos;
     /**
-     * °´Å¥µÄÎ»ÖÃ
+     * æŒ‰é’®çš„ä½ç½®
      */
     private float mBtnPos;
     /**
-     * ¿ª¹Ø´ò¿ªµÄÎ»ÖÃ
+     * å¼€å…³æ‰“å¼€çš„ä½ç½®
      */
     private float mBtnOnPos;
     /**
-     * ¿ª¹Ø¹Ø±ÕµÄÎ»ÖÃ
+     * å¼€å…³å…³é—­çš„ä½ç½®
      */
     private float mBtnOffPos;
     /**
-     * ÒõÓ°µÄ¿í¶È
+     * é˜´å½±çš„å®½åº¦
      */
     private float mMaskWidth;
     /**
-     * ÒõÓ°µÄ¸ß¶È
+     * é˜´å½±çš„é«˜åº¦
      */
     private float mMaskHeight;
     /**
-     * ¿ª¹ØÔ²ĞÎ°´Å¥µÄ¿í¶È
+     * å¼€å…³åœ†å½¢æŒ‰é’®çš„å®½åº¦
      */
     private float mBtnWidth;
     /**
-     * ¿ª¹Ø³õÊ¼×ø±ê
+     * å¼€å…³åˆå§‹åæ ‡
      */
     private float mBtnInitPos;
 
@@ -94,11 +94,11 @@ public class CheckSwitchButton extends CheckBox {
 
     private int mTouchSlop;
     /**
-     * ×î´óÍ¸Ã÷¶È£¬¾ÍÊÇ²»Í¸Ã÷
+     * æœ€å¤§é€æ˜åº¦ï¼Œå°±æ˜¯ä¸é€æ˜
      */
     private final int MAX_ALPHA = 255;
     /**
-     * µ±Ç°Í¸Ã÷¶È£¬ÕâÀïÖ÷ÒªÓÃÓÚÈç¹û¿Ø¼şµÄenableÊôĞÔÎªfalseÊ±ºòÉèÖÃ°ëÍ¸Ã÷ £¬¼´²»¿ÉÒÔµã»÷
+     * å½“å‰é€æ˜åº¦ï¼Œè¿™é‡Œä¸»è¦ç”¨äºå¦‚æœæ§ä»¶çš„enableå±æ€§ä¸ºfalseæ—¶å€™è®¾ç½®åŠé€æ˜ ï¼Œå³ä¸å¯ä»¥ç‚¹å‡»
      */
     private int mAlpha = MAX_ALPHA;
 
@@ -110,25 +110,25 @@ public class CheckSwitchButton extends CheckBox {
 
     private PerformClick mPerformClick;
     /**
-     * ¿ª¹Ø×´Ì¬ÇĞ»»¼àÌı½Ó¿Ú
+     * å¼€å…³çŠ¶æ€åˆ‡æ¢ç›‘å¬æ¥å£
      */
     private OnCheckedChangeListener mOnCheckedChangeListener;
 
     private OnCheckedChangeListener mOnCheckedChangeWidgetListener;
     /**
-     * ÅĞ¶ÏÊÇ·ñÔÚ½øĞĞ¶¯»­
+     * åˆ¤æ–­æ˜¯å¦åœ¨è¿›è¡ŒåŠ¨ç”»
      */
     private boolean mAnimating;
 
     private final float VELOCITY = 350;
     /**
-     * »¬¶¯ËÙ¶È
+     * æ»‘åŠ¨é€Ÿåº¦
      */
     private float mVelocity;
 
     private final float EXTENDED_OFFSET_Y = 15;
     /**
-     * YÖá·½ÏòÀ©´óµÄÇøÓò,Ôö´óµã»÷ÇøÓò
+     * Yè½´æ–¹å‘æ‰©å¤§çš„åŒºåŸŸ,å¢å¤§ç‚¹å‡»åŒºåŸŸ
      */
     private float mExtendOffsetY;
 
@@ -173,19 +173,19 @@ public class CheckSwitchButton extends CheckBox {
 
         mBtnOffPos = mBtnWidth / 2;
         mBtnOnPos = mMaskWidth - mBtnWidth / 2;
-        // ÅĞ¶ÏÆğÊ¼Î»ÖÃ,Èç¹ûÉè¶¨ÁËmCheckedÎªtrue£¬ÆğÊ¼Î»ÖÃÎª mBtnOnPos
+        // åˆ¤æ–­èµ·å§‹ä½ç½®,å¦‚æœè®¾å®šäº†mCheckedä¸ºtrueï¼Œèµ·å§‹ä½ç½®ä¸º mBtnOnPos
         mBtnPos = mChecked ? mBtnOnPos : mBtnOffPos;
         mRealPos = getRealPos(mBtnPos);
-        // density ÃÜ¶È
-        final float density = getResources().getDisplayMetrics().density;// ·½·¨ÊÇ»ñÈ¡×ÊÔ´ÃÜ¶È£¨Density£©
+        // density å¯†åº¦
+        final float density = getResources().getDisplayMetrics().density;// æ–¹æ³•æ˜¯è·å–èµ„æºå¯†åº¦ï¼ˆDensityï¼‰
         mVelocity = (int) (VELOCITY * density + 0.5f);
         mExtendOffsetY = (int) (EXTENDED_OFFSET_Y * density + 0.5f);
-        // ´´½¨Ò»¸öĞÂµÄ¾ØĞÎÓëÖ¸¶¨µÄ×ø±ê¡£
+        // åˆ›å»ºä¸€ä¸ªæ–°çš„çŸ©å½¢ä¸æŒ‡å®šçš„åæ ‡ã€‚
         mSaveLayerRectF = new RectF(0, mExtendOffsetY, mMask.getWidth(),
                 mMask.getHeight() + mExtendOffsetY);
         mXfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);// PorterDuff.Mode.SRC_IN
-        // £ºÕâ¸öÊôĞÔ´ú±í
-        // È¡Á½²ã»æÖÆ½»¼¯¡£ÏÔÊ¾ÉÏ²ã¡£
+        // ï¼šè¿™ä¸ªå±æ€§ä»£è¡¨
+        // å–ä¸¤å±‚ç»˜åˆ¶äº¤é›†ã€‚æ˜¾ç¤ºä¸Šå±‚ã€‚
     }
 
     @Override
@@ -199,14 +199,14 @@ public class CheckSwitchButton extends CheckBox {
     }
 
     /**
-     * ×Ô¶¯ÅĞ¶ÏÇĞ»»ÖÁÏà·´µÄÊôĞÔ : true -->false ;false -->true
+     * è‡ªåŠ¨åˆ¤æ–­åˆ‡æ¢è‡³ç›¸åçš„å±æ€§ : true -->false ;false -->true
      */
     public void toggle() {
         setChecked(!mChecked);
     }
 
     /**
-     * ÄÚ²¿µ÷ÓÃ´Ë·½·¨ÉèÖÃchecked×´Ì¬£¬´Ë·½·¨»áÑÓ³ÙÖ´ĞĞ¸÷ÖÖ»Øµ÷º¯Êı£¬±£Ö¤¶¯»­µÄÁ÷³©¶È
+     * å†…éƒ¨è°ƒç”¨æ­¤æ–¹æ³•è®¾ç½®checkedçŠ¶æ€ï¼Œæ­¤æ–¹æ³•ä¼šå»¶è¿Ÿæ‰§è¡Œå„ç§å›è°ƒå‡½æ•°ï¼Œä¿è¯åŠ¨ç”»çš„æµç•…åº¦
      *
      * @param checked
      */
@@ -291,9 +291,9 @@ public class CheckSwitchButton extends CheckBox {
                 mBtnInitPos = mChecked ? mBtnOnPos : mBtnOffPos;
                 break;
             case MotionEvent.ACTION_MOVE:
-                // ÍÏ¶¯×ÅµÄÊ±¼ä
+                // æ‹–åŠ¨ç€çš„æ—¶é—´
                 float time = event.getEventTime() - event.getDownTime();
-                // µ±Ç°°´Å¥µÄÎ»ÖÃ
+                // å½“å‰æŒ‰é’®çš„ä½ç½®
                 mBtnPos = mBtnInitPos + event.getX() - mFirstDownX;
                 if (mBtnPos >= mBtnOffPos) {
                     mBtnPos = mBtnOffPos;
@@ -339,19 +339,19 @@ public class CheckSwitchButton extends CheckBox {
     }
 
     /**
-     * Í¨Öª¸¸Àà²»ÒªÀ¹½ØtouchÊÂ¼ş Tries to claim the user's drag motion, and requests
+     * é€šçŸ¥çˆ¶ç±»ä¸è¦æ‹¦æˆªtouchäº‹ä»¶ Tries to claim the user's drag motion, and requests
      * disallowing any ancestors from stealing events in the drag.
      */
     private void attemptClaimDrag() {
         mParent = getParent();
         if (mParent != null) {
-            // Í¨Öª¸¸Àà²»ÒªÀ¹½ØtouchÊÂ¼ş
+            // é€šçŸ¥çˆ¶ç±»ä¸è¦æ‹¦æˆªtouchäº‹ä»¶
             mParent.requestDisallowInterceptTouchEvent(true);
         }
     }
 
     /**
-     * ½«btnPos×ª»»³ÉRealPos
+     * å°†btnPosè½¬æ¢æˆRealPos
      *
      * @param btnPos
      * @return
@@ -366,17 +366,17 @@ public class CheckSwitchButton extends CheckBox {
                 | Canvas.CLIP_SAVE_FLAG | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG
                 | Canvas.FULL_COLOR_LAYER_SAVE_FLAG
                 | Canvas.CLIP_TO_LAYER_SAVE_FLAG);
-        // »æÖÆÃÉ°å
+        // ç»˜åˆ¶è’™æ¿
         canvas.drawBitmap(mMask, 0, mExtendOffsetY, mPaint);
         mPaint.setXfermode(mXfermode);
 
-        // »æÖÆµ×²¿Í¼Æ¬
+        // ç»˜åˆ¶åº•éƒ¨å›¾ç‰‡
         canvas.drawBitmap(mBottom, mRealPos, mExtendOffsetY, mPaint);
         mPaint.setXfermode(null);
-        // »æÖÆ±ß¿ò
+        // ç»˜åˆ¶è¾¹æ¡†
         canvas.drawBitmap(mFrame, 0, mExtendOffsetY, mPaint);
 
-        // »æÖÆ°´Å¥
+        // ç»˜åˆ¶æŒ‰é’®
         canvas.drawBitmap(mCurBtnPic, mRealPos, mExtendOffsetY, mPaint);
         canvas.restore();
     }

@@ -33,6 +33,8 @@ public class MyFragment extends BaseLazyFragment {
     SlidingLayout mSlidingLayout;
     @BindView(R.id.tv_switch_btn)
     TextView tvSwitchBtn;
+    @BindView(R.id.tv_custom_keyboard)
+    TextView tvCustomKeyBoard;
 
     public static MyFragment newInstance() {
         Bundle args = new Bundle();
@@ -82,6 +84,13 @@ public class MyFragment extends BaseLazyFragment {
             @Override
             public void call(Void aVoid) {
                 EventBus.getDefault().post(new StartBrotherEvent(SwitchBtnTestFragment.newInstance()));
+            }
+        });
+
+        RxView.clicks(tvCustomKeyBoard).debounce(300, TimeUnit.MILLISECONDS).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                EventBus.getDefault().post(new StartBrotherEvent(CustomKeyBoardFragment.newInstance()));
             }
         });
     }

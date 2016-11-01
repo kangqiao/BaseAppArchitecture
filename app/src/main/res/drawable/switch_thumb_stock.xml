@@ -6,7 +6,7 @@
         android:height="40dp">
     </size>
     <solid
-        android:color="@android:color/white">
+        android:color="@android:color/transparent">
     </solid>
 
 </shape>

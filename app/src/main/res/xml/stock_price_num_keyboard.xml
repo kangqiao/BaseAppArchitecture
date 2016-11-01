@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- 数字键盘 -->
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    android:horizontalGap="0dp"
+    android:keyHeight="61dp"
+    android:keyWidth="25%p"
+    android:verticalGap="0dp">
+    <Row>
+        <Key
+            android:codes="49"
+            android:keyEdgeFlags="left"
+            android:keyLabel="1" />
+        <Key
+            android:codes="50"
+            android:keyLabel="2" />
+        <Key
+            android:codes="51"
+            android:keyLabel="3" />
+
+        <Key
+            android:codes="-5"
+            android:keyLabel="退格"/>
+    </Row>
+    <Row>
+        <Key
+            android:codes="52"
+            android:keyEdgeFlags="left"
+            android:keyLabel="4" />
+        <Key
+            android:codes="53"
+            android:keyLabel="5" />
+        <Key
+            android:codes="54"
+            android:keyLabel="6" />
+        <Key
+            android:codes="@integer/keycode_empty_text"
+            android:keyLabel="清空"/>
+    </Row>
+    <Row>
+        <Key
+            android:codes="55"
+            android:keyEdgeFlags="left"
+            android:keyLabel="7" />
+        <Key
+            android:codes="56"
+            android:keyLabel="8" />
+        <Key
+            android:codes="57"
+            android:keyLabel="9" />
+
+        <Key
+            android:codes="@integer/keycode_hide_keyboard"
+            android:isRepeatable="true"
+            android:keyLabel="隐藏"/>
+    </Row>
+    <Row>
+
+        <Key
+            android:codes="46"
+            android:keyEdgeFlags="left"
+            android:keyLabel="."
+            android:keyWidth="25%p" />
+        <Key
+            android:codes="48"
+            android:keyLabel="0"
+            android:keyWidth="25%p" />
+        <Key
+            android:codes="@integer/keycode_cur_price"
+            android:isRepeatable="true"
+            android:keyLabel="当前价"
+            android:keyWidth="50%p" />
+    </Row>
+</Keyboard>

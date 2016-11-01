@@ -26,10 +26,17 @@
             android:id="@+id/tv_switch_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_green_dark"
+            android:background="@android:color/holo_red_dark"
             android:padding="@dimen/margin_normal"
             android:text="Switch切换开关实例" />
 
+        <TextView
+            android:id="@+id/tv_custom_keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_bright"
+            android:padding="@dimen/margin_normal"
+            android:text="自定义键盘" />
 
     </LinearLayout>
 

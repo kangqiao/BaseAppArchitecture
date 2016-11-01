@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StockNumberKeyboardView">
+
+        <!-- 删除按键的图标 -->
+        <attr name="stock_deleteDrawable" format="reference" />
+
+        <!-- 删除按键图标的宽度 -->
+        <attr name="stock_deleteWidth" format="dimension|reference" />
+
+        <!-- 删除按键图标的高度 -->
+        <attr name="stock_deleteHeight" format="dimension|reference" />
+
+        <!-- 删除按键图标的颜色 -->
+        <attr name="stock_deleteBackgroundColor" format="color|reference" />
+
+    </declare-styleable>
+</resources>
