@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
@@ -21,12 +22,13 @@ import com.jzsec.broker.R;
 
 import java.lang.reflect.Method;
 
+
 /**
  * Created by zhaopan on 2016/10/28.
  * e-mail: kangqiao610@gmail.com
  */
 
-public class CustomKeyboardManager implements View.OnFocusChangeListener {
+public class CustomKeyboardManager implements OnFocusChangeListener {
     private static final String TAG = "CustomKeyboardManager";
 
     private Activity mActivity;
@@ -36,7 +38,7 @@ public class CustomKeyboardManager implements View.OnFocusChangeListener {
     private int mKeyboardHeight;
     private FrameLayout.LayoutParams mKeyboardViewLayoutParams;
     private View mShowUnderView;
-    private EditText etFocusScavenger;
+    private View etFocusScavenger;
 
     public CustomKeyboardManager(Activity activity) {
         mActivity = activity;
@@ -44,8 +46,8 @@ public class CustomKeyboardManager implements View.OnFocusChangeListener {
 
         mKeyboardViewContainer = (FrameLayout) mActivity.getLayoutInflater().inflate(R.layout.view_custome_keyboard_view, null);
         mKeyboardView = (KeyboardView) mKeyboardViewContainer.findViewById(R.id.keyboard_view);
-        etFocusScavenger = (EditText) mKeyboardViewContainer.findViewById(R.id.et_focus_scavenger);
-        hideSystemSoftKeyboard(etFocusScavenger);
+        etFocusScavenger = mKeyboardViewContainer.findViewById(R.id.et_focus_scavenger);
+        hideSystemSoftKeyboard((EditText) etFocusScavenger);
 
         mKeyboardViewLayoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mKeyboardViewLayoutParams.gravity = Gravity.BOTTOM;
@@ -80,6 +82,14 @@ public class CustomKeyboardManager implements View.OnFocusChangeListener {
         return mKeyboardView;
     }
 
+    /**
+     * 替换焦点清理者, 即当控件失去焦点后, 焦点交由view来继续处理.
+     * @param view
+     */
+    public void requestFocus(View view){
+        etFocusScavenger = view;
+    }
+
     public void setShowUnderView(View view) {
         mShowUnderView = view;
     }
@@ -103,10 +113,6 @@ public class CustomKeyboardManager implements View.OnFocusChangeListener {
         return moveHeight > 0 ? moveHeight : 0;
     }
 
-    private void scavengeFocus(){
-        etFocusScavenger.requestFocus();
-    }
-
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         if (v instanceof EditText) {
@@ -126,7 +132,7 @@ public class CustomKeyboardManager implements View.OnFocusChangeListener {
             return;
         }
         keyboard.setCurEditText(view);
-
+        keyboard.setNextFocusView(etFocusScavenger);
         refreshKeyboard(keyboard);
 
         mRootView.addView(mKeyboardViewContainer, mKeyboardViewLayoutParams);
@@ -183,9 +189,10 @@ public class CustomKeyboardManager implements View.OnFocusChangeListener {
         }
     }
 
-    public abstract class BaseKeyboard extends Keyboard implements KeyboardView.OnKeyboardActionListener {
+    public static abstract class BaseKeyboard extends Keyboard implements KeyboardView.OnKeyboardActionListener {
 
         protected EditText etCurrent;
+        protected View nextFocusView;
 
         public BaseKeyboard(Context context, int xmlLayoutResId) {
             super(context, xmlLayoutResId);
@@ -204,12 +211,8 @@ public class CustomKeyboardManager implements View.OnFocusChangeListener {
         }
 
         protected int getKeyCode(int resId) {
-            if(null != mActivity) {
-                return mActivity.getResources().getInteger(resId);
-            }else if (null != etCurrent) {
+            if (null != etCurrent) {
                 return etCurrent.getContext().getResources().getInteger(resId);
-            } else if (null != getKeyboardView()) {
-                return mKeyboardView.getContext().getResources().getInteger(resId);
             } else {
                 return Integer.MIN_VALUE;
             }
@@ -221,6 +224,10 @@ public class CustomKeyboardManager implements View.OnFocusChangeListener {
 
         public EditText getCurEditText() {
             return etCurrent;
+        }
+
+        public void setNextFocusView(View view){
+            this.nextFocusView = view;
         }
 
         @Override
@@ -249,12 +256,16 @@ public class CustomKeyboardManager implements View.OnFocusChangeListener {
                     editable.clear();
                 } else if (primaryCode == getKeyCode(R.integer.keycode_hide_keyboard)) {
                     //hideSoftKeyboard(etCurrent);
-                    scavengeFocus();
+                    if(null != nextFocusView) nextFocusView.requestFocus();
+                } else if(primaryCode == 46) {
+                    if(!editable.toString().contains(".")) {
+                        editable.insert(start, Character.toString((char) primaryCode));
+                    }
                 } else {
                     editable.insert(start, Character.toString((char) primaryCode));
                 }
             }
-            getKeyboardView().postInvalidate();
+            //getKeyboardView().postInvalidate();
         }
 
         /**

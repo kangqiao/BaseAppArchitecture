@@ -8,12 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@color/finestWhite"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:keyBackground="@drawable/keyboard_key"
-        android:keyTextColor="@color/text_color_white"
-        android:keyTextSize="@dimen/text_size_small"
+        android:keyTextColor="@color/text_color_gray_6"
+        android:keyTextSize="@dimen/text_size_large"
         android:visibility="visible" />
 
     <EditText

@@ -81,7 +81,7 @@ public class CustomKeyBoardFragment extends BaseFragment {
     protected void onBindView(Bundle savedInstanceState) {
         customKeyboardManager = new CustomKeyboardManager(_mActivity);
 
-        customKeyboardManager.attachTo(etInputPrice, customKeyboardManager.new BaseKeyboard(getContext(), R.xml.stock_price_num_keyboard) {
+        customKeyboardManager.attachTo(etInputPrice, new CustomKeyboardManager.BaseKeyboard(getContext(), R.xml.stock_price_num_keyboard) {
             @Override
             public boolean handleSpecialKey(EditText etCurrent, int primaryCode) {
                 if (primaryCode == getKeyCode( R.integer.keycode_cur_price)) {
@@ -92,7 +92,7 @@ public class CustomKeyBoardFragment extends BaseFragment {
             }
         });
 
-        customKeyboardManager.attachTo(etInputNum, customKeyboardManager.new BaseKeyboard(getContext(), R.xml.stock_trade_num_keyboard) {
+        customKeyboardManager.attachTo(etInputNum, new CustomKeyboardManager.BaseKeyboard(getContext(), R.xml.stock_trade_num_keyboard) {
             @Override
             public boolean handleSpecialKey(EditText etCurrent, int primaryCode) {
                 Editable editable = etCurrent.getText();
@@ -107,8 +107,8 @@ public class CustomKeyBoardFragment extends BaseFragment {
                 return false;
             }
         });
-        //customKeyboardManager.attachTo(etInputOther, CustomKeyboardManager.KEYBOARD_TYPE_STOCK);
         customKeyboardManager.setShowUnderView(underView);
+        //customKeyboardManager.attachTo(etInputOther, CustomKeyboardManager.KEYBOARD_TYPE_STOCK);
 
         /*mIsSoftKeyboardShowing = false;
         mKeyboardStateListeners = new ArrayList<OnSoftKeyboardStateChangedListener>();
