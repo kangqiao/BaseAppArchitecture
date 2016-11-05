@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseFragment;
@@ -81,7 +82,7 @@ public class CustomKeyBoardFragment extends BaseFragment {
     protected void onBindView(Bundle savedInstanceState) {
         customKeyboardManager = new CustomKeyboardManager(_mActivity);
 
-        customKeyboardManager.attachTo(etInputPrice, new CustomKeyboardManager.BaseKeyboard(getContext(), R.xml.stock_price_num_keyboard) {
+        CustomKeyboardManager.BaseKeyboard priceKeyboard = new CustomKeyboardManager.BaseKeyboard(getContext(), R.xml.stock_price_num_keyboard) {
             @Override
             public boolean handleSpecialKey(EditText etCurrent, int primaryCode) {
                 if (primaryCode == getKeyCode( R.integer.keycode_cur_price)) {
@@ -90,7 +91,16 @@ public class CustomKeyBoardFragment extends BaseFragment {
                 }
                 return false;
             }
-        });
+        };
+
+        //customKeyboardManager.attachTo($(R.id.et_input_price1), priceKeyboard);
+        //customKeyboardManager.attachTo($(R.id.et_input_price2), priceKeyboard);
+        //customKeyboardManager.attachTo($(R.id.et_input_price3), priceKeyboard);
+        customKeyboardManager.attachTo($(R.id.et_input_price4), priceKeyboard);
+        customKeyboardManager.attachTo($(R.id.et_input_price5), priceKeyboard);
+        customKeyboardManager.attachTo($(R.id.et_input_price6), priceKeyboard);
+
+        customKeyboardManager.attachTo(etInputPrice, priceKeyboard);
 
         customKeyboardManager.attachTo(etInputNum, new CustomKeyboardManager.BaseKeyboard(getContext(), R.xml.stock_trade_num_keyboard) {
             @Override
@@ -102,6 +112,9 @@ public class CustomKeyBoardFragment extends BaseFragment {
                     return true;
                 } else if (primaryCode == getKeyCode(R.integer.keycode_stocknum_half)){
                     etCurrent.setText(1000 /2+"");
+                    return true;
+                } else if (primaryCode == getKeyCode(R.integer.keycode_stocknum_all)){
+                    setStockNumAll(etCurrent);
                     return true;
                 }
                 return false;
@@ -162,6 +175,11 @@ public class CustomKeyBoardFragment extends BaseFragment {
             customKeyboardManager.showSoftKeyboard((EditText) view);
         if (view.getId() == R.id.tv_go_buy)
             customKeyboardManager.hideSoftKeyboard((EditText) view);
+    }
+
+    @OnClick(R.id.tv_stock_all)
+    public void setStockNumAll(View view){
+        etInputNum.setText("10000");
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
@@ -31,7 +32,7 @@ import java.lang.reflect.Method;
 public class CustomKeyboardManager implements OnFocusChangeListener {
     private static final String TAG = "CustomKeyboardManager";
 
-    private Activity mActivity;
+    private Context mContext;
     private ViewGroup mRootView;
     private FrameLayout mKeyboardViewContainer;
     private KeyboardView mKeyboardView;
@@ -41,10 +42,10 @@ public class CustomKeyboardManager implements OnFocusChangeListener {
     private View etFocusScavenger;
 
     public CustomKeyboardManager(Activity activity) {
-        mActivity = activity;
-        mRootView = (ViewGroup) (mActivity.getWindow().getDecorView().findViewById(android.R.id.content));
+        mContext = activity;
+        mRootView = (ViewGroup) (activity.getWindow().getDecorView().findViewById(android.R.id.content));
 
-        mKeyboardViewContainer = (FrameLayout) mActivity.getLayoutInflater().inflate(R.layout.view_custome_keyboard_view, null);
+        mKeyboardViewContainer = (FrameLayout) LayoutInflater.from(mContext).inflate(R.layout.view_custome_keyboard_view, null);
         mKeyboardView = (KeyboardView) mKeyboardViewContainer.findViewById(R.id.keyboard_view);
         etFocusScavenger = mKeyboardViewContainer.findViewById(R.id.et_focus_scavenger);
         hideSystemSoftKeyboard((EditText) etFocusScavenger);
@@ -94,21 +95,27 @@ public class CustomKeyboardManager implements OnFocusChangeListener {
         mShowUnderView = view;
     }
 
+    /**
+     * 计算屏幕向上移动距离
+     * @param view 响应输入焦点的控件
+     * @return 移动偏移量
+     */
     private int getMoveHeight(View view) {
         Rect rect = new Rect();
-        mRootView.getWindowVisibleDisplayFrame(rect);
+        mRootView.getWindowVisibleDisplayFrame(rect); //获取当前显示区域的宽高
 
         int[] vLocation = new int[2];
-        view.getLocationOnScreen(vLocation);
+        view.getLocationOnScreen(vLocation); //计算输入框在屏幕中的位置
         int keyboardTop = vLocation[1] + view.getHeight() + view.getPaddingBottom() + view.getPaddingTop();
-        if (rect.bottom - keyboardTop > mKeyboardHeight) {
+        if (keyboardTop - mKeyboardHeight < 0) { //如果输入框到屏幕顶部已经不能放下键盘的高度, 则不需要移动了.
             return 0;
         }
-        if (null != mShowUnderView) {
+        if (null != mShowUnderView) { //如果有基线View. 则计算基线View到屏幕的距离
             int[] underVLocation = new int[2];
             mShowUnderView.getLocationOnScreen(underVLocation);
             keyboardTop = underVLocation[1] + mShowUnderView.getHeight() + mShowUnderView.getPaddingBottom() + mShowUnderView.getPaddingTop();
         }
+        //输入框或基线View的到屏幕的距离 + 键盘高度 如果 超出了屏幕的承载范围, 就需要移动.
         int moveHeight = keyboardTop + mKeyboardHeight - rect.bottom;
         return moveHeight > 0 ? moveHeight : 0;
     }
@@ -126,22 +133,23 @@ public class CustomKeyboardManager implements OnFocusChangeListener {
     }
 
     public void showSoftKeyboard(EditText view) {
-        BaseKeyboard keyboard = getKeyboard(view);
+        BaseKeyboard keyboard = getKeyboard(view); //获取输入框所绑定的键盘BaseKeyboard
         if (null == keyboard) {
             Log.e(TAG, "The EditText not bind BaseKeyboard!");
             return;
         }
         keyboard.setCurEditText(view);
-        keyboard.setNextFocusView(etFocusScavenger);
-        refreshKeyboard(keyboard);
+        keyboard.setNextFocusView(etFocusScavenger); //为键盘设置下一个焦点响应控件.
+        refreshKeyboard(keyboard); //设置键盘keyboard到KeyboardView中.
 
+        //将键盘布局加入到根布局中.
         mRootView.addView(mKeyboardViewContainer, mKeyboardViewLayoutParams);
-
-        mKeyboardViewContainer.setAnimation(AnimationUtils.loadAnimation(mActivity, R.anim.down_to_up));
+        //设置加载动画.
+        mKeyboardViewContainer.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.down_to_up));
 
         int moveHeight = getMoveHeight(view);
         if (moveHeight > 0) {
-            mRootView.getChildAt(0).scrollBy(0, moveHeight);
+            mRootView.getChildAt(0).scrollBy(0, moveHeight); //移动屏幕
         } else {
             moveHeight = 0;
         }
@@ -153,14 +161,14 @@ public class CustomKeyboardManager implements OnFocusChangeListener {
         int moveHeight = 0;
         Object tag = view.getTag(R.id.keyboard_view_move_height);
         if (null != tag) moveHeight = (int) tag;
-        if (moveHeight > 0) {
+        if (moveHeight > 0) { //复原屏幕
             mRootView.getChildAt(0).scrollBy(0, -1 * moveHeight);
             view.setTag(R.id.keyboard_view_move_height, 0);
         }
 
-        mRootView.removeView(mKeyboardViewContainer);
+        mRootView.removeView(mKeyboardViewContainer); //将键盘从根布局中移除.
 
-        mKeyboardViewContainer.setAnimation(AnimationUtils.loadAnimation(mActivity, R.anim.up_to_hide));
+        mKeyboardViewContainer.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.up_to_hide));
     }
 
     /**
@@ -252,16 +260,16 @@ public class CustomKeyboardManager implements OnFocusChangeListener {
                             editable.delete(start - 1, start);
                         }
                     }
-                } else if (primaryCode == getKeyCode(R.integer.keycode_empty_text)) {
+                } else if (primaryCode == getKeyCode(R.integer.keycode_empty_text)) { //清空
                     editable.clear();
-                } else if (primaryCode == getKeyCode(R.integer.keycode_hide_keyboard)) {
+                } else if (primaryCode == getKeyCode(R.integer.keycode_hide_keyboard)) { //隐藏
                     //hideSoftKeyboard(etCurrent);
                     if(null != nextFocusView) nextFocusView.requestFocus();
-                } else if(primaryCode == 46) {
+                } else if(primaryCode == 46) { //小数点
                     if(!editable.toString().contains(".")) {
                         editable.insert(start, Character.toString((char) primaryCode));
                     }
-                } else {
+                } else { //其他默认
                     editable.insert(start, Character.toString((char) primaryCode));
                 }
             }
@@ -273,7 +281,7 @@ public class CustomKeyboardManager implements OnFocusChangeListener {
          *   注: 所有的操作要针对etCurrent来操作
          * @param etCurrent 当前操作的EditText
          * @param primaryCode 选择的Key
-         * @return
+         * @return true: 已经处理过, false: 没有被处理
          */
         public abstract boolean handleSpecialKey(EditText etCurrent, int primaryCode);
 

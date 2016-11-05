@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Broker2.iml" filepath="$PROJECT_DIR$/Broker2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baseapp/baseapp.iml" filepath="$PROJECT_DIR$/baseapp/baseapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leancloud/leancloud.iml" filepath="$PROJECT_DIR$/leancloud/leancloud.iml" />
     </modules>
   </component>
 </project>

@@ -46,7 +46,7 @@ public abstract class BaseActivity extends SwipeBackActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mUnBinder.unbind();
+        if (null != mUnBinder) mUnBinder.unbind();
         AppManager.getInstance().finishActivity(this);
     }
 

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Begin 以颜色和大小定义TextView -->
+    <!--tv_gray9_-->
+    <style name="tv_gray9_and_tiny">
+        <item name="android:textColor">@color/text_color_gray_9</item>
+        <item name="android:textSize">@dimen/text_size_tiny</item>
+    </style>
+    <style name="tv_gray9_and_tinyx">
+        <item name="android:textColor">@color/text_color_gray_9</item>
+        <item name="android:textSize">@dimen/text_size_tinyx</item>
+    </style>
+
+    <style name="tv_gray9_and_small">
+        <item name="android:textColor">@color/text_color_gray_9</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+    <style name="tv_gray9_and_smallx">
+        <item name="android:textColor">@color/text_color_gray_9</item>
+        <item name="android:textSize">@dimen/text_size_smallx</item>
+    </style>
+
+    <style name="tv_gray9_and_normal">
+        <item name="android:textColor">@color/text_color_gray_9</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+    <style name="tv_gray9_and_normalx">
+        <item name="android:textColor">@color/text_color_gray_9</item>
+        <item name="android:textSize">@dimen/text_size_normalx</item>
+    </style>
+
+    <!--tv_gray6_-->
+    <style name="tv_gray6_and_tiny">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_tiny</item>
+    </style>
+    <style name="tv_gray6_and_tinyx">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_tinyx</item>
+    </style>
+
+    <style name="tv_gray6_and_small">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+    <style name="tv_gray6_and_smallx">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_smallx</item>
+    </style>
+
+    <style name="tv_gray6_and_normal">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+    <style name="tv_gray6_and_normalx">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_normalx</item>
+    </style>
+
+    <style name="tv_gray6_and_large">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+    <style name="tv_gray6_and_largex">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_largex</item>
+    </style>
+
+    <!--tv_gray3_-->
+    <style name="tv_gray3_and_small">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+    <style name="tv_gray3_and_normal">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+    <style name="tv_gray3_and_normalx">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_normalx</item>
+    </style>
+
+    <style name="tv_gray3_and_large">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+    <style name="tv_gray3_and_largex">
+        <item name="android:textColor">@color/text_color_gray_6</item>
+        <item name="android:textSize">@dimen/text_size_largex</item>
+    </style>
+
+    <!--tv_blue_-->
+    <style name="tv_blue_and_small">
+        <item name="android:textColor">@color/text_color_blue</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+    <style name="tv_blue_and_smallx">
+        <item name="android:textColor">@color/text_color_blue</item>
+        <item name="android:textSize">@dimen/text_size_smallx</item>
+    </style>
+
+    <style name="tv_blue_and_normal">
+        <item name="android:textColor">@color/text_color_blue</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+    <style name="tv_blue_and_normalx">
+        <item name="android:textColor">@color/text_color_blue</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+    <!--tv_red_-->
+    <style name="tv_red_and_small">
+        <item name="android:textColor">@color/text_color_red</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+    <style name="tv_red_and_smallx">
+        <item name="android:textColor">@color/text_color_red</item>
+        <item name="android:textSize">@dimen/text_size_smallx</item>
+    </style>
+
+    <style name="tv_red_and_normal">
+        <item name="android:textColor">@color/text_color_red</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+    <style name="tv_red_and_normalx">
+        <item name="android:textColor">@color/text_color_red</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+    <!--tv_white_-->
+    <style name="tv_white_and_small">
+        <item name="android:textColor">@color/text_color_white</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+    <style name="tv_white_and_smallx">
+        <item name="android:textColor">@color/text_color_white</item>
+        <item name="android:textSize">@dimen/text_size_smallx</item>
+    </style>
+
+    <style name="tv_white_and_normal">
+        <item name="android:textColor">@color/text_color_white</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+    <style name="tv_white_and_normalx">
+        <item name="android:textColor">@color/text_color_white</item>
+        <item name="android:textSize">@dimen/text_size_normalx</item>
+    </style>
+    <!-- End 以颜色和大小定义TextView -->
+
+    <style name="pop_win_anim">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+</resources>

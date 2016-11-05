@@ -8,11 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/finestWhite"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:keyBackground="@drawable/keyboard_key"
+        android:background="#fff"
+        android:keyBackground="@color/divider_line"
         android:keyTextColor="@color/text_color_gray_6"
+        android:keyPreviewLayout="@layout/key_preview_layout"
         android:keyTextSize="@dimen/text_size_large"
         android:visibility="visible" />
 

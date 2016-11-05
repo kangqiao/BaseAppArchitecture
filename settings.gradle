@@ -1,1 +1,1 @@
-include ':app', ':baseapp'
+include ':app', ':baseapp', ':leancloud'

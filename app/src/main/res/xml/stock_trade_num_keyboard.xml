@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!-- 数字键盘 -->
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
-    android:horizontalGap="0dp"
-    android:keyHeight="61dp"
+    android:horizontalGap="2dp"
+    android:keyHeight="62dp"
     android:keyWidth="20%p"
-    android:verticalGap="0dp">
+    android:verticalGap="2dp">
     <Row>
         <Key
             android:codes="@integer/keycode_stocknum_all"
@@ -25,7 +25,7 @@
         <Key
             android:codes="-5"
             android:isRepeatable="true"
-            android:keyLabel="退格"/>
+            android:keyIcon="@mipmap/bg_popwin_down"/>
     </Row>
 
     <Row>
@@ -95,7 +95,9 @@
         <Key
             android:codes="@integer/keycode_stock_sell"
             android:isRepeatable="true"
-            android:keyLabel="卖出"
-            android:keyWidth="40%p" />
+            android:keyIcon="@mipmap/sell_aaa"
+            android:iconPreview="@mipmap/sell_aaa"
+            android:keyWidth="40%p"
+            android:keyHeight="62dp"/>
     </Row>
 </Keyboard>
