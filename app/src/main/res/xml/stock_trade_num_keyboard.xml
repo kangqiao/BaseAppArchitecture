@@ -24,8 +24,8 @@
 
         <Key
             android:codes="-5"
-            android:isRepeatable="true"
-            android:keyIcon="@mipmap/bg_popwin_down"/>
+            android:keyLabel="回退"
+            android:iconPreview="@drawable/bg_custom_key_light_gray"/>
     </Row>
 
     <Row>
@@ -48,7 +48,8 @@
 
         <Key
             android:codes="@integer/keycode_empty_text"
-            android:keyLabel="清空"/>
+            android:keyLabel="清空"
+            android:iconPreview="@drawable/bg_custom_key_light_gray"/>
     </Row>
 
     <Row>
@@ -71,7 +72,8 @@
 
         <Key
             android:codes="@integer/keycode_hide_keyboard"
-            android:keyLabel="隐藏"/>
+            android:keyLabel="隐藏"
+            android:iconPreview="@drawable/bg_custom_key_light_gray"/>
     </Row>
 
     <Row>
@@ -94,10 +96,8 @@
 
         <Key
             android:codes="@integer/keycode_stock_sell"
-            android:isRepeatable="true"
-            android:keyIcon="@mipmap/sell_aaa"
-            android:iconPreview="@mipmap/sell_aaa"
-            android:keyWidth="40%p"
-            android:keyHeight="62dp"/>
+            android:keyLabel="卖出"
+            android:iconPreview="@drawable/bg_custom_key_blue"
+            android:keyWidth="40%p"/>
     </Row>
 </Keyboard>

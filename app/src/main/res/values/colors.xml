@@ -64,4 +64,17 @@
     <color name="default_efwhite">#efffffff</color>
     <color name="default_dfwhite">#dfffffff</color>
     <color name="default_cfwhite">#cfffffff</color>
+
+
+    <color name="custom_key_red">#f24957</color>
+    <color name="custom_key_red_pressed">#d9414e</color>
+
+    <color name="custom_key_blue">#4377bf</color>
+    <color name="custom_key_blue_pressed">#3a67a6</color>
+
+    <color name="custom_key_gray">#e1e3e5</color>
+    <color name="custom_key_gray_pressed">#f58349</color>
+
+    <color name="custom_key_grayl">#c8cacc</color>
+    <color name="custom_key_grayl_pressed">#f58349</color>
 </resources>

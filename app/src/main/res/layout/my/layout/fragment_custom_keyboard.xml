@@ -161,13 +161,13 @@
         android:background="@color/gray" />
 
     <EditText
-        android:id="@+id/et_input_price"
+        android:id="@+id/et_input_num1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"
         android:background="@color/bg_color_white"
         android:gravity="center"
-        android:hint="股票价格000"
+        android:hint="买入 股票数量1"
         android:padding="@dimen/margin_small" />
 
     <View
@@ -176,19 +176,19 @@
         android:background="@color/gray" />
 
     <EditText
-        android:id="@+id/et_input_num"
+        android:id="@+id/et_input_num2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"
         android:background="@color/bg_color_white"
         android:gravity="center"
-        android:hint="股票数量"
+        android:hint="卖出 股票数量2"
         android:padding="@dimen/margin_small" />
 
     <View
-        android:id="@+id/view_under"
-        android:layout_width="match_parent"
-        android:layout_height="1px" />
+    android:id="@+id/view_under"
+    android:layout_width="match_parent"
+    android:layout_height="1px" />
 
     <LinearLayout
         android:id="@+id/layout_opt_container"

@@ -1,19 +1,23 @@
 package com.jzsec.broker.ui.my;
 
+import android.graphics.drawable.Drawable;
+import android.inputmethodservice.Keyboard;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseFragment;
+import com.jzsec.broker.view.customKeyboard.CustomBaseKeyboard;
+import com.jzsec.broker.view.customKeyboard.CustomKeyboardManager;
 
 import java.util.ArrayList;
 
@@ -27,12 +31,13 @@ import me.yokeyword.fragmentation.SupportFragment;
  */
 public class CustomKeyBoardFragment extends BaseFragment {
 
-    //    @BindView(R.id.et_input_other)
-//    EditText etInputOther;
-    @BindView(R.id.et_input_price)
-    EditText etInputPrice;
-    @BindView(R.id.et_input_num)
-    EditText etInputNum;
+    private static final String TAG = "CustomKeyBoardFragment";
+    @BindView(R.id.et_input_price1)
+    EditText etInputPrice1;
+    @BindView(R.id.et_input_num1)
+    EditText etInputNum1;
+    @BindView(R.id.et_input_num2)
+    EditText etInputNum2;
     @BindView(R.id.layout_opt_container)
     LinearLayout optContainer;
     @BindView(R.id.view_under)
@@ -82,7 +87,7 @@ public class CustomKeyBoardFragment extends BaseFragment {
     protected void onBindView(Bundle savedInstanceState) {
         customKeyboardManager = new CustomKeyboardManager(_mActivity);
 
-        CustomKeyboardManager.BaseKeyboard priceKeyboard = new CustomKeyboardManager.BaseKeyboard(getContext(), R.xml.stock_price_num_keyboard) {
+        CustomBaseKeyboard priceKeyboard = new CustomBaseKeyboard(getContext(), R.xml.stock_price_num_keyboard) {
             @Override
             public boolean handleSpecialKey(EditText etCurrent, int primaryCode) {
                 if (primaryCode == getKeyCode( R.integer.keycode_cur_price)) {
@@ -93,16 +98,14 @@ public class CustomKeyBoardFragment extends BaseFragment {
             }
         };
 
-        //customKeyboardManager.attachTo($(R.id.et_input_price1), priceKeyboard);
-        //customKeyboardManager.attachTo($(R.id.et_input_price2), priceKeyboard);
+        customKeyboardManager.attachTo($(R.id.et_input_price1), priceKeyboard);
+        customKeyboardManager.attachTo($(R.id.et_input_price2), priceKeyboard);
         //customKeyboardManager.attachTo($(R.id.et_input_price3), priceKeyboard);
         customKeyboardManager.attachTo($(R.id.et_input_price4), priceKeyboard);
         customKeyboardManager.attachTo($(R.id.et_input_price5), priceKeyboard);
         customKeyboardManager.attachTo($(R.id.et_input_price6), priceKeyboard);
 
-        customKeyboardManager.attachTo(etInputPrice, priceKeyboard);
-
-        customKeyboardManager.attachTo(etInputNum, new CustomKeyboardManager.BaseKeyboard(getContext(), R.xml.stock_trade_num_keyboard) {
+        CustomBaseKeyboard numKeyboard =  new CustomBaseKeyboard(getContext(), R.xml.stock_trade_num_keyboard) {
             @Override
             public boolean handleSpecialKey(EditText etCurrent, int primaryCode) {
                 Editable editable = etCurrent.getText();
@@ -116,10 +119,43 @@ public class CustomKeyBoardFragment extends BaseFragment {
                 } else if (primaryCode == getKeyCode(R.integer.keycode_stocknum_all)){
                     setStockNumAll(etCurrent);
                     return true;
+                } else if (primaryCode == getKeyCode(R.integer.keycode_stock_sell)){
+                    etCurrent.setText("999999");
+                    hideKeyboard();
+                    return true;
                 }
                 return false;
             }
+        };
+
+        numKeyboard.setCustomKeyStyle(new CustomBaseKeyboard.SimpleCustomKeyStyle(){
+            @Override
+            public Drawable getKeyBackground(Keyboard.Key key, EditText etCur) {
+                if(getKeyCode(etCur.getContext(), R.integer.keycode_stock_sell) == key.codes[0]) {
+                    if (R.id.et_input_num1 == etCur.getId()) {
+                        return getDrawable(etCur.getContext(), R.drawable.bg_custom_key_blue);
+                    } else if (R.id.et_input_num2 == etCur.getId()) {
+                        return getDrawable(etCur.getContext(), R.drawable.bg_custom_key_red);
+                    }
+                }
+                return super.getKeyBackground(key, etCur);
+            }
+
+            @Override
+            public CharSequence getKeyLabel(Keyboard.Key key, EditText etCur) {
+                if(getKeyCode(etCur.getContext(), R.integer.keycode_stock_sell) == key.codes[0]) {
+                    if (R.id.et_input_num1 == etCur.getId()) {
+                        return "卖出";
+                    } else if (R.id.et_input_num2 == etCur.getId()) {
+                        return "买入";
+                    }
+                }
+                return super.getKeyLabel(key, etCur);
+            }
         });
+        customKeyboardManager.attachTo(etInputNum1, numKeyboard);
+        customKeyboardManager.attachTo(etInputNum2, numKeyboard);
+
         customKeyboardManager.setShowUnderView(underView);
         //customKeyboardManager.attachTo(etInputOther, CustomKeyboardManager.KEYBOARD_TYPE_STOCK);
 
@@ -157,7 +193,7 @@ public class CustomKeyBoardFragment extends BaseFragment {
             }
         });
 
-        etInputPrice.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        etInputNum1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if(hasFocus){
@@ -179,7 +215,7 @@ public class CustomKeyBoardFragment extends BaseFragment {
 
     @OnClick(R.id.tv_stock_all)
     public void setStockNumAll(View view){
-        etInputNum.setText("10000");
+        etInputNum2.setText("10000");
     }
 
     @Override

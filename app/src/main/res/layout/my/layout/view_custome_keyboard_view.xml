@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.inputmethodservice.KeyboardView xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.jzsec.broker.view.customKeyboard.CustomKeyboardView
         android:id="@+id/keyboard_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -11,11 +11,9 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:background="#fff"
-        android:keyBackground="@color/divider_line"
-        android:keyTextColor="@color/text_color_gray_6"
-        android:keyPreviewLayout="@layout/key_preview_layout"
-        android:keyTextSize="@dimen/text_size_large"
-        android:visibility="visible" />
+        android:keyBackground="@drawable/bg_custom_key_gray"
+        android:keyTextColor="@color/text_color_gray_3"
+        android:keyTextSize="@dimen/text_size_large" />
 
     <EditText
         android:id="@+id/et_focus_scavenger"
