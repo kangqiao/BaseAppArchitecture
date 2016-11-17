@@ -72,4 +72,7 @@
 
     <dimen name="market_toolbar_height">50dp</dimen>
     <dimen name="market_operate_height">50dp</dimen>
+
+    <!--Titlebar区域的-->
+    <dimen name="titlebar_height">48dp</dimen>
 </resources>

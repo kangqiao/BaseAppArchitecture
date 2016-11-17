@@ -67,12 +67,13 @@ public abstract class BaseLazyFragment extends BaseFragment {
      */
     @Override
     public boolean onBackPressedSupport() {
-        if (System.currentTimeMillis() - TOUCH_TIME < WAIT_TIME) {
+        /*if (System.currentTimeMillis() - TOUCH_TIME < WAIT_TIME) {
             _mActivity.finish();
         } else {
             TOUCH_TIME = System.currentTimeMillis();
             Toast.makeText(_mActivity, R.string.press_again_exit, Toast.LENGTH_SHORT).show();
         }
-        return true;
+        return true;*/
+        return super.onBackPressedSupport();
     }
 }

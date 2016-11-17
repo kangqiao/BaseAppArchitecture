@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/bg_color"
+    android:layout_gravity="top"
+    android:showDividers="beginning|middle|end"
+    android:divider="@drawable/layout_divider_line"
     android:orientation="vertical">
 
     <!--<EditText
@@ -15,7 +22,7 @@
         android:hint="其他"
         android:padding="@dimen/margin_small" />-->
 
-    <ScrollView
+<!--    <ScrollView
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="wrap_content">
@@ -69,8 +76,8 @@
                 android:padding="@dimen/margin_large"
                 android:text="你好"/>
         </LinearLayout>
-    </ScrollView>
-    <EditText
+    </ScrollView>-->
+<!--    <EditText
         android:id="@+id/et_input_price6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,12 +85,8 @@
         android:background="@color/bg_color_white"
         android:gravity="center"
         android:hint="股票价格666"
+        android:visibility="gone"
         android:padding="@dimen/margin_small" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
 
     <EditText
         android:id="@+id/et_input_price5"
@@ -93,12 +96,8 @@
         android:background="@color/bg_color_white"
         android:gravity="center"
         android:hint="股票价格555"
+        android:visibility="gone"
         android:padding="@dimen/margin_small" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
 
     <EditText
         android:id="@+id/et_input_price4"
@@ -107,13 +106,9 @@
         android:layout_margin="@dimen/margin_small"
         android:background="@color/bg_color_white"
         android:gravity="center"
+        android:visibility="gone"
         android:hint="股票价格444"
         android:padding="@dimen/margin_small" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
 
     <EditText
         android:id="@+id/et_input_price3"
@@ -122,13 +117,9 @@
         android:layout_margin="@dimen/margin_small"
         android:background="@color/bg_color_white"
         android:gravity="center"
+        android:visibility="gone"
         android:hint="股票价格333"
         android:padding="@dimen/margin_small" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
 
     <EditText
         android:id="@+id/et_input_price2"
@@ -137,13 +128,15 @@
         android:layout_margin="@dimen/margin_small"
         android:background="@color/bg_color_white"
         android:gravity="center"
+        android:visibility="gone"
         android:hint="股票价格222"
-        android:padding="@dimen/margin_small" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
+        android:padding="@dimen/margin_small" />-->
+    <ImageView
+        android:id="@+id/img_close"
+        android:src="@drawable/close"
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/et_input_price1"
@@ -155,11 +148,6 @@
         android:hint="股票价格111"
         android:padding="@dimen/margin_small" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
-
     <EditText
         android:id="@+id/et_input_num1"
         android:layout_width="match_parent"
@@ -170,11 +158,6 @@
         android:hint="买入 股票数量1"
         android:padding="@dimen/margin_small" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
-
     <EditText
         android:id="@+id/et_input_num2"
         android:layout_width="match_parent"
@@ -184,11 +167,10 @@
         android:gravity="center"
         android:hint="卖出 股票数量2"
         android:padding="@dimen/margin_small" />
-
     <View
-    android:id="@+id/view_under"
-    android:layout_width="match_parent"
-    android:layout_height="1px" />
+        android:id="@+id/view_under"
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
 
     <LinearLayout
         android:id="@+id/layout_opt_container"
@@ -201,7 +183,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <TextView
                 android:id="@+id/tv_stock_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -276,4 +258,13 @@
                 android:textColor="@color/text_color_white" />
         </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>
+<!--
+
+    <FrameLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="500px"
+        android:background="@color/bg_color_red"/>
+</FrameLayout>-->

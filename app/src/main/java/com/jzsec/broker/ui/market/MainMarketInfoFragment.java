@@ -171,12 +171,12 @@ public class MainMarketInfoFragment extends BaseFragment {
 
 
 
-        collapsingToolbarLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+        /*collapsingToolbarLayout.setOnScrollChangeListener(new View.OnScrollChangeListener() {
             @Override
             public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 Zlog.e(TAG, "onScrollChange - View v.height="+v.getHeight()+", scrollX=" + scrollX + ", scrollY="+ scrollY+", oldScrollX="+oldScrollX+", oldScrollY="+oldScrollY);
             }
-        });
+        });*/
     }
 
     /**

@@ -1,15 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/color_43d28d"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:gravity="center"
-        style="@style/tv_white_and_normal"
+    <LinearLayout
+        android:id="@+id/ll_opt_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="行情工具条"/>
-</LinearLayout>
+        android:background="@color/color_43d28d"
+        android:divider="@drawable/layout_divider_line"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <TextView
+            style="@style/tv_white_and_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/margin_normal"
+            android:text="行情工具条" />
+
+        <TextView
+            android:id="@+id/tv_buy"
+            style="@style/tv_white_and_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/margin_normal"
+            android:text="买入" />
+
+        <TextView
+            android:id="@+id/tv_sell"
+            style="@style/tv_white_and_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/margin_normal"
+            android:text="卖出" />
+
+        <TextView
+            style="@style/tv_white_and_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/margin_normal"
+            android:text="撤单" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_opt_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</FrameLayout>

@@ -2,9 +2,14 @@ package com.jzsec.broker;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.support.multidex.MultiDex;
 
+import com.github.mzule.activityrouter.router.RouterCallback;
+import com.github.mzule.activityrouter.router.RouterCallbackProvider;
+import com.github.mzule.activityrouter.router.SimpleRouterCallback;
 import com.jzsec.broker.data.entity.CommonParam;
 import com.jzsec.broker.utils.SpUtil;
 import com.lzy.okgo.OkGo;
@@ -17,7 +22,7 @@ import com.lzy.okgo.model.HttpParams;
 /**
  * Created by zhaopan on 16/7/27.
  */
-public class App extends Application{
+public class App extends Application /*implements RouterCallbackProvider*/ {
     public static final String TAG = "App";
 
     private static App mApp;
@@ -112,4 +117,8 @@ public class App extends Application{
         }
     }
 
+    /*@Override*/
+    public RouterCallback provideRouterCallback() {
+        return new SimpleRouterCallback();
+    }
 }

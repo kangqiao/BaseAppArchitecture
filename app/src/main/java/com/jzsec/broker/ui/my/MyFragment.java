@@ -1,6 +1,7 @@
 package com.jzsec.broker.ui.my;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.jakewharton.rxbinding.view.RxView;
 import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseLazyFragment;
+import com.jzsec.broker.ui.WebViewActivity;
 import com.jzsec.broker.ui.event.StartBrotherEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -35,6 +37,8 @@ public class MyFragment extends BaseLazyFragment {
     TextView tvSwitchBtn;
     @BindView(R.id.tv_custom_keyboard)
     TextView tvCustomKeyBoard;
+    @BindView(R.id.tv_js_native)
+    TextView tvJsNative;
 
     public static MyFragment newInstance() {
         Bundle args = new Bundle();
@@ -91,6 +95,13 @@ public class MyFragment extends BaseLazyFragment {
             @Override
             public void call(Void aVoid) {
                 EventBus.getDefault().post(new StartBrotherEvent(CustomKeyBoardFragment.newInstance()));
+            }
+        });
+
+        RxView.clicks(tvJsNative).debounce(300, TimeUnit.MICROSECONDS).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                startActivity(new Intent(getContext(), WebViewActivity.class));
             }
         });
     }

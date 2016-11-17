@@ -59,6 +59,11 @@
     <color name="toolbar_title">@color/text_color_white</color>
     <color name="toolbar_subtitle">@color/text_color_white</color>
 
+    <!--Titlebar-->
+    <color name="titlebar_background">@color/colorPrimary</color>
+    <color name="titlebar_title">@color/text_color_white</color>
+    <color name="titlebar_subtitle">@color/text_color_white</color>
+
     <!--Drawable Selector White theme colors-->
     <color name="default_white">#ffffff</color>
     <color name="default_efwhite">#efffffff</color>

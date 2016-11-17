@@ -36,6 +36,7 @@
                 android:layout_margin="20dp">
 
                 <EditText
+                    android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/tv_white_and_normal"
@@ -49,6 +50,7 @@
                 android:layout_margin="20dp">
 
                 <EditText
+                    android:id="@+id/et_passwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/tv_white_and_normal"

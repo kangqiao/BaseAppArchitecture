@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+
+<script type="text/javascript">
+  function gotoActivity (activity) {
+    nativeMethod.toActivity(activity);
+  }
+</script>
+<body>
+
+<button onClick="gotoActivity('a')">gotoActivity A</button>
+<button onClick="gotoActivity('b')">gotoActivity B</button>
+
+<p>
+</p>
+<hr/>
+
+<a href="http://www.jzsec.com/main?id=111&qq=222">broker://main</a><br>
+<a href="http://www.jzsec.com/login/185116110851">login/185116110851</a><br>
+<a href="http://www.jzsec.com/login/185116110851?passwd=aabbcc">login/185116110851?passwd=aabbcc</a><br>
+<a href="http://www.jzsec.com/login?passwd=aabbcc">login?passwd=aabbcc</a><br>
+<hr>
+<a href="broker2://main?id=111&qq=222">broker2://main</a><br>
+<a href="broker2://login/185116110851/aabbcc">login/185116110851/aabbcc</a><br>
+<a href="broker2://login/1851161108522">login/185116110852222</a><br>
+<a href="broker2://login/185116110851?passwd=aabbcc">login/185116110851?passwd=aabbcc</a><br>
+<a href="broker2://login?passwd=aabbcc">login?passwd=aabbcc</a><br>
+
+
+</body>
+</html>

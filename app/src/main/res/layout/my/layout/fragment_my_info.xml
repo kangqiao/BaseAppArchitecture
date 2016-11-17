@@ -38,6 +38,13 @@
             android:padding="@dimen/margin_normal"
             android:text="自定义键盘" />
 
+        <TextView
+            android:id="@+id/tv_js_native"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_bright"
+            android:padding="@dimen/margin_normal"
+            android:text="JS-Native互调" />
     </LinearLayout>
 
 

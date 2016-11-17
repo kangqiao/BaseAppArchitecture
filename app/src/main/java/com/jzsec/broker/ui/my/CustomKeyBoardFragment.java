@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,11 @@ import android.widget.LinearLayout;
 
 import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseFragment;
+import com.jzsec.broker.ui.market.ToolBarFragment;
 import com.jzsec.broker.view.customKeyboard.CustomBaseKeyboard;
 import com.jzsec.broker.view.customKeyboard.CustomKeyboardManager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -72,7 +74,8 @@ public class CustomKeyBoardFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_custom_keyboard, container, false);
         //_mActivity.getWindow().setSoftInputMode(SOFT_INPUT_ADJUST_RESIZE);
-        return view;
+        customKeyboardManager = new CustomKeyboardManager(getContext());
+        return customKeyboardManager.attachToKeyboardView(view);
     }
 
     @Override
@@ -85,7 +88,7 @@ public class CustomKeyBoardFragment extends BaseFragment {
 
     @Override
     protected void onBindView(Bundle savedInstanceState) {
-        customKeyboardManager = new CustomKeyboardManager(_mActivity);
+
 
         CustomBaseKeyboard priceKeyboard = new CustomBaseKeyboard(getContext(), R.xml.stock_price_num_keyboard) {
             @Override
@@ -99,11 +102,11 @@ public class CustomKeyBoardFragment extends BaseFragment {
         };
 
         customKeyboardManager.attachTo($(R.id.et_input_price1), priceKeyboard);
-        customKeyboardManager.attachTo($(R.id.et_input_price2), priceKeyboard);
+        //customKeyboardManager.attachTo($(R.id.et_input_price2), priceKeyboard);
         //customKeyboardManager.attachTo($(R.id.et_input_price3), priceKeyboard);
-        customKeyboardManager.attachTo($(R.id.et_input_price4), priceKeyboard);
-        customKeyboardManager.attachTo($(R.id.et_input_price5), priceKeyboard);
-        customKeyboardManager.attachTo($(R.id.et_input_price6), priceKeyboard);
+        //customKeyboardManager.attachTo($(R.id.et_input_price4), priceKeyboard);
+        //customKeyboardManager.attachTo($(R.id.et_input_price5), priceKeyboard);
+        //customKeyboardManager.attachTo($(R.id.et_input_price6), priceKeyboard);
 
         CustomBaseKeyboard numKeyboard =  new CustomBaseKeyboard(getContext(), R.xml.stock_trade_num_keyboard) {
             @Override
@@ -216,6 +219,12 @@ public class CustomKeyBoardFragment extends BaseFragment {
     @OnClick(R.id.tv_stock_all)
     public void setStockNumAll(View view){
         etInputNum2.setText("10000");
+    }
+
+    @OnClick(R.id.img_close)
+    public void closeFragment(View view){
+        EventBus.getDefault().post(new ToolBarFragment.CloseEvent());
+
     }
 
     @Override

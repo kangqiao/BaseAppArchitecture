@@ -1,6 +1,5 @@
 package com.jzsec.broker.view.customKeyboard;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.inputmethodservice.KeyboardView;
@@ -17,6 +16,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import com.jzsec.broker.R;
+import com.jzsec.broker.utils.Zlog;
 
 import java.lang.reflect.Method;
 
@@ -28,28 +28,51 @@ import java.lang.reflect.Method;
 
 public class CustomKeyboardManager implements OnFocusChangeListener {
     private static final String TAG = "CustomKeyboardManager";
+    private static final boolean DEBUG = true;
 
     private Context mContext;
-    private ViewGroup mRootView;
+    private FrameLayout mRootView;
+    private EditText waitShowKeyboard;
     private FrameLayout mKeyboardViewContainer;
     private KeyboardView mKeyboardView;
     private int mKeyboardHeight;
-    private FrameLayout.LayoutParams mKeyboardViewLayoutParams;
     private View mShowUnderView;
     private View etFocusScavenger;
     private CustomBaseKeyboard.CustomKeyStyle defaultCustomKeyStyle = new CustomBaseKeyboard.SimpleCustomKeyStyle();
+    private int mRootViewInitHeight;
 
-    public CustomKeyboardManager(Activity activity) {
-        mContext = activity;
-        mRootView = (ViewGroup) (activity.getWindow().getDecorView().findViewById(android.R.id.content));
+    public CustomKeyboardManager(Context context) {
+        mContext = context;
 
         mKeyboardViewContainer = (FrameLayout) LayoutInflater.from(mContext).inflate(R.layout.view_custome_keyboard_view, null);
         mKeyboardView = (KeyboardView) mKeyboardViewContainer.findViewById(R.id.keyboard_view);
         etFocusScavenger = mKeyboardViewContainer.findViewById(R.id.et_focus_scavenger);
         hideSystemSoftKeyboard((EditText) etFocusScavenger);
 
-        mKeyboardViewLayoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        mRootView = new FrameLayout(mContext);
+        mRootView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                log("view="+v+", left="+left+" | "+oldLeft+", top="+top+" | "+oldTop+", right="+right+" | "+oldRight+", bottom="+bottom+" | "+oldBottom);
+                if(null != waitShowKeyboard){
+                    showSoftKeyboard(waitShowKeyboard);
+                    waitShowKeyboard = null;
+                }
+            }
+        });
+    }
+
+    public View attachToKeyboardView(View rootView){
+        FrameLayout.LayoutParams LayoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LayoutParams.gravity = Gravity.TOP;
+        mRootView.addView(rootView, LayoutParams);
+        mKeyboardViewContainer.setVisibility(View.GONE);
+        FrameLayout.LayoutParams mKeyboardViewLayoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         mKeyboardViewLayoutParams.gravity = Gravity.BOTTOM;
+        mRootView.addView(mKeyboardViewContainer, mKeyboardViewLayoutParams);
+        measure(mRootView);
+        mRootViewInitHeight = mRootView.getMeasuredHeight();
+        return mRootView;
     }
 
     public void attachTo(EditText editText, CustomBaseKeyboard keyboard) {
@@ -94,80 +117,22 @@ public class CustomKeyboardManager implements OnFocusChangeListener {
         mShowUnderView = view;
     }
 
-    /**
-     * 计算屏幕向上移动距离
-     * @param view 响应输入焦点的控件
-     * @return 移动偏移量
-     */
-    private int getMoveHeight(View view) {
-        Rect rect = new Rect();
-        mRootView.getWindowVisibleDisplayFrame(rect); //获取当前显示区域的宽高
-
-        int[] vLocation = new int[2];
-        view.getLocationOnScreen(vLocation); //计算输入框在屏幕中的位置
-        int keyboardTop = vLocation[1] + view.getHeight() + view.getPaddingBottom() + view.getPaddingTop();
-        if (keyboardTop - mKeyboardHeight < 0) { //如果输入框到屏幕顶部已经不能放下键盘的高度, 则不需要移动了.
-            return 0;
-        }
-        if (null != mShowUnderView) { //如果有基线View. 则计算基线View到屏幕的距离
-            int[] underVLocation = new int[2];
-            mShowUnderView.getLocationOnScreen(underVLocation);
-            keyboardTop = underVLocation[1] + mShowUnderView.getHeight() + mShowUnderView.getPaddingBottom() + mShowUnderView.getPaddingTop();
-        }
-        //输入框或基线View的到屏幕的距离 + 键盘高度 如果 超出了屏幕的承载范围, 就需要移动.
-        int moveHeight = keyboardTop + mKeyboardHeight - rect.bottom;
-        return moveHeight > 0 ? moveHeight : 0;
-    }
-
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
+        log("onFocusChange view="+v+", hasFocus="+hasFocus);
         if (v instanceof EditText) {
             EditText attachEditText = (EditText) v;
             if (hasFocus) {
-                showSoftKeyboard(attachEditText);
+                int latestRootViewHeight = mRootView.getMeasuredHeight();
+                if(mRootViewInitHeight != latestRootViewHeight) {
+                    waitShowKeyboard = attachEditText;
+                } else {
+                    showSoftKeyboard(attachEditText);
+                }
             } else {
                 hideSoftKeyboard(attachEditText);
             }
         }
-    }
-
-    public void showSoftKeyboard(EditText view) {
-        CustomBaseKeyboard keyboard = getKeyboard(view); //获取输入框所绑定的键盘BaseKeyboard
-        if (null == keyboard) {
-            Log.e(TAG, "The EditText not bind CustomBaseKeyboard!");
-            return;
-        }
-        keyboard.setCurEditText(view);
-        keyboard.setNextFocusView(etFocusScavenger); //为键盘设置下一个焦点响应控件.
-        refreshKeyboard(keyboard); //设置键盘keyboard到KeyboardView中.
-
-        //将键盘布局加入到根布局中.
-        mRootView.addView(mKeyboardViewContainer, mKeyboardViewLayoutParams);
-        //设置加载动画.
-        mKeyboardViewContainer.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.down_to_up));
-
-        int moveHeight = getMoveHeight(view);
-        if (moveHeight > 0) {
-            mRootView.getChildAt(0).scrollBy(0, moveHeight); //移动屏幕
-        } else {
-            moveHeight = 0;
-        }
-
-        view.setTag(R.id.keyboard_view_move_height, moveHeight);
-    }
-
-    public void hideSoftKeyboard(EditText view) {
-        int moveHeight = 0;
-        Object tag = view.getTag(R.id.keyboard_view_move_height);
-        if (null != tag) moveHeight = (int) tag;
-        if (moveHeight > 0) { //复原屏幕
-            mRootView.getChildAt(0).scrollBy(0, -1 * moveHeight);
-            view.setTag(R.id.keyboard_view_move_height, 0);
-        }
-
-        mRootView.removeView(mKeyboardViewContainer); //将键盘从根布局中移除.
-
-        mKeyboardViewContainer.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.up_to_hide));
     }
 
     /**
@@ -194,5 +159,97 @@ public class CustomKeyboardManager implements OnFocusChangeListener {
         } else {
             editText.setInputType(InputType.TYPE_NULL);
         }
+    }
+
+    /**
+     * 计算屏幕向上移动距离
+     * @param view 响应输入焦点的控件
+     * @return 移动偏移量
+     */
+    private synchronized int getMoveHeight(View view) {
+        Rect rect = new Rect();
+        mRootView.getWindowVisibleDisplayFrame(rect); //获取当前显示区域的宽高
+
+        int[] vLocation = new int[2];
+        view.getLocationOnScreen(vLocation); //计算输入框在屏幕中的位置
+        int keyboardTop = vLocation[1] + view.getHeight() + view.getPaddingBottom() + view.getPaddingTop();
+        if (keyboardTop - mKeyboardHeight < 0) { //如果输入框到屏幕顶部已经不能放下键盘的高度, 则不需要移动了.
+            return 0;
+        }
+
+        if (null != mShowUnderView) { //如果有基线View. 则计算基线View到屏幕的距离
+            int[] underVLocation = new int[2];
+            mShowUnderView.getLocationOnScreen(underVLocation);
+            keyboardTop = underVLocation[1] + mShowUnderView.getHeight() + mShowUnderView.getPaddingBottom() + mShowUnderView.getPaddingTop();
+        }
+        //输入框或基线View的到屏幕的距离 + 键盘高度 如果 超出了屏幕的承载范围, 就需要移动.
+        int moveHeight = keyboardTop + mKeyboardHeight - rect.bottom;
+        return moveHeight > 0 ? moveHeight : 0;
+    }
+
+    public synchronized void showSoftKeyboard(EditText view) {
+        log("showSoftKeyboard view="+view);
+        CustomBaseKeyboard keyboard = getKeyboard(view); //获取输入框所绑定的键盘BaseKeyboard
+        if (null == keyboard) {
+            Log.e(TAG, "The EditText not bind CustomBaseKeyboard!");
+            return;
+        }
+
+        keyboard.setCurEditText(view);
+        keyboard.setNextFocusView(etFocusScavenger); //为键盘设置下一个焦点响应控件.
+        refreshKeyboard(keyboard); //设置键盘keyboard到KeyboardView中.
+
+        int moveHeight = getMoveHeight(view);
+        log("getMoveHeight="+moveHeight);
+        if (moveHeight > 0) {
+            int rootViewHeight = mRootView.getMeasuredHeight();
+            mRootView.getLayoutParams().height = rootViewHeight + moveHeight;
+            mRootView.requestLayout();
+            log("mRootView set height = "+mRootView.getLayoutParams().height);
+            //mRootView.getChildAt(0).scrollBy(0, moveHeight); //移动屏幕
+        } else {
+            moveHeight = 0;
+        }
+        view.setTag(R.id.keyboard_view_move_height, moveHeight);
+
+        //设置加载动画.
+        mKeyboardViewContainer.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.down_to_up));
+        mKeyboardViewContainer.setVisibility(View.VISIBLE);
+        mRootView.invalidate();
+        //将键盘布局加入到根布局中.
+        //mRootView.addView(mKeyboardViewContainer, mKeyboardViewLayoutParams);
+    }
+
+    public synchronized void hideSoftKeyboard(EditText view) {
+        log("hideSoftKeyboard view="+view);
+        int moveHeight = 0;
+        Object tag = view.getTag(R.id.keyboard_view_move_height);
+        if (null != tag) moveHeight = (int) tag;
+
+        mKeyboardViewContainer.setAnimation(AnimationUtils.loadAnimation(mContext, R.anim.up_to_hide));
+        mKeyboardViewContainer.setVisibility(View.GONE);
+
+        if (moveHeight > 0) { //复原屏幕
+            int rootViewHeight = mRootView.getMeasuredHeight();
+            int recoverRootViewHeight = rootViewHeight - moveHeight;
+            if(recoverRootViewHeight != mRootViewInitHeight) recoverRootViewHeight = mRootViewInitHeight;
+            mRootView.getLayoutParams().height = recoverRootViewHeight;
+            mRootView.requestLayout();
+            //measure(mRootView);
+            log("mRootView recover height = "+ recoverRootViewHeight);
+            //mRootView.getChildAt(0).scrollBy(0, -1 * moveHeight);
+        }
+        view.setTag(R.id.keyboard_view_move_height, 0);
+
+        mRootView.invalidate();
+        //mRootView.removeView(mKeyboardViewContainer); //将键盘从根布局中移除.
+    }
+
+    private void measure(View view){
+        view.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+    }
+
+    private static void log(String msg) {
+        if(DEBUG) Zlog.e(TAG, msg);
     }
 }
