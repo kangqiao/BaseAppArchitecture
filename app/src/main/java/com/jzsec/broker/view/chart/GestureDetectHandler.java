@@ -44,6 +44,7 @@ public class GestureDetectHandler extends GestureDetector.SimpleOnGestureListene
     private long mScaleBeginTimeout = CUSTOM_SCALE_BEGIN_TIMEOUT;
     private long mDelayedCancelTimeoutAfterLongPress = CUSTOM_DELAYED_CANCEL_TIMEOUT_AFTER_LONG_PRESS;
     private boolean mInLongPressProgress = false;
+    private boolean mInMovingProgress = false;
     private boolean mInScaleProgress = false;
     private boolean mInDoubleTapProgress = false;
     private boolean mIsCanceled = true;
@@ -117,6 +118,12 @@ public class GestureDetectHandler extends GestureDetector.SimpleOnGestureListene
             //当mDetectedView的onTouchEvent事件突然交到父控件处理时, 紧急执行清理操作.
             dispatchCancel();
         }
+        else if(action == MotionEvent.ACTION_UP){
+            //长按后的滑动操作, 执行延时清理操作
+            if(mIsCustomLongPressEnabled && mInLongPressProgress){
+                sendDelayedCancelMessage();
+            }
+        }
         //改由GestureDetector的每一步单独处理, 减少重复的绘制操作.
         //mGestureOptListener.postInvalidate();
         return false;
@@ -141,6 +148,11 @@ public class GestureDetectHandler extends GestureDetector.SimpleOnGestureListene
         onLongPress(showPressEvent);
     }
 
+    private void dispatchMoving() {
+        mDetectedView.getParent().requestDisallowInterceptTouchEvent(true);
+        mInMovingProgress = true;
+    }
+
     private void dispatchScaleBegin() {
         mDetectedView.getParent().requestDisallowInterceptTouchEvent(true);
         mInScaleProgress = true;
@@ -163,6 +175,7 @@ public class GestureDetectHandler extends GestureDetector.SimpleOnGestureListene
             mHandler.removeMessages(SCALE_BEGIN);
             mInDoubleTapProgress = false;
             mInLongPressProgress = false;
+            mInMovingProgress = false;
             mInScaleProgress = false;
             mGestureOptListener.onUpOrCancel();
         }
@@ -270,7 +283,7 @@ public class GestureDetectHandler extends GestureDetector.SimpleOnGestureListene
         mGestureOptListener.onFling(downEvent, event, velocityX, velocityY);
         mGestureOptListener.postInvalidate();
         if (mIsCustomLongPressEnabled && mInLongPressProgress) {
-            sendDelayedCancelMessage(); //长按后滑动, 最后onFling了一下, 执行延时清理操作.
+            //sendDelayedCancelMessage(); //长按后滑动, 最后onFling了一下, 执行延时清理操作.
         } else {
             dispatchCancel(); //正常的onFling, 直接执行清理操作.
         }
@@ -309,11 +322,14 @@ public class GestureDetectHandler extends GestureDetector.SimpleOnGestureListene
             mGestureOptListener.onMoveAfterLongPress(event);
             mGestureOptListener.postInvalidate(); //后续仍有移动, 执行刷新UI操作
             if (mIsCustomLongPressEnabled) {
-                sendDelayedCancelMessage(); //长按后的滑动操作, 执行延时清理操作
+                //sendDelayedCancelMessage(); //长按后的滑动操作, 执行延时清理操作
             } else {
                 // TODO: 16/9/27 注: 没有自定义长按操作, 如果没有后续操作是不会有Up或Cancel动作, 即没有执行清理操作的机会了.
             }
         } else { //普通滑动
+            if(!mInMovingProgress){
+                dispatchMoving();
+            }
             loge("view-手势", "onScroll 滑动中>>> " + actionToStr(event.getAction()) + ", -X-" + (int) downEvent.getX() + "/" + (int) event.getX() + "/" + (int) distanceX
                     + ", >>> -Y-" + (int) downEvent.getY() + "/" + (int) event.getY() + "/" + (int) distanceY);
             mGestureOptListener.onMove(downEvent, event, distanceX, distanceY);
@@ -353,9 +369,6 @@ public class GestureDetectHandler extends GestureDetector.SimpleOnGestureListene
         if (mIsCustomLongPressEnabled && !mInDoubleTapProgress) { //如果自定义长按启用, 并且不是在双击的第二下长按的, 即执行长按操作.
             mHandler.sendEmptyMessageAtTime(LONG_PRESS, e.getDownTime() + mLongPressTimeout);
             showPressEvent = e;
-        } else { //没有设置自定义长按操作
-            mDetectedView.getParent().requestDisallowInterceptTouchEvent(true); //参考dispatchLongPress();
-            mInLongPressProgress = true;
         }
         super.onShowPress(e);
     }
@@ -470,6 +483,7 @@ public class GestureDetectHandler extends GestureDetector.SimpleOnGestureListene
                 mGestureOptListener.onZoom(detector);
                 mGestureOptListener.postInvalidate(); //并没Up或Cancel且后续仍在Zoom, 执行刷新UI操作
             }
+            return true;
         }
         return false;
     }
