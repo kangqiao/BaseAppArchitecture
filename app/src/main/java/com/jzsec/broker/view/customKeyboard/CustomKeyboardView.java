@@ -62,17 +62,23 @@ public class CustomKeyboardView extends KeyboardView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        if(null ==  getKeyboard() || !(getKeyboard() instanceof CustomBaseKeyboard) || null == ((CustomBaseKeyboard)getKeyboard()).getCustomKeyStyle()){
+        //说明CustomKeyboardView只针对CustomBaseKeyboard键盘进行重绘,
+        // 且CustomBaseKeyboard必需有设置CustomKeyStyle的回调接口实现, 才进行重绘, 这才有意义
+        if(null == getKeyboard() || !(getKeyboard() instanceof CustomBaseKeyboard) || null == ((CustomBaseKeyboard)getKeyboard()).getCustomKeyStyle()){
             Log.e(TAG, "");
             super.onDraw(canvas);
             return;
         }
         rClipRegion = (Rect) ReflectionUtils.getFieldValue(this, "mClipRegion");
-        rInvalidatedKey = (Keyboard.Key) ReflectionUtils.getFieldValue(this, "mInvalidatedKey"); //always is null;
+        rInvalidatedKey = (Keyboard.Key) ReflectionUtils.getFieldValue(this, "mInvalidatedKey");
         super.onDraw(canvas);
         onRefreshKey(canvas);
     }
 
+    /**
+     * onRefreshKey是对父类的private void onBufferDraw()进行的重写. 只是在对key的绘制过程中进行了重新设置.
+     * @param canvas
+     */
     private void onRefreshKey(Canvas canvas) {
         final Paint paint = (Paint) ReflectionUtils.getFieldValue(this, "mPaint");
         final Rect padding = (Rect) ReflectionUtils.getFieldValue(this, "mPadding");
@@ -95,6 +101,7 @@ public class CustomKeyboardView extends KeyboardView {
             }
         }
 
+        //拿到当前键盘被弹起的输入源 和 键盘为每个key的定制实现customKeyStyle
         EditText etCur = ((CustomBaseKeyboard)getKeyboard()).getCurEditText();
         CustomBaseKeyboard.CustomKeyStyle customKeyStyle = ((CustomBaseKeyboard)getKeyboard()).getCustomKeyStyle();
 
@@ -107,12 +114,14 @@ public class CustomKeyboardView extends KeyboardView {
                 continue;
             }
 
+            //获取为Key自定义的背景, 若没有定制, 使用KeyboardView的默认属性keyBackground设置
             keyBackground = customKeyStyle.getKeyBackground(key, etCur);
             if(null == keyBackground){ keyBackground = rKeyBackground; }
 
             int[] drawableState = key.getCurrentDrawableState();
             keyBackground.setState(drawableState);
 
+            //获取为Key自定义的Label, 若没有定制, 使用xml布局中指定的
             CharSequence keyLabel = customKeyStyle.getKeyLabel(key, etCur);
             if (null == keyLabel) { keyLabel = key.label; }
             // Switch the character to uppercase if shift is pressed
@@ -127,21 +136,22 @@ public class CustomKeyboardView extends KeyboardView {
             keyBackground.draw(canvas);
 
             if (label != null) {
-                // For characters, use large font. For labels like "Done", use small font.
+                //获取为Key的Label的字体大小, 若没有定制, 使用KeyboardView的默认属性keyTextSize设置
                 Float customKeyTextSize = customKeyStyle.getKeyTextSize(key, etCur);
+                // For characters, use large font. For labels like "Done", use small font.
                 if(null != customKeyTextSize){
                     paint.setTextSize(customKeyTextSize);
-                    paint.setTypeface(Typeface.DEFAULT_BOLD);
                 } else {
                     if (label.length() > 1 && key.codes.length < 2) {
                         paint.setTextSize(rLabelTextSize);
-                        paint.setTypeface(Typeface.DEFAULT_BOLD);
                     } else {
                         paint.setTextSize(rKeyTextSize);
-                        paint.setTypeface(Typeface.DEFAULT);
                     }
                 }
+                Typeface fontType = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
+                paint.setTypeface( fontType );
 
+                //获取为Key的Label的字体颜色, 若没有定制, 使用KeyboardView的默认属性keyTextColor设置
                 Integer customKeyTextColor = customKeyStyle.getKeyTextColor(key, etCur);
                 if(null != customKeyTextColor) {
                     paint.setColor(customKeyTextColor);
@@ -149,7 +159,7 @@ public class CustomKeyboardView extends KeyboardView {
                     paint.setColor(rKeyTextColor);
                 }
                 // Draw a drop shadow for the text
-                paint.setShadowLayer(rShadowRadius, 0, 0, rShadowColor);
+                //paint.setShadowLayer(rShadowRadius, 0, 0, rShadowColor);
                 // Draw the text
                 canvas.drawText(label,
                         (key.width - padding.left - padding.right) / 2
