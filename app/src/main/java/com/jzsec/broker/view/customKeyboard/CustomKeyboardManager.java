@@ -54,6 +54,7 @@ public class CustomKeyboardManager implements OnFocusChangeListener {
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                 log("view="+v+", left="+left+" | "+oldLeft+", top="+top+" | "+oldTop+", right="+right+" | "+oldRight+", bottom="+bottom+" | "+oldBottom);
+                mRootViewInitHeight = mRootView.getMeasuredHeight();
                 if(null != waitShowKeyboard){
                     showSoftKeyboard(waitShowKeyboard);
                     waitShowKeyboard = null;
@@ -64,7 +65,7 @@ public class CustomKeyboardManager implements OnFocusChangeListener {
 
     public View attachToKeyboardView(View rootView){
         FrameLayout.LayoutParams LayoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        LayoutParams.gravity = Gravity.TOP;
+        //LayoutParams.gravity = Gravity.TOP;
         mRootView.addView(rootView, LayoutParams);
         mKeyboardViewContainer.setVisibility(View.GONE);
         FrameLayout.LayoutParams mKeyboardViewLayoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

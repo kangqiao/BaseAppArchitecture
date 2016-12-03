@@ -151,4 +151,7 @@ dependencies {
     compile 'com.github.mzule.activityrouter:activityrouter:1.2.1'
     apt 'com.github.mzule.activityrouter:compiler:1.1.7'
 
+    //https://github.com/pedant/sweet-alert-dialog  ###Sweet Alert Dialog ###Android版的SweetAlert，清新文艺，快意灵动的甜心弹框
+    compile 'cn.pedant.sweetalert:library:1.3'
+
 }
