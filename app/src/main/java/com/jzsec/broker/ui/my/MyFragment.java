@@ -15,6 +15,7 @@ import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseLazyFragment;
 import com.jzsec.broker.ui.WebViewActivity;
 import com.jzsec.broker.ui.event.StartBrotherEvent;
+import com.jzsec.broker.view.notification.ZPNotification;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -22,6 +23,8 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import lib.homhomlib.design.SlidingLayout;
+import rx.android.MainThreadSubscription;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
 /**
@@ -39,6 +42,12 @@ public class MyFragment extends BaseLazyFragment {
     TextView tvCustomKeyBoard;
     @BindView(R.id.tv_js_native)
     TextView tvJsNative;
+    @BindView(R.id.tv_notification_open)
+    TextView tvOpenNotification;
+    @BindView(R.id.tv_notification_close)
+    TextView tvCloseNotification;
+
+    ZPNotification mZPNotification;
 
     public static MyFragment newInstance() {
         Bundle args = new Bundle();
@@ -72,6 +81,12 @@ public class MyFragment extends BaseLazyFragment {
 
             }
         });
+
+        mZPNotification = new ZPNotification.Builder().setContext(_mActivity)
+                        .setTime(System.currentTimeMillis())
+                        .setImgRes(R.mipmap.ic_notify)
+                        .setTitle("你收到了一条消息")
+                        .setContent("人丑就要多读书").build();
     }
 
     @Override
@@ -102,6 +117,20 @@ public class MyFragment extends BaseLazyFragment {
             @Override
             public void call(Void aVoid) {
                 startActivity(new Intent(getContext(), WebViewActivity.class));
+            }
+        });
+
+        RxView.clicks(tvOpenNotification).debounce(300, TimeUnit.MICROSECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                mZPNotification.show();
+            }
+        });
+
+        RxView.clicks(tvCloseNotification).debounce(300, TimeUnit.MICROSECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                mZPNotification.dismiss();
             }
         });
     }

@@ -118,9 +118,7 @@ dependencies {
     compile 'io.reactivex:rxandroid:1+'
     //https://github.com/jeasonlzy/okhttp-OkGo OkHttpUtils-2.0.0 升级后改名 OkGo，全新完美支持RxJava，比Retrofit更简单易用。
     compile 'com.lzy.net:okgo:+'
-    //版本号使用 + 可以自动引用最新版
     compile 'com.lzy.net:okrx:+'
-    //版本号使用 + 可以自动引用最新版
     compile 'com.lzy.net:okserver:+'
     //版本号使用 + 可以自动引用最新版
     //https://github.com/jeasonlzy/ImagePicker 完全仿微信的图片选择，并且提供了多种图片加载接口，选择图片后可以旋转，可以裁剪成矩形或圆形，可以配置各种其他的参数
