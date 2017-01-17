@@ -73,6 +73,22 @@
                 android:padding="@dimen/margin_normal"
                 android:text="隐藏通知" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_test_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:padding="@dimen/margin_normal"
+            android:text="布局调度(流式布局...)" />
+
+        <TextView
+            android:id="@+id/tv_test_weex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_dark"
+            android:padding="@dimen/margin_normal"
+            android:text="Weex 嵌入" />
     </LinearLayout>
 
 

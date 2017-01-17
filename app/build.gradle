@@ -152,4 +152,9 @@ dependencies {
     //https://github.com/pedant/sweet-alert-dialog  ###Sweet Alert Dialog ###Android版的SweetAlert，清新文艺，快意灵动的甜心弹框
     compile 'cn.pedant.sweetalert:library:1.3'
 
+    //weex集成到Android https://weex-project.io/cn/guide/integrate-to-your-app.html
+    compile 'com.alibaba:fastjson:1.1.46.android'
+    compile 'com.taobao.android:weex_sdk:0.5.1@aar'
+
+
 }

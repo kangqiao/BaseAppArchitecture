@@ -12,12 +12,15 @@ import com.github.mzule.activityrouter.router.RouterCallbackProvider;
 import com.github.mzule.activityrouter.router.SimpleRouterCallback;
 import com.jzsec.broker.data.entity.CommonParam;
 import com.jzsec.broker.utils.SpUtil;
+import com.jzsec.broker.weex.ImageAdapter;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.store.PersistentCookieStore;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.model.HttpParams;
+import com.taobao.weex.InitConfig;
+import com.taobao.weex.WXSDKEngine;
 
 /**
  * Created by zhaopan on 16/7/27.
@@ -45,8 +48,14 @@ public class App extends Application /*implements RouterCallbackProvider*/ {
     public void onCreate() {
         super.onCreate();
         mApp = this;
+        initWeex();
         initialize();
         initNetSettings();
+    }
+
+    private void initWeex() {
+        InitConfig config=new InitConfig.Builder().setImgAdapter(new ImageAdapter()).build();
+        WXSDKEngine.initialize(this,config);
     }
 
     /**

@@ -7,12 +7,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.OrientationEventListener;
 import android.view.View;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.jzsec.broker.R;
+import com.jzsec.broker.ui.event.StartBrotherEvent;
+import com.jzsec.broker.ui.my.SwitchBtnTestFragment;
+import com.jzsec.broker.ui.test.TestLayoutFragment;
 import com.jzsec.broker.utils.Zlog;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 /**
  * Created by zhaopan on 16/7/27.
@@ -70,6 +80,14 @@ public class BaseFragment extends SwipeBackFragment {
         });
 
         //initToolbarMenu(toolbar);
+    }
+
+    protected void debounceClick(View view, int timeout, Action1<Void> action1){
+        RxView.clicks(view).debounce(timeout, TimeUnit.MILLISECONDS).subscribe(action1);
+    }
+
+    protected void debounceClick(View view, Action1<Void> action1){
+        debounceClick(view, 300, action1);
     }
 
     /*protected void initToolbarMenu(Toolbar toolbar) {

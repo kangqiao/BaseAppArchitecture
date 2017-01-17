@@ -15,7 +15,9 @@ import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseLazyFragment;
 import com.jzsec.broker.ui.WebViewActivity;
 import com.jzsec.broker.ui.event.StartBrotherEvent;
+import com.jzsec.broker.ui.test.TestLayoutFragment;
 import com.jzsec.broker.view.notification.ZPNotification;
+import com.jzsec.broker.weex.WeexMainActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -46,6 +48,10 @@ public class MyFragment extends BaseLazyFragment {
     TextView tvOpenNotification;
     @BindView(R.id.tv_notification_close)
     TextView tvCloseNotification;
+    @BindView(R.id.tv_test_layout)
+    TextView tvTestLayout;
+    @BindView(R.id.tv_test_weex)
+    TextView tvTestWeex;
 
     ZPNotification mZPNotification;
 
@@ -131,6 +137,20 @@ public class MyFragment extends BaseLazyFragment {
             @Override
             public void call(Void aVoid) {
                 mZPNotification.dismiss();
+            }
+        });
+
+        RxView.clicks(tvTestLayout).debounce(300, TimeUnit.MICROSECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                EventBus.getDefault().post(new StartBrotherEvent(TestLayoutFragment.newInstance()));
+            }
+        });
+
+        debounceClick(tvTestWeex, new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                startActivity(new Intent(getContext(), WeexMainActivity.class));
             }
         });
     }
