@@ -75,6 +75,14 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_notification_after"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/darker_gray"
+            android:padding="@dimen/margin_normal"
+            android:text="稍后弹窗通知" />
+
+        <TextView
             android:id="@+id/tv_test_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

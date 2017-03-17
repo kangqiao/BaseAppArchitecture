@@ -15,3 +15,8 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+
+
+#====================Activity Router===============================
+-keep class com.github.mzule.activityrouter.router.** { *; }

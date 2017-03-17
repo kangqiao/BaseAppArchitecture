@@ -2,6 +2,10 @@ package com.jzsec.broker.base;
 
 import android.media.ExifInterface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.OrientationEventListener;
@@ -16,6 +20,7 @@ import com.jzsec.broker.utils.Zlog;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.ButterKnife;
@@ -31,7 +36,7 @@ import rx.functions.Action1;
  * 注: 区别于BaseLazyFragment
  * 建议在onEnterAnimationEnd()中做数据的即时初始化操作.
  */
-public class BaseFragment extends SwipeBackFragment {
+public class BaseFragment extends SwipeBackFragment implements MainHandler.MessageHandler {
     private static final String TAG = "BaseFragment";
     private static final boolean DEBUG = true;
 
@@ -70,6 +75,18 @@ public class BaseFragment extends SwipeBackFragment {
         return (T) getView().findViewById(id);
     }
 
+    protected BaseFragment _click(@IdRes int id, final Action1<? super Void> onNext){
+        return _click($(id), onNext);
+    }
+
+    public BaseFragment _click(View view, final Action1<? super Void> onNext){
+        RxView.clicks(view)
+                .debounce(300, TimeUnit.MICROSECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(onNext);
+        return this;
+    }
+
     protected void initToolbarNav(Toolbar toolbar) {
         toolbar.setNavigationIcon(R.mipmap.ic_back_white);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -105,6 +122,19 @@ public class BaseFragment extends SwipeBackFragment {
             }
         });
     }*/
+
+    private Handler mHandler;
+    public Handler getMainHandler() {
+        if (null == mHandler) {
+            mHandler = new MainHandler<BaseFragment>(this);
+        }
+        return mHandler;
+    }
+
+    @Override
+    public void handleMainMessage(Message msg) {
+
+    }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     /////监听屏幕方向改变功能实现/////////////////////////////////////////////////////////////////////

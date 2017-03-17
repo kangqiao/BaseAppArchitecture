@@ -8,18 +8,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
+import com.jzsec.broker.App;
 import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseLazyFragment;
 import com.jzsec.broker.ui.WebViewActivity;
 import com.jzsec.broker.ui.event.StartBrotherEvent;
 import com.jzsec.broker.ui.test.TestLayoutFragment;
+import com.jzsec.broker.view.notification.CustomNotification;
 import com.jzsec.broker.view.notification.ZPNotification;
 import com.jzsec.broker.weex.WeexMainActivity;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONObject;
 
 import java.util.concurrent.TimeUnit;
 
@@ -54,6 +58,7 @@ public class MyFragment extends BaseLazyFragment {
     TextView tvTestWeex;
 
     ZPNotification mZPNotification;
+    CustomNotification<JSONObject> mCustomNotification;
 
     public static MyFragment newInstance() {
         Bundle args = new Bundle();
@@ -88,11 +93,25 @@ public class MyFragment extends BaseLazyFragment {
             }
         });
 
-        mZPNotification = new ZPNotification.Builder().setContext(_mActivity)
+        mZPNotification = new ZPNotification.Builder().setContext(App.getAppContext())
                         .setTime(System.currentTimeMillis())
                         .setImgRes(R.mipmap.ic_notify)
                         .setTitle("你收到了一条消息")
                         .setContent("人丑就要多读书").build();
+    }
+
+    private CustomNotification getCustomNotification() {
+        if(null == mCustomNotification) {
+            mCustomNotification = new CustomNotification<JSONObject>(getContext()) {
+                @Override
+                protected View onCreatePopupView(LayoutInflater inflater) {
+                    View view = inflater.inflate(R.layout.notification_custom01, null);
+
+                    return view;
+                }
+            };
+        }
+        return mCustomNotification;
     }
 
     @Override
@@ -140,14 +159,24 @@ public class MyFragment extends BaseLazyFragment {
             }
         });
 
-        RxView.clicks(tvTestLayout).debounce(300, TimeUnit.MICROSECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Void>() {
+        _click(R.id.tv_notification_after, new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                getMainHandler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getCustomNotification().show();
+                    }
+                }, 5000);
+            }
+        })
+        ._click(tvTestLayout, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
                 EventBus.getDefault().post(new StartBrotherEvent(TestLayoutFragment.newInstance()));
             }
-        });
-
-        debounceClick(tvTestWeex, new Action1<Void>() {
+        })
+        ._click(tvTestWeex, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
                 startActivity(new Intent(getContext(), WeexMainActivity.class));

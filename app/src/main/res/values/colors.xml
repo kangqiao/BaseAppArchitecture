@@ -30,7 +30,9 @@
     <color name="bg_color_white">#ffffff</color>
     <color name="transparent">#00000000</color>
     <color name="transparent20">#33000000</color>
+    <color name="transparent20_white">#33ffffff</color>
     <color name="transparent80">#80000000</color>
+    <color name="transparent80_white">#80ffffff</color>
     <color name="theme_black_7f">#7f000000</color>
 
     <color name="gray">#C9C9C9</color>
