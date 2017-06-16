@@ -97,6 +97,38 @@
             android:background="@android:color/holo_blue_dark"
             android:padding="@dimen/margin_normal"
             android:text="Weex 嵌入" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tv_test_diffutils"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/darker_gray"
+                android:padding="@dimen/margin_normal"
+                android:text="RecyclerView DiffUtils" />
+            <TextView
+                android:id="@+id/tv_test_sortlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/holo_red_dark"
+                android:padding="@dimen/margin_normal"
+                android:textColor="@color/text_color_white"
+                android:text="RecyclerView SortList" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_wxrecord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_dark"
+            android:padding="@dimen/margin_normal"
+            android:text="仿微信视频拍摄UI, 基于ffmpeg的视频录制" />
     </LinearLayout>
 
 

@@ -22,7 +22,7 @@ public class WeexMainActivity extends AppCompatActivity implements IWXRenderList
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_weex_main);
+        //setContentView(R.layout.act_weex_main);
 
         mWXSDKInstance = new WXSDKInstance(this);
         mWXSDKInstance.registerRenderListener(this);
@@ -37,9 +37,14 @@ public class WeexMainActivity extends AppCompatActivity implements IWXRenderList
         mWXSDKInstance.render("WXSample", WXFileUtils.loadFileContent("build/hello.js", this), null, null, -1, -1, WXRenderStrategy.APPEND_ASYNC);
     }
 
+    /**
+     * IWXRenderListener.onViewCreated()会在Weex将JS实例化成View后回调
+     * @param instance
+     * @param view
+     */
     @Override
     public void onViewCreated(WXSDKInstance instance, View view) {
-
+        setContentView(view);
     }
 
     @Override

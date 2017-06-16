@@ -39,7 +39,7 @@ public abstract class BaseLazyFragment extends BaseFragment {
             }
         } else {
             // isSupportHidden()仅在saveInstanceState!=null时有意义,是库帮助记录Fragment状态的方法
-            if (!isSupportHidden()) {
+            if (true/*!isSupportHidden()*/) {
                 mInitialize = true;
                 initLazyView(savedInstanceState);
             }

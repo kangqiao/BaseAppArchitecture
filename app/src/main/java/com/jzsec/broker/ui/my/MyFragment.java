@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding.view.RxView;
@@ -17,8 +16,11 @@ import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseLazyFragment;
 import com.jzsec.broker.ui.WebViewActivity;
 import com.jzsec.broker.ui.event.StartBrotherEvent;
+import com.jzsec.broker.ui.recyclerview.diffutil.TestDiffUtilsActivity;
+import com.jzsec.broker.ui.recyclerview.sortedlist.SortedListActivity;
 import com.jzsec.broker.ui.test.TestLayoutFragment;
 import com.jzsec.broker.view.notification.CustomNotification;
+import com.jzsec.broker.view.notification.NotifycationUtils;
 import com.jzsec.broker.view.notification.ZPNotification;
 import com.jzsec.broker.weex.WeexMainActivity;
 
@@ -29,7 +31,6 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import lib.homhomlib.design.SlidingLayout;
-import rx.android.MainThreadSubscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
@@ -149,6 +150,10 @@ public class MyFragment extends BaseLazyFragment {
             @Override
             public void call(Void aVoid) {
                 mZPNotification.show();
+                Intent intent = new Intent(_mActivity, TestDiffUtilsActivity.class);
+                NotifycationUtils.notifyWithBigText(_mActivity, "投资大师title", "某支股票成交了8.88元"
+                        , "投资大师bigTitle", "这里是点击通知后要显示的正文，可以换行可以显示很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长"
+                        , intent);
             }
         });
 
@@ -180,6 +185,26 @@ public class MyFragment extends BaseLazyFragment {
             @Override
             public void call(Void aVoid) {
                 startActivity(new Intent(getContext(), WeexMainActivity.class));
+            }
+        });
+
+        _click(R.id.tv_test_diffutils, new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                startActivity(new Intent(getContext(), TestDiffUtilsActivity.class));
+            }
+        });
+        _click(R.id.tv_test_sortlist, new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                startActivity(new Intent(getContext(), SortedListActivity.class));
+            }
+        });
+
+        _click(R.id.tv_wxrecord, new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                startActivity(new Intent(getContext(), cn.kq.wxrecord.WXRecordMainActivity.class));
             }
         });
     }

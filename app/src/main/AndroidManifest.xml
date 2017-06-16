@@ -143,6 +143,20 @@
 
         </activity>
 
+
+
+        <activity
+            android:name=".ui.recyclerview.diffutil.TestDiffUtilsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".ui.recyclerview.sortedlist.SortedListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
     </application>
 
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />

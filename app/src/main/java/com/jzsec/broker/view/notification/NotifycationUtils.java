@@ -1,8 +1,13 @@
 package com.jzsec.broker.view.notification;
 
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
-import android.support.v7.app.NotificationCompat;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v4.app.NotificationCompat;
 
 import com.jzsec.broker.R;
 
@@ -18,7 +23,52 @@ import com.jzsec.broker.R;
 public class NotifycationUtils {
     //定义notification实用的ID
     private static final int NO_3 = 0x3;
+    private static final int TRADE_117_NOTIFY_ID = 1;
 
+    public static void notifyWithBigText(Context context, String title, CharSequence content, String bigTitle, CharSequence bigContent, Intent intent) {
+
+        NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
+        style.bigText(bigContent)
+                .setBigContentTitle(bigTitle);
+                //.setSummaryText("末尾只一行的文字内容"); //SummaryText没什么用 可以不设置
+
+        PendingIntent pIntent = PendingIntent.getActivity(context, 1, intent, 0);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+        builder.setContentTitle(title)
+                .setContentText(content)
+                .setSmallIcon(context.getApplicationInfo().icon)
+                .setStyle(style)
+                .setAutoCancel(true)
+                .setContentIntent(pIntent)
+                .setDefaults(NotificationCompat.DEFAULT_ALL);
+
+        Notification notification = builder.build();
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(TRADE_117_NOTIFY_ID, notification);
+    }
+
+    public static void notify2(Context context, String title, CharSequence content, String sound, Intent intent){
+        NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
+        style.setBigContentTitle(title);
+        style.bigText(content);
+
+        PendingIntent contentIntent = PendingIntent.getBroadcast(context, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(context)
+                        .setSmallIcon(context.getApplicationInfo().icon)
+                        .setContentTitle(title).setAutoCancel(true).setContentIntent(contentIntent)
+                        .setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND)
+                        .setContentText(content)
+                        .setStyle(style);
+        NotificationManager manager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification notification = mBuilder.build();
+        if (sound != null && sound.trim().length() > 0) {
+            notification.sound = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + sound);
+        }
+        manager.notify(TRADE_117_NOTIFY_ID, notification);
+    }
 
     public void show3(Context context) {
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context);

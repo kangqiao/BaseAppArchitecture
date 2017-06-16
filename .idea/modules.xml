@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baseapp/baseapp.iml" filepath="$PROJECT_DIR$/baseapp/baseapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/leancloud/leancloud.iml" filepath="$PROJECT_DIR$/leancloud/leancloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wxrecord/wxrecord.iml" filepath="$PROJECT_DIR$/wxrecord/wxrecord.iml" />
     </modules>
   </component>
 </project>

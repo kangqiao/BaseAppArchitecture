@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.1'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.novoda:bintray-release:0.3.4'
         classpath 'me.tatarka:gradle-retrolambda:3.2.0'
@@ -30,10 +30,10 @@ task clean(type: Delete) {
 ext {
     applicationId = "com.jzsec.broker"
 
-    minSdkVersion = 15
-    targetSdkVersion = 24 //23
-    compileSdkVersion = 24 //23
-    buildToolsVersion =  '24.0.2' //'23.0.3'
+    minSdkVersion = 16
+    targetSdkVersion = 25 //23
+    compileSdkVersion = 25 //24 //23
+    buildToolsVersion =  '25.0.2' //'24.0.2' //'23.0.3'
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -41,6 +41,6 @@ ext {
     versionCode = 0
     versionName = '0.1.0'
 
-    supportLibVersion = '24.2.1' //'23.4.0'
+    supportLibVersion = '25.3.1' //'24.2.1' //'23.4.0'
     playLibVersion = '8.4.0'
 }
