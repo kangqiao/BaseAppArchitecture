@@ -17,42 +17,42 @@ import android.view.View;
 import com.jzsec.broker.R;
 
 public class SlideSwitchView extends View{
-	/** Switch�ײ���ʽͼƬ */
+	/** Switch锟阶诧拷锟斤拷式图片 */
 	private Bitmap mSwitchBottom;
-	/** Switch ��ǰ��ʽ  */
+	/** Switch 锟斤拷前锟斤拷式  */
 	private Bitmap mSwitchThumb;
-	/** Switch�޲�������µ����?  */
+	/** Switch锟睫诧拷锟斤拷锟斤拷锟斤拷碌锟斤拷锟绞?  */
 	private Bitmap mSwitchThumbNormal;
-	/** Switch��ǰ��ָ����ʽ����ʽ  */
+	/** Switch锟斤拷前锟斤拷指锟斤拷锟斤拷式锟斤拷锟斤拷式  */
 	private Bitmap mSwitchThumbPressed;
-	/** Switch ���?  */
+	/** Switch 锟斤拷锟?  */
 	private Bitmap mSwitchFrame;
 	private Bitmap mSwitchMask;
 	private float mCurrentX = 0;
-	/** Switch ����״̬��Ĭ����  ����true  */
+	/** Switch 锟斤拷锟斤拷状态锟斤拷默锟斤拷锟斤拷  锟斤拷锟斤拷true  */
 	private boolean mSwitchOn = true;
-	/** Switch ����ƶ�����?   */
+	/** Switch 锟斤拷锟斤拷贫锟斤拷锟斤拷锟?   */
 	private int mMoveLength;
-	/** ��һ�ΰ��µ���Ч���� */
+	/** 锟斤拷一锟轿帮拷锟铰碉拷锟斤拷效锟斤拷锟斤拷 */
 	private float mLastX = 0;
-	/** ���Ƶ�Ŀ��������?  */
-	private Rect mDest = null; 
-	/** ��ȡԴͼƬ�Ĵ�С  */
+	/** 锟斤拷锟狡碉拷目锟斤拷锟斤拷锟斤拷锟叫?  */
+	private Rect mDest = null;
+	/** 锟斤拷取源图片锟侥达拷小  */
 	private Rect mSrc = null;
-	/** Switch �ƶ���ƫ����  */
+	/** Switch 锟狡讹拷锟斤拷偏锟斤拷锟斤拷  */
 	private int mMoveDeltX = 0;
-	/** ���ʹ���  */
+	/** 锟斤拷锟绞癸拷锟斤拷  */
 	private Paint mPaint = null;
-	/** Switch ״̬�����ӿ�  */
+	/** Switch 状态锟斤拷锟斤拷锟接匡拷  */
 	private OnSwitchChangedListener switchListener = null;
 	private boolean mFlag = false;
-	/** enabled ���� Ϊ true */
+	/** enabled 锟斤拷锟斤拷 为 true */
 	private boolean mEnabled = true;
-	/** ���͸���ȣ����ǲ�͸��? */
+	/** 锟斤拷锟酵革拷锟斤拷龋锟斤拷锟斤拷遣锟酵革拷锟? */
 	private final int MAX_ALPHA = 255;
-	/** ��ǰ͸���ȣ�������Ҫ��������ؼ���enable����Ϊfalseʱ�����ð�͸�� ���������Ե��? */
+	/** 锟斤拷前透锟斤拷锟饺ｏ拷锟斤拷锟斤拷锟斤拷要锟斤拷锟斤拷锟斤拷锟斤拷丶锟斤拷锟絜nable锟斤拷锟斤拷为false时锟斤拷锟斤拷锟矫帮拷透锟斤拷 锟斤拷锟斤拷锟斤拷锟斤拷锟皆碉拷锟? */
 	private int mAlpha = MAX_ALPHA;
-	/** Switch �ж��Ƿ����϶� */
+	/** Switch 锟叫讹拷锟角凤拷锟斤拷锟较讹拷 */
 	private boolean mIsScrolled =false;
 	
 	public SlideSwitchView(Context context) {
@@ -69,7 +69,7 @@ public class SlideSwitchView extends View{
 	}
 
 	/**
-	 * ��ʼ��������?
+	 * 锟斤拷始锟斤拷锟斤拷锟斤拷锟皆?
 	 */
 	public void init() {
 		mSwitchThumbPressed = BitmapFactory.decodeResource(getResources(), R.mipmap.checkswitch_btn_pressed);
@@ -79,7 +79,7 @@ public class SlideSwitchView extends View{
 		mSwitchMask = BitmapFactory.decodeResource(getResources(),R.mipmap.checkswitch_mask);
 		mSwitchThumb = mSwitchThumbNormal;
 		mMoveLength = mSwitchBottom.getWidth() - mSwitchFrame.getWidth();
-		//����������?
+		//锟斤拷锟斤拷锟斤拷锟斤拷锟叫?
 		mDest = new Rect(0, 0, mSwitchFrame.getWidth(),mSwitchFrame.getHeight());
 		mSrc = new Rect();
 		mPaint = new Paint();
@@ -124,7 +124,7 @@ public class SlideSwitchView extends View{
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		// TODO Auto-generated method stub
-		//���Enabled�����趨Ϊtrue,����Ч������Ч
+		//锟斤拷锟紼nabled锟斤拷锟斤拷锟借定为true,锟斤拷锟斤拷效锟斤拷锟斤拷锟斤拷效
 		if(!mEnabled){
 			return true;
 		}
@@ -137,10 +137,10 @@ public class SlideSwitchView extends View{
 			mCurrentX = event.getX();
 			mMoveDeltX = (int) (mCurrentX - mLastX);
 			if(mMoveDeltX > 10){
-				//������10��������룬���Ը��õ�ʵ�ֵ��Ч��
+				//锟斤拷锟斤拷锟斤拷10锟斤拷锟斤拷锟斤拷锟斤拷耄拷锟斤拷愿锟斤拷玫锟绞碉拷值锟斤拷效锟斤拷
 				mIsScrolled = true;
 			}
-			// ������ؿ������󻬶������߿��ع������һ�������ʱ���ǲ���Ҫ����ģ�
+			// 锟斤拷锟斤拷锟斤拷乜锟斤拷锟斤拷锟斤拷蠡锟斤拷锟斤拷锟斤拷呖锟斤拷毓锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟绞憋拷锟斤拷遣锟斤拷锟揭拷锟斤拷锟侥ｏ拷
 			if ((mSwitchOn && mMoveDeltX < 0) || (!mSwitchOn && mMoveDeltX > 0)) {
 				mFlag = true;
 				mMoveDeltX = 0;
@@ -153,7 +153,7 @@ public class SlideSwitchView extends View{
 			break;
 		case MotionEvent.ACTION_UP:
 			mSwitchThumb = mSwitchThumbNormal;
-			//���û�л��������Ϳ���һ�ε���¼�
+			//锟斤拷锟矫伙拷谢锟斤拷锟斤拷锟斤拷锟斤拷涂锟斤拷锟揭伙拷蔚锟斤拷锟铰硷拷
 			if(!mIsScrolled){
 				mMoveDeltX = mSwitchOn ? mMoveLength : -mMoveLength;
 				mSwitchOn = !mSwitchOn;
@@ -178,7 +178,7 @@ public class SlideSwitchView extends View{
 				invalidate();
 				mMoveDeltX = 0;
 			} else if (mMoveDeltX == 0 && mFlag) {
-				// ��ʱ��õ����ǲ���Ҫ���д���ģ���Ϊ�Ѿ�move����
+				// 锟斤拷时锟斤拷玫锟斤拷锟斤拷遣锟斤拷锟揭拷锟斤拷写锟斤拷锟侥ｏ拷锟斤拷为锟窖撅拷move锟斤拷锟斤拷
 				mMoveDeltX = 0;
 				mFlag = false;
 			}
@@ -189,13 +189,13 @@ public class SlideSwitchView extends View{
 		return true;
 	}
 	/** 
-	 * ���� switch ״̬���� 
+	 * 锟斤拷锟斤拷 switch 状态锟斤拷锟斤拷
 	 * */
 	public void setOnChangeListener(OnSwitchChangedListener listener) {
 		switchListener = listener;
 	}
 	/** 
-	 * switch ���ؼ����ӿ�
+	 * switch 锟斤拷锟截硷拷锟斤拷锟接匡拷
 	 *  */
 	public interface OnSwitchChangedListener{
 		public void onSwitchChange(SlideSwitchView switchView, boolean isChecked);
@@ -211,12 +211,12 @@ public class SlideSwitchView extends View{
 		invalidate();
 	}
 	
-	/** �Զ��ж��л����෴������ : true -->false ;false -->true */
+	/** 锟皆讹拷锟叫讹拷锟叫伙拷锟斤拷锟洁反锟斤拷锟斤拷锟斤拷 : true -->false ;false -->true */
 	public void toggle() {
 		setChecked(!mSwitchOn);
 	}
 	
-    /** ����ѡ�е�״̬��ѡ��:true   ��ѡ��: false�� */
+    /** 锟斤拷锟斤拷选锟叫碉拷状态锟斤拷选锟斤拷:true   锟斤拷选锟斤拷: false锟斤拷 */
     public void setChecked(boolean checked) {
     	mSwitchOn = checked;
         invalidate();

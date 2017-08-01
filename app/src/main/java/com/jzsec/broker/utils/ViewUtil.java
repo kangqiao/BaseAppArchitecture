@@ -2,8 +2,11 @@ package com.jzsec.broker.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
+import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 
 import com.jzsec.broker.R;
 
@@ -81,6 +84,37 @@ public class ViewUtil {
 					.getSystemService(Context.INPUT_METHOD_SERVICE);
 			imm.hideSoftInputFromWindow(c.getCurrentFocus().getWindowToken(), 0);
 		} catch (NullPointerException e) {
+		}
+	}
+
+	public static void setUpIndicatorWidth(TabLayout tabLayout, int marginLeft, int marginRight) {
+		Class<?> tabLayoutClass = tabLayout.getClass();
+		Field tabStrip = null;
+		try {
+			tabStrip = tabLayoutClass.getDeclaredField("mTabStrip");
+			tabStrip.setAccessible(true);
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		}
+
+		LinearLayout layout = null;
+		try {
+			if (tabStrip != null) {
+				layout = (LinearLayout) tabStrip.get(tabLayout);
+			}
+			for (int i = 0; i < layout.getChildCount(); i++) {
+				View child = layout.getChildAt(i);
+				child.setPadding(0, 0, 0, 0);
+				LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+					params.setMarginStart(DensityUtil.dip2px(tabLayout.getContext(), marginLeft));
+					params.setMarginEnd(DensityUtil.dip2px(tabLayout.getContext(), marginRight));
+				}
+				child.setLayoutParams(params);
+				child.invalidate();
+			}
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
 		}
 	}
 }

@@ -2,7 +2,7 @@ package com.jzsec.broker.okgo.callback;
 
 import com.jzsec.broker.okgo.MD5Utils;
 import com.lzy.okgo.model.HttpParams;
-import com.lzy.okgo.request.Request;
+import com.lzy.okgo.request.base.Request;
 
 import java.util.Comparator;
 import java.util.HashMap;
