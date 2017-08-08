@@ -11,7 +11,6 @@ import com.jzsec.broker.data.entity.CommonParam;
 import com.jzsec.broker.okgo.InitOkGo;
 import com.jzsec.broker.utils.SpUtil;
 import com.jzsec.broker.weex.ImageAdapter;
-import com.jzsec.leancloud.LeanCloudSetting;
 import com.taobao.weex.InitConfig;
 import com.taobao.weex.WXSDKEngine;
 
@@ -44,7 +43,7 @@ public class App extends Application /*implements RouterCallbackProvider*/ {
         initWeex();
         initialize();
         InitOkGo.onCreate(this);
-        //LeanCloudSetting.onCreate(this);
+        //com.jzsec.leancloud.LeanCloudSetting.onCreate(this);
         //初始化VCamera => http://www.jianshu.com/p/5a173841a828
         cn.kq.wxrecord.WXRecordInitializer.onCreate(this);
     }
