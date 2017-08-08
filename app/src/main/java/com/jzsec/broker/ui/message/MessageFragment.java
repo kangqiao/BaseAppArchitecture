@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseLazyFragment;
 import com.jzsec.broker.ui.market.SecuritiesMarketInfoActivity;
+import com.jzsec.broker.ui.rxokgo.RxOkGoFragment;
 import com.thefinestartist.finestwebview.FinestWebView;
+
+import rx.functions.Action1;
 
 /**
  * Created by zhaopan on 16/7/27.
@@ -40,6 +43,10 @@ public class MessageFragment extends BaseLazyFragment {
 
         $(R.id.btn_open_h5).setOnClickListener((v) -> {
             new FinestWebView.Builder(_mActivity).show("http://www.baidu.com");
+        });
+
+        _click(R.id.tv_RxJava_OkGO, (Void) -> {
+            openMainFragment(RxOkGoFragment.newInstance());
         });
     }
 }

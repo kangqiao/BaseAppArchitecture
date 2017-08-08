@@ -3,9 +3,13 @@
 buildscript {
     repositories {
         jcenter()
+        //这里是 LeanCloud 的包仓库 https://leancloud.cn/docs/sdk_setup-android.html#Gradle
+        maven {
+            url "http://mvn.leancloud.cn/nexus/content/repositories/public"
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.android.tools.build:gradle:2.3.3'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         classpath 'com.novoda:bintray-release:0.3.4'
         classpath 'me.tatarka:gradle-retrolambda:3.2.0'
@@ -20,6 +24,14 @@ allprojects {
     repositories {
         jcenter()
         mavenCentral()
+        // https://developer.android.com/topic/libraries/architecture/adding-components.html
+        maven {
+            url 'https://maven.google.com'
+        }
+        //这里是 LeanCloud 的包仓库 https://leancloud.cn/docs/sdk_setup-android.html#Gradle
+        maven {
+            url "http://mvn.leancloud.cn/nexus/content/repositories/public"
+        }
     }
 }
 
@@ -31,9 +43,9 @@ ext {
     applicationId = "com.jzsec.broker"
 
     minSdkVersion = 16
-    targetSdkVersion = 25 //23
-    compileSdkVersion = 25 //24 //23
-    buildToolsVersion =  '25.0.2' //'24.0.2' //'23.0.3'
+    targetSdkVersion = 26 //23
+    compileSdkVersion = 26 //24 //23
+    buildToolsVersion =  '26.0.0' //'24.0.2' //'23.0.3'
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8

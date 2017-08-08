@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_color_red"
-    android:orientation="vertical">
+    android:background="@color/bg_color"
+    android:divider="@drawable/layout_divider_line"
+    android:orientation="vertical"
+    android:showDividers="beginning|middle|end">
 
     <Button
         android:id="@+id/btn_open_market"
@@ -21,8 +23,11 @@
         android:padding="@dimen/margin_normal"
         android:text="打开FinestWebView页面" />
 
-    <com.jzsec.broker.view.chart.KLineChartView
+    <TextView
+        android:id="@+id/tv_RxJava_OkGO"
         android:layout_width="match_parent"
-        android:background="@color/text_color_blue"
-        android:layout_height="@dimen/kline_container_height"/>
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:padding="@dimen/margin_normal"
+        android:text="RxJava_OkGO" />
 </LinearLayout>

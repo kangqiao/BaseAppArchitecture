@@ -38,6 +38,7 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/maven/com.belerweb/pinyin4j/pom.xml'
         exclude 'META-INF/maven/com.belerweb/pinyin4j/pom.properties'
+        exclude 'META-INF/rxjava.properties'
     }
 
     compileOptions {
@@ -83,9 +84,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    /*compile project(':leancloud'){
-         exclude module: 'fastjson'
-    }*/
+    //compile project(path: ':leancloud')
     compile project(path: ':wxrecord')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:multidex:1.0.1'
@@ -98,19 +97,28 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:' + rootProject.ext.supportLibVersion
     //compile "com.android.support:support-annotations:' + rootProject.ext.supportLibVersion
     compile 'com.android.support:cardview-v7:' + rootProject.ext.supportLibVersion
+
+    // https://developer.android.com/topic/libraries/architecture/adding-components.html
+    // For Lifecycles, LiveData, and ViewModel, add:
+    compile "android.arch.lifecycle:runtime:1.0.0-alpha5"
+    compile "android.arch.lifecycle:extensions:1.0.0-alpha5"
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha5"
+    // For Room, add:
+    compile "android.arch.persistence.room:runtime:1.0.0-alpha5"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha5"
+    // For testing Room migrations, add:
+    testCompile "android.arch.persistence.room:testing:1.0.0-alpha5"
+    // For Room RxJava support, add:
+    compile "android.arch.persistence.room:rxjava2:1.0.0-alpha5"
+
     //ButterKnife
     //compile 'com.jakewharton:butterknife:7+'
     compile 'com.jakewharton:butterknife:8.2.1'
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
     //Gson
-    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.google.code.gson:gson:2.8.0'
     //GreenDao
     //compile 'de.greenrobot:greendao:2.1.0'
-    /**
-     * https://github.com/jianghejie/XRecyclerView#fork-destination-box
-     *  a RecyclerView that implements pullrefresh and loadingmore featrues.you can use it like a standard RecyclerView
-     */
-    compile 'com.jcodecraeer:xrecyclerview:1.2.7'
 
     /**
      * Fragmentation => https://github.com/YoKeyword/Fragmentation
@@ -124,19 +132,23 @@ dependencies {
     compile 'com.github.bumptech.glide:okhttp-integration:1.3.1@aar'
     compile 'com.github.bumptech.glide:glide:3+'
     //Retrofit
-    compile 'com.squareup.retrofit2:retrofit:2+'
-    compile 'com.squareup.retrofit2:converter-gson:2+'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2+'
-    compile 'com.squareup.okhttp3:logging-interceptor:3+'
+//    compile 'com.squareup.retrofit2:retrofit:2+'
+//    compile 'com.squareup.retrofit2:converter-gson:2+'
+//    compile 'com.squareup.retrofit2:adapter-rxjava:2+'
+//    compile 'com.squareup.okhttp3:logging-interceptor:3+'
     //RxJava
     //compile 'io.reactivex:rxandroid:1+'
-    //compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+//    compile 'io.reactivex.rxjava2:rxjava:+'
+//    compile 'io.reactivex.rxjava2:rxandroid:+'
+
     //https://github.com/jeasonlzy/okhttp-OkGo V3.0 OkHttpUtils-2.0.0 升级后改名 OkGo，全新完美支持RxJava，比Retrofit更简单易用。
-    compile 'com.lzy.net:okgo:+'
-    //compile 'com.lzy.net:okrx:+'
+    compile 'com.lzy.net:okgo:3.0.4'
+    // compile 'com.lzy.net:okrx:1.0.2'
+    compile 'com.lzy.net:okrx2:2.0.2'
+    compile 'com.lzy.net:okserver:2.0.5'
+
     compile 'com.readystatesoftware.chuck:library:1.0.4'
-    //compile 'com.lzy.net:okrx2:+'
-    compile 'com.lzy.net:okserver:+'
+
     //版本号使用 + 可以自动引用最新版
     //https://github.com/jeasonlzy/ImagePicker 完全仿微信的图片选择，并且提供了多种图片加载接口，选择图片后可以旋转，可以裁剪成矩形或圆形，可以配置各种其他的参数
     compile 'com.lzy.widget:imagepicker:+'
@@ -155,10 +167,17 @@ dependencies {
     //compile 'com.umeng.analytics:analytics:6.0.1'
     //看代码比较用的
     compile 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
+
+    /**
+     * https://github.com/jianghejie/XRecyclerView#fork-destination-box
+     *  a RecyclerView that implements pullrefresh and loadingmore featrues.you can use it like a standard RecyclerView
+     */
+    compile 'com.jcodecraeer:xrecyclerview:1.2.7'
     //https://github.com/HpWens/BaseRecyclerAdapter
     compile 'com.github.baserecycleradapter:library:1.0.9'
-    //http://www.jianshu.com/p/b4a8b3d4f587
-    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
+    //http://www.jianshu.com/p/b4a8b3d4f587 //http://www.jianshu.com/p/07e1a1cff5ad
+    //compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
+    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
     compile 'com.belerweb:pinyin4j:2.5.1'
 

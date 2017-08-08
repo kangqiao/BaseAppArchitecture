@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -105,6 +106,15 @@ public class BaseFragment extends SwipeBackFragment implements MainHandler.Messa
 
     protected void debounceClick(View view, Action1<Void> action1){
         debounceClick(view, 300, action1);
+    }
+
+
+    protected static void postEvent(Object event) {
+        EventBus.getDefault().post(event);
+    }
+
+    protected static void openMainFragment(SupportFragment fragment) {
+        postEvent(new StartBrotherEvent(fragment));
     }
 
     /*protected void initToolbarMenu(Toolbar toolbar) {

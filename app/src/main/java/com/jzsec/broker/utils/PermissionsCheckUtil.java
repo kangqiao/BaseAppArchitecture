@@ -1,6 +1,6 @@
 package com.jzsec.broker.utils;
 
-import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -11,13 +11,14 @@ import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-import com.tbruyelle.rxpermissions.Permission;
-import com.tbruyelle.rxpermissions.RxPermissions;
+import com.tbruyelle.rxpermissions2.Permission;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.functions.Action1;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by zhaopan on 16/9/8.
@@ -93,13 +94,13 @@ public class PermissionsCheckUtil {
      * @param context
      * @param callback
      */
-    public static void checkAllPermission(Context context, final CheckPermissionCallback<Boolean> callback) {
+    public static void checkAllPermission(Activity context, final CheckPermissionCallback<Boolean> callback) {
         if (Build.VERSION.SDK_INT >= MVersion && null != context && null != callback) {
-            RxPermissions.getInstance(context)
+            new RxPermissions(context)
                     .request(getPermissionList(context))
-                    .subscribe(new Action1<Boolean>() {
+                    .subscribe(new Consumer<Boolean>() {
                         @Override
-                        public void call(Boolean granted) {
+                        public void accept(@NonNull Boolean granted) throws Exception {
                             log("checkAllPermission granted=" + granted);
                             callback.onCheck(granted);
                         }
@@ -116,13 +117,13 @@ public class PermissionsCheckUtil {
      * @param callback
      * @param permissions
      */
-    public static void checkPermission(final Context context, final CheckPermissionCallback<Permission> callback, String... permissions) {
+    public static void checkPermission(final Activity context, final CheckPermissionCallback<Permission> callback, String... permissions) {
         if (Build.VERSION.SDK_INT >= MVersion && null != context && null != callback && null != permissions && permissions.length > 0) {
-            RxPermissions.getInstance(context)
+            new RxPermissions(context)
                     .requestEach(permissions)
-                    .subscribe(new Action1<Permission>() {
+                    .subscribe(new Consumer<Permission>() {
                         @Override
-                        public void call(Permission permission) {
+                        public void accept(@NonNull Permission permission) throws Exception {
                             log(permission.toString());
                             callback.onCheck(permission);
                         }

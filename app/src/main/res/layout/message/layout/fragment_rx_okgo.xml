@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/layout_divider_line"
+    android:orientation="vertical"
+    android:showDividers="middle">
+
+    <Button
+        android:id="@+id/tv_test1"
+        style="@style/tv_gray3_and_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test1" />
+
+    <Button
+        android:id="@+id/tv_publish_subject"
+        style="@style/tv_gray3_and_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PublishSubject" />
+</LinearLayout>
