@@ -1,5 +1,7 @@
 package com.jzsec.broker.base;
 
+import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.media.ExifInterface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,11 +39,17 @@ import rx.functions.Action1;
  * 注: 区别于BaseLazyFragment
  * 建议在onEnterAnimationEnd()中做数据的即时初始化操作.
  */
-public class BaseFragment extends SwipeBackFragment implements MainHandler.MessageHandler {
+public class BaseFragment extends SwipeBackFragment implements MainHandler.MessageHandler, LifecycleRegistryOwner {
     private static final String TAG = "BaseFragment";
     private static final boolean DEBUG = true;
 
     protected Unbinder mUnBinder;
+
+    LifecycleRegistry mLifecycleRegistry = new LifecycleRegistry(this);
+    @Override
+    public LifecycleRegistry getLifecycle() {
+        return mLifecycleRegistry;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

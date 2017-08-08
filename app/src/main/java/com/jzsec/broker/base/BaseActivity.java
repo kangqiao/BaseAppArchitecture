@@ -1,5 +1,7 @@
 package com.jzsec.broker.base;
 
+import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +9,6 @@ import android.view.View;
 
 import com.jzsec.broker.R;
 import com.jzsec.broker.AppManager;
-import com.jzsec.broker.base.mvp.IPresenter;
 import com.jzsec.broker.utils.SpUtil;
 
 import butterknife.ButterKnife;
@@ -18,11 +19,17 @@ import me.yokeyword.fragmentation_swipeback.SwipeBackActivity;
  * Created by zhaopan on 16/7/19
  * e-mail: kangqiao610@gmail.com
  */
-public abstract class BaseActivity extends SwipeBackActivity {
+public abstract class BaseActivity extends SwipeBackActivity implements LifecycleRegistryOwner {
 
     protected boolean isNight;
     protected Unbinder mUnBinder;
     protected Context mContext;
+
+    private final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
+    @Override
+    public LifecycleRegistry getLifecycle() {
+        return mRegistry;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

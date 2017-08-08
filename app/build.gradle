@@ -56,24 +56,24 @@ android {
     sourceSets{
         main{
             res.srcDirs =
-                    [
-                            'src/main/res/layout/common',
+                [
+                    'src/main/res/layout/common',
 
-                            //模块包
-                            'src/main/res/layout/login',
-                            'src/main/res/layout/home',
-                            'src/main/res/layout/contacts',
-                            'src/main/res/layout/message',
-                            'src/main/res/layout/my',
+                    //模块包
+                    'src/main/res/layout/login',
+                    'src/main/res/layout/home',
+                    'src/main/res/layout/contacts',
+                    'src/main/res/layout/message',
+                    'src/main/res/layout/my',
 
-                            'src/main/res/layout/market', //行情包
+                    'src/main/res/layout/market', //行情包
 
-                            //这是测试代码所用的包 被废弃的.
-                            'src/main/res/layout/test',
-                            //以下两条必须放在最后
-                            'src/main/res/layout',
-                            'src/main/res'
-                    ]
+                    //这是测试代码所用的包 被废弃的.
+                    'src/main/res/layout/test',
+                    //以下两条必须放在最后
+                    'src/main/res/layout',
+                    'src/main/res'
+                ]
         }
     }
 
