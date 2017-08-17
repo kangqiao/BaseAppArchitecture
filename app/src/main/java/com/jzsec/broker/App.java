@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.multidex.MultiDex;
 
+import com.didi.virtualapk.PluginManager;
 import com.github.mzule.activityrouter.router.RouterCallback;
 import com.github.mzule.activityrouter.router.SimpleRouterCallback;
 import com.jzsec.broker.data.entity.CommonParam;
@@ -34,6 +35,7 @@ public class App extends Application /*implements RouterCallbackProvider*/ {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+        PluginManager.getInstance(base).init();
     }
 
     @Override

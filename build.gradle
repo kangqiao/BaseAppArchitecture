@@ -14,6 +14,7 @@ buildscript {
         classpath 'com.novoda:bintray-release:0.3.4'
         classpath 'me.tatarka:gradle-retrolambda:3.2.0'
         classpath 'com.android.databinding:dataBinder:+'
+        classpath 'com.didi.virtualapk:gradle:0.9.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

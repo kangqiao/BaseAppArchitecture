@@ -3,6 +3,7 @@ package com.jzsec.broker.utils;
 import android.text.TextUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 /**
@@ -445,74 +446,112 @@ public class Arith {
         return str2;
     }
 
-    /**
-     * 市值超过10位数字时，数值转成亿显示，保留两位小数（四舍五入）
-     * 如：10,009,400,000,显示为：100.09亿。
-     *
-     * @param num
-     * @return
-     */
-    public static String formatNumber(String num){
-        try {
-            if ("".equals(num)){
-                num = "0";
-            }
-            return formatNumber(Double.valueOf(num));
-        } catch (NumberFormatException nfe) {
-            Zlog.et("valueOfMoney", num + " had not been format double type.", nfe);
-        }
-        return "0";
+
+
+    public static String formatNumber(Object numobj, int x) {
+        return formatNumber(numobj, x, null);
     }
 
-    public static String formatNumber(double num){
-        if (isInvalidDouble(num)) {
-            num = 0.00;
+    public static String formatNumber(Object numobj, int x, RoundingMode mode) {
+        String formatStr = "";
+        x = Math.max(0, Math.min(x, 10));
+        if (x > 0) formatStr += ".";
+        while (x-- > 0) {
+            formatStr += "0";
         }
-        BigDecimal num1 = new BigDecimal(num);
-        BigDecimal num2 = num1.setScale(2, BigDecimal.ROUND_HALF_UP); // 保留两位
-        DecimalFormat df1 = new DecimalFormat("###,###,###,###,###,###,###,###.00");
-        float f = num2.longValue();
-        if (f >= A_HUNDRED_MILLION || f <= -A_HUNDRED_MILLION){
-            f = f/A_HUNDRED_MILLION;
-            return df1.format(f)+"亿";
-        }else {
-            return df1.format(num2);
+        double num = toDouble(numobj);
+        if (isInvalidDouble(num) || num == 0) {
+            return "0"+formatStr;
         }
+        formatStr = ",##0"+formatStr;
+
+        BigDecimal bigDecimal = new BigDecimal(num);
+        if(null != mode){
+            bigDecimal.setScale(x, mode);
+        }
+        return new DecimalFormat(formatStr).format(bigDecimal);
     }
 
-
-    /**
-     * 市值超过10位数字时，数值转成亿显示，保留两位小数（四舍五入）
-     * 每隔3位不加逗号
-     * 如：10009400000显示为：100.09亿。
-     * @param num
-     * @return
-     */
-    public static String formatNumber2(String num){
-        try {
-            return formatNumber2(Double.valueOf(num));
-        } catch (NumberFormatException nfe) {
-            Zlog.et("valueOfMoney", num + " had not been format double type.", nfe);
-        }
-        return "0";
+    public static String keepXDecimal(Object numobj, int x) {
+        return keepXDecimal(numobj, x, null);
     }
 
-    public static String formatNumber2(double num){
-        if (isInvalidDouble(num)) {
-            num = 0.00;
+    public static String keepXDecimal(Object numobj, int x, RoundingMode mode) {
+        String formatStr = "";
+        x = Math.max(0, Math.min(x, 10));
+        if (x > 0) formatStr += ".";
+        while (x-- > 0) {
+            formatStr += "0";
         }
+        double num = toDouble(numobj);
+        if (isInvalidDouble(num) || num == 0) {
+            return "0"+formatStr;
+        }
+        formatStr = "0"+formatStr;
 
-        BigDecimal num1 = new BigDecimal(num);
-        BigDecimal num2 = num1.setScale(2, BigDecimal.ROUND_HALF_UP); // 保留两位
-        DecimalFormat df1 = new DecimalFormat("###############.00");
-        float f = num2.longValue();
-        if (f >= A_HUNDRED_MILLION || f <= -A_HUNDRED_MILLION){
-            f = f/A_HUNDRED_MILLION;
-            return df1.format(f)+"亿";
-        }else {
-            return df1.format(num2);
+        BigDecimal bigDecimal = new BigDecimal(num);
+        if(null != mode){
+            bigDecimal.setScale(x, mode);
         }
+        return new DecimalFormat(formatStr).format(bigDecimal);
     }
 
+    public static String formatNumZH(Object in, int x) {
+        return formatNumZH(in, x, null);
+    }
 
+    public static String formatNumZH(Object in, int x, RoundingMode mode) {
+        final long wanyi = 1000000000000l;          //万亿
+        final long yi = 100000000l;                 //亿
+        final long oneHundredThousand = 100000l;    //十万
+
+        double num = toDouble(in);
+        if (isInvalidDouble(num) || num == 0) {
+            return keepXDecimal(num, x);
+        }
+        String result = "";
+        double number = 0;
+        if (Math.abs((number = num / wanyi)) >= 1) {//单位:万亿
+            result = keepXDecimal(number, x, mode) + "万亿";
+        } else if (Math.abs((number = num / yi)) >= 1) {//单位:亿
+            result = keepXDecimal(number, x, mode) + "亿";
+        } else if (Math.abs((number = num / oneHundredThousand)) >= 1) {//单位:十万
+            result = keepXDecimal(number*10, x, mode) + "万";
+        } else {//单位:十万以下
+            result = keepXDecimal(num, x, mode);
+        }
+        return result;
+    }
+
+    public static String formatNumZH2(Object in, int x) {
+        return formatNumZH2(in, x, null);
+    }
+
+    public static String formatNumZH2(Object in, int x, RoundingMode mode) {
+        int scale = x == 0? 2: x;
+        return formatNumZH2(in, x, scale, mode);
+    }
+
+    public static String formatNumZH2(Object in, int x, int scale, RoundingMode mode) {
+        final long wanyi = 1000000000000l;          //万亿
+        final long yi = 100000000l;                 //亿
+        final long oneHundredThousand = 100000l;    //十万
+
+        double num = toDouble(in);
+        if (isInvalidDouble(num) || num == 0) {
+            return keepXDecimal(num, x);
+        }
+        String result = "";
+        double number = 0;
+        if (Math.abs((number = num / wanyi)) >= 1) {//单位:万亿
+            result = keepXDecimal(number, scale, mode) + "万亿";
+        } else if (Math.abs((number = num / yi)) >= 1) {//单位:亿
+            result = keepXDecimal(number, scale, mode) + "亿";
+        } else if (Math.abs((number = num / oneHundredThousand)) >= 1) {//单位:十万
+            result = keepXDecimal(number*10, scale, mode) + "万";
+        } else {//单位:十万以下
+            result = keepXDecimal(num, x, mode);
+        }
+        return result;
+    }
 }
