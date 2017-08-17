@@ -49,7 +49,7 @@ public class HandlerTimer implements Runnable{
     }
 
     public void stopTimer(){
-        if(null != mHandler) mHandler.removeCallbacks(mTask);
+        if(null != mHandler) mHandler.removeCallbacks(this);
     }
 
     @Override
