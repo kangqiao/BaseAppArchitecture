@@ -12,7 +12,6 @@ public class HandlerTimer implements Runnable{
     public static int DEFAULT_TIMER_DELAY = 5000;
     public Handler mHandler;
     public Runnable mTask;
-    public boolean mImmediately = true;
     public int mDelay = DEFAULT_TIMER_DELAY;
 
     public HandlerTimer(Handler handler){
@@ -34,13 +33,12 @@ public class HandlerTimer implements Runnable{
     }
 
     public void startTimer(){
-        startTimer(mImmediately);
+        startTimer(true);
     }
 
     public void startTimer(boolean immediately){
-        mImmediately = immediately;
-        if(mImmediately){
-            this.run();
+        if(immediately){
+            mHandler.post(this);
         } else {
             mHandler.postDelayed(this, mDelay);
         }
