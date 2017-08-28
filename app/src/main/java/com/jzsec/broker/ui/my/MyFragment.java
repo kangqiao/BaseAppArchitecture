@@ -18,6 +18,7 @@ import com.jzsec.broker.ui.WebViewActivity;
 import com.jzsec.broker.ui.event.StartBrotherEvent;
 import com.jzsec.broker.ui.recyclerview.diffutil.TestDiffUtilsActivity;
 import com.jzsec.broker.ui.recyclerview.sortedlist.SortedListActivity;
+import com.jzsec.broker.ui.test.FileProviderFragment;
 import com.jzsec.broker.ui.test.TestLayoutFragment;
 import com.jzsec.broker.view.notification.CustomNotification;
 import com.jzsec.broker.view.notification.NotifycationUtils;
@@ -204,7 +205,14 @@ public class MyFragment extends BaseLazyFragment {
         _click(R.id.tv_wxrecord, new Action1<Void>() {
             @Override
             public void call(Void aVoid) {
-                startActivity(new Intent(getContext(), cn.kq.wxrecord.WXRecordMainActivity.class));
+                //startActivity(new Intent(getContext(), cn.kq.wxrecord.WXRecordMainActivity.class));
+            }
+        });
+
+        _click(R.id.tv_fileprovider, new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                openMainFragment(FileProviderFragment.newInstance());
             }
         });
     }

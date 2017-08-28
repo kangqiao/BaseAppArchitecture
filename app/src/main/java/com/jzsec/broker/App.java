@@ -47,7 +47,7 @@ public class App extends Application /*implements RouterCallbackProvider*/ {
         InitOkGo.onCreate(this);
         //com.jzsec.leancloud.LeanCloudSetting.onCreate(this);
         //初始化VCamera => http://www.jianshu.com/p/5a173841a828
-        cn.kq.wxrecord.WXRecordInitializer.onCreate(this);
+        //cn.kq.wxrecord.WXRecordInitializer.onCreate(this);
     }
 
     private void initWeex() {

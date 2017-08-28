@@ -4,8 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BaseAppArchitecture.iml" filepath="$PROJECT_DIR$/BaseAppArchitecture.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/leancloud/leancloud.iml" filepath="$PROJECT_DIR$/leancloud/leancloud.iml" />
-      <module fileurl="file://$PROJECT_DIR$/wxrecord/wxrecord.iml" filepath="$PROJECT_DIR$/wxrecord/wxrecord.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fitandroid7/fitandroid7.iml" filepath="$PROJECT_DIR$/fitandroid7/fitandroid7.iml" />
     </modules>
   </component>
 </project>

@@ -129,6 +129,14 @@
             android:background="@android:color/holo_blue_dark"
             android:padding="@dimen/margin_normal"
             android:text="仿微信视频拍摄UI, 基于ffmpeg的视频录制" />
+
+        <TextView
+            android:id="@+id/tv_fileprovider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="@dimen/margin_normal"
+            android:text="FileProvider Test" />
     </LinearLayout>
 
 

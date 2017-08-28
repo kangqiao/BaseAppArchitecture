@@ -1,1 +1,1 @@
-include ':app', ':leancloud', ':wxrecord'
+include ':app', ':fitandroid7'//, ':wxrecord'//, ':leancloud'
