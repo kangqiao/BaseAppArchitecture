@@ -206,4 +206,5 @@ dependencies {
     compile 'com.github.mzule.activityrouter:activityrouter:1.2.1'
     apt 'com.github.mzule.activityrouter:compiler:1.1.7'
 
+    compile 'com.google.zxing:core:3.3.0'
 }
