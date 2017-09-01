@@ -27,6 +27,7 @@ import java.util.concurrent.TimeUnit;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.functions.Consumer;
 import me.yokeyword.fragmentation.SupportFragment;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 import rx.android.schedulers.AndroidSchedulers;
@@ -93,6 +94,18 @@ public class BaseFragment extends SwipeBackFragment implements MainHandler.Messa
                 .debounce(300, TimeUnit.MICROSECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(onNext);
+        return this;
+    }
+
+    protected BaseFragment _click2(@IdRes int id, final Consumer<? super Object> consumer){
+        return _click2($(id), consumer);
+    }
+
+    public BaseFragment _click2(View view, final Consumer<? super Object> consumer){
+        com.jakewharton.rxbinding2.view.RxView.clicks(view)
+                .debounce(300, TimeUnit.MICROSECONDS)
+                .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
+                .subscribe(consumer);
         return this;
     }
 

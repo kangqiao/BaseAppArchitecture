@@ -19,4 +19,155 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="PublishSubject" />
+
+    <Button
+        android:id="@+id/tv_behavior_subject"
+        style="@style/tv_gray3_and_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BehaviorSubject" />
+
+    <Button
+        android:id="@+id/tv_replay_subject"
+        style="@style/tv_gray3_and_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ReplaySubject" />
+
+    <Button
+        android:id="@+id/tv_async_subject"
+        style="@style/tv_gray3_and_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="AsyncSubject" />
+
+    <Button
+        android:id="@+id/tv_back_presssure"
+        style="@style/tv_gray3_and_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="背压差异" />
+
+    <Button
+        android:id="@+id/tv_prevent_back_presssure"
+        style="@style/tv_gray3_and_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="能避免背压问题的运算符" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_btn_bg_color"
+        android:gravity="left|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_opt"
+            style="@style/tv_gray3_and_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@color/bg_color_white"
+            android:gravity="center"
+            android:padding="@dimen/margin_small"
+            android:text="操作符\n应用场景" />
+
+        <TextView
+            android:id="@+id/tv_opt_defer"
+            style="@style/tv_gray3_and_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@color/bg_color_white"
+            android:gravity="center"
+            android:padding="@dimen/margin_small"
+            android:text="opt_defer" />
+
+        <TextView
+            android:id="@+id/tv_opt_repeat"
+            style="@style/tv_gray3_and_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@color/bg_color_white"
+            android:gravity="center"
+            android:padding="@dimen/margin_small"
+            android:text="opt_repeat" />
+
+        <TextView
+            android:id="@+id/tv_opt_interval"
+            style="@style/tv_gray3_and_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@color/bg_color_white"
+            android:gravity="center"
+            android:padding="@dimen/margin_small"
+            android:text="opt_interval" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_btn_bg_color"
+        android:gravity="left|center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_filter"
+            style="@style/tv_gray3_and_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@color/bg_color_white"
+            android:gravity="center"
+            android:padding="@dimen/margin_small"
+            android:text="过滤类" />
+
+        <TextView
+            android:id="@+id/tv_filter_filter"
+            style="@style/tv_gray3_and_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@color/bg_color_white"
+            android:gravity="center"
+            android:padding="@dimen/margin_small"
+            android:text="filter" />
+
+        <TextView
+            android:id="@+id/tv_filter_take"
+            style="@style/tv_gray3_and_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@color/bg_color_white"
+            android:gravity="center"
+            android:padding="@dimen/margin_small"
+            android:text="take" />
+
+        <TextView
+            android:id="@+id/tv_filter_skip"
+            style="@style/tv_gray3_and_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@color/bg_color_white"
+            android:gravity="center"
+            android:padding="@dimen/margin_small"
+            android:text="skip" />
+
+        <TextView
+            android:id="@+id/tv_filter_timeout"
+            style="@style/tv_gray3_and_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:background="@color/bg_color_white"
+            android:gravity="center"
+            android:padding="@dimen/margin_small"
+            android:text="timeout" />
+
+    </LinearLayout>
 </LinearLayout>

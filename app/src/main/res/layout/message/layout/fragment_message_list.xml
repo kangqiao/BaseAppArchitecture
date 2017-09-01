@@ -30,4 +30,12 @@
         android:background="@android:color/holo_blue_dark"
         android:padding="@dimen/margin_normal"
         android:text="RxJava_OkGO" />
+
+    <TextView
+        android:id="@+id/tv_custom_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:padding="@dimen/margin_normal"
+        android:text="自定义控件-日历任务控件" />
 </LinearLayout>

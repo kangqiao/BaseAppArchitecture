@@ -1,27 +1,26 @@
 package com.jzsec.broker.ui.rxokgo;
 
 /**
- * Created by zhaopan on 2017/8/1.
+ * Created by zhaopan on 2017/8/30.
  */
 
 public abstract class AsyncJob<T> {
-
     public abstract void start(Callback<T> callback);
 
     public <R> AsyncJob<R> map(final Func<T, R> func){
         final AsyncJob<T> source = this;
-        return new AsyncJob<R>(){
+        return new AsyncJob<R>() {
             @Override
             public void start(Callback<R> callback) {
                 source.start(new Callback<T>() {
                     @Override
                     public void onSuccess(T t) {
-                        R maped = func.call(t);
-                        callback.onSuccess(maped);
+                        R mapped = func.call(t);
+                        callback.onSuccess(mapped);
                     }
 
                     @Override
-                    public void onError(Exception e) {
+                    public void onError(Throwable e) {
                         callback.onError(e);
                     }
                 });
@@ -45,20 +44,18 @@ public abstract class AsyncJob<T> {
                             }
 
                             @Override
-                            public void onError(Exception e) {
+                            public void onError(Throwable e) {
                                 callback.onError(e);
                             }
                         });
                     }
 
                     @Override
-                    public void onError(Exception e) {
+                    public void onError(Throwable e) {
                         callback.onError(e);
                     }
                 });
             }
         };
     }
-
-
 }

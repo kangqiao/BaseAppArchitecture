@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhaoapn="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.jzsec.broker.view.calendar.CustomCalendar
+            android:id="@+id/cal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            zhaoapn:mMonthRowL="@mipmap/custom_calendar_row_left"
+            zhaoapn:mMonthRowR="@mipmap/custom_calendar_row_right"
+            zhaoapn:mMonthRowSpac="20dip"
+
+            zhaoapn:mTextSizeMonth="22sp"
+            zhaoapn:mTextSizeWeek="17sp"
+            zhaoapn:mTextSizeDay="17sp"
+            zhaoapn:mTextSizePre="10sp"
+
+            zhaoapn:mTextColorMonth="#6E6E6E"
+            zhaoapn:mTextColorWeek="#aa7a7a"
+            zhaoapn:mTextColorDay="#A4A4A4"
+            zhaoapn:mTextColorPreFinish="#5CBB8C"
+            zhaoapn:mTextColorPreUnFinish="#ff6634"
+            zhaoapn:mSelectTextColor="#ffffff"
+
+            zhaoapn:mMonthSpac="8dip"
+            zhaoapn:mLineSpac="10dip"
+            zhaoapn:mTextSpac="6dip"
+
+            zhaoapn:mCurrentBg="#6E6E6E"
+            zhaoapn:mCurrentBgStrokeWidth="1.5dip"
+            zhaoapn:mCurrentBgDashPath="@array/customCalendar_currentDay_bg_DashPath"
+            zhaoapn:mSelectBg="#ff6634"
+            zhaoapn:mSelectRadius="15dip" />
+
+
+        <!-- <CalendarView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"/>-->
+    </LinearLayout>
+
+</ScrollView>

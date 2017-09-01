@@ -48,7 +48,7 @@ android {
     }
 
     dexOptions {
-        incremental true
+        //incremental true
         preDexLibraries = false
         jumboMode = true
         javaMaxHeapSize "4g"
@@ -145,10 +145,10 @@ dependencies {
     //RxJava
     //compile 'io.reactivex:rxandroid:1+'
 //    compile 'io.reactivex.rxjava2:rxjava:+'
-//    compile 'io.reactivex.rxjava2:rxandroid:+'
+    compile 'io.reactivex.rxjava2:rxandroid:+'
 
     //https://github.com/jeasonlzy/okhttp-OkGo V3.0 OkHttpUtils-2.0.0 升级后改名 OkGo，全新完美支持RxJava，比Retrofit更简单易用。
-    compile 'com.lzy.net:okgo:3.0.4'
+    compile 'com.lzy.net:okgo:3+'
     // compile 'com.lzy.net:okrx:1.0.2'
     compile 'com.lzy.net:okrx2:2.0.2'
     compile 'com.lzy.net:okserver:2.0.5'
@@ -185,6 +185,7 @@ dependencies {
     //compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
     compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     compile 'com.belerweb:pinyin4j:2.5.1'
 
     //https://github.com/pedant/sweet-alert-dialog  ###Sweet Alert Dialog ###Android版的SweetAlert，清新文艺，快意灵动的甜心弹框

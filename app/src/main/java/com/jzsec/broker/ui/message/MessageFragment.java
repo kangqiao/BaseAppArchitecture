@@ -12,6 +12,7 @@ import com.jzsec.broker.ui.market.SecuritiesMarketInfoActivity;
 import com.jzsec.broker.ui.rxokgo.RxOkGoFragment;
 import com.thefinestartist.finestwebview.FinestWebView;
 
+import me.yokeyword.fragmentation.SupportFragment;
 import rx.functions.Action1;
 
 /**
@@ -21,9 +22,9 @@ import rx.functions.Action1;
 public class MessageFragment extends BaseLazyFragment {
 
 
-    public static MessageFragment newInstance() {
+    public static SupportFragment newInstance() {
         Bundle args = new Bundle();
-        MessageFragment fragment = new MessageFragment();
+        SupportFragment fragment = new MessageFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,6 +48,10 @@ public class MessageFragment extends BaseLazyFragment {
 
         _click(R.id.tv_RxJava_OkGO, (Void) -> {
             openMainFragment(RxOkGoFragment.newInstance());
+        });
+
+        _click2(R.id.tv_custom_calendar, (Object) ->{
+            openMainFragment(CustomCalendarFragment.newInstance());
         });
     }
 }
