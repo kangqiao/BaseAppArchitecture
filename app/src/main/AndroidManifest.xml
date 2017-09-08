@@ -19,6 +19,7 @@
     <!-- 要存储文件或者创建文件夹的话还需要以下两个权限 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 读取系统日志权限 -->
     <!-- <uses-permission android:name="android.permission.READ_LOGS" /> -->
     <!-- 网络状态 -->
@@ -45,6 +46,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:allowBackup">
+
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="123789-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="d098d4d15e02fe396361eada4b03302f" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCQ1uSWFfd0eNDLsyt3L8HPFsC5J9sL/otLO3A4DQwuD0IaaJhNjotbVYgC9+C/Q8Bia/tqaicZ73j3qiLSqPVFzRULYV8Yh5DeQXrvXFHXjEjP46XeCZmuIStcVDDRmu1PWZL245F6DawNUsmLK1qbpOpdX5pc9h0dGqv6iyGjlN0NEqahDbLrxWSvXWWHtBJfPfKGL421WK+IKz1aErWjRdRBr4isOvzwo3jWqkhB40MRZswkQdJhgvukBu9RzyTvMXGUH1r1/63V5Xtuamy3tOTtCGliyR1SfXY3trrezk310SfXzA7DH9V5U0ZI+4HT3tAeFeVrnDJYMFxy/GI9AgMBAAECggEAbY3NmuSEptmXfOxJ7T33R4+7OJG38suXStFroUnlM5Wg9160DL3MFMqONUiO+7zgcNGieqxOZSSoiBRtgJAB7ckgqNn+1wv7fNFkjlZzJSncDTrwxBDY6Ef4hz67KmAYLdPgANTCveJHiFBdV+H0CBRmnTfqB3S1MsVw3fKNADA1N4jCLRFlhrjprWXyGOFFKhfjBd1rXilr53tgCzcY7srCxjW6a+iSbt7edBZ5na2Xdj//mAjMCfQptMi9GGTAxB0mbZbq4DP05ScbbTAlAzX9HzhBbcBQhAcy/KtgPTWqQuy3XWHoP3Bd3bZYKzzQn3ITUcItW8eZ/TobX2nNAQKBgQD5LM+ZJgtMpxWo2tt7o2K6Tw7t4deXAaTSILFw505seWJwL1WYlaCwt9Ps0r/YXuPnMLy7KKfrQ4Z+FostapQosvf1FWDRcfGE+2E1kGFZdSZGHpoHW0skEPctbbgNLGSAlQXmX2LXf4ow0e0b/k2PjoCmedh9x1GPI3sx2bdW/QKBgQCUzn3dhTymW1W5D3hoo/KpS8JFzSUARgohD/RsJXjHFJT2eD2VIEKQjxbb9YNMB7Wh6rI6DJrwwUkv9t/WU9DjjkKSnCnf/IYm3WCxaEqZVX6f76/4sq4RR09fRRwwFmpc3DiZIk4YRr9Bb9CFBT2BK9ZH0pjpIHEXmEZrevw8QQKBgQDVK2vzBmQWUL8r9QheTtoQr8AC7PomuwZJqiSDha9HB9WaSjR9VEzjwnCwo1/y+MMar0xXBaIamGtABYNN+GcGJo4RAxgQNt27ud9hFsLh6GI1DMsTThwLn+QG3l3eD0Nv6Y3hl2sVF4ye1Yl3MGkkTnJrecQnXtS8k0s6y5qY9QKBgCRrhZK6EWYF5K0uhCHYPoQA7sN2uh+fBMuixAfUBAN1nh/Uvf3Jr4ECBG5BYKkzGdlPP9/FRga2x9rdaVtjmDSZlOGdJwKTI6JPfGLvS5LLwfoTB9aupLvF4D9JAuUiF1Yy8AdKxiJa7mRtoXNtHOiIeiGKAbLNJeDIfDPCHgoBAoGBAOi2LXvA/sRAN+Cw6rHo5HafEZt/jW8egeYQbWWs4mFdN22VApyTrJeghWbVUK7+qsAr5oKm7g67uJ1SveACHGKVf+7RgfJjrOc0xt+2/l1FeCF8WOT3qRXjmc4j8TZ2zAx+5Whwwe7jcjKhYT6AScbdiOBu5NhX+hdMHDA+QL84"/>
+
         <activity
             android:name=".ui.SplashActivity"
             android:launchMode="singleTop"

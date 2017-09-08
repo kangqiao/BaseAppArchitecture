@@ -12,6 +12,8 @@ import com.jzsec.broker.ui.market.SecuritiesMarketInfoActivity;
 import com.jzsec.broker.ui.rxokgo.RxOkGoFragment;
 import com.thefinestartist.finestwebview.FinestWebView;
 
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 import me.yokeyword.fragmentation.SupportFragment;
 import rx.functions.Action1;
 
@@ -52,6 +54,13 @@ public class MessageFragment extends BaseLazyFragment {
 
         _click2(R.id.tv_custom_calendar, (Object) ->{
             openMainFragment(CustomCalendarFragment.newInstance());
+        });
+
+        _click2(R.id.tv_list_container_layout, new Consumer<Object>() {
+            @Override
+            public void accept(@NonNull Object o) throws Exception {
+                openMainFragment(ListContainerFragment.newInstance());
+            }
         });
     }
 }

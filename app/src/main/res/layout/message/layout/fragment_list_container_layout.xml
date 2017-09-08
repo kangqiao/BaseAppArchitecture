@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:divider="@drawable/layout_divider_line"
+    android:orientation="vertical"
+    android:showDividers="beginning|middle|end">
+
+    <com.jzsec.broker.view.layout.ListContainerLayout
+        android:id="@+id/list_layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/trade_red"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <com.jzsec.broker.view.layout.ListContainerLayout
+            android:id="@+id/list_layout_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@drawable/layout_divider_line"
+            android:showDividers="beginning|middle|end" />
+    </ScrollView>
+</LinearLayout>
