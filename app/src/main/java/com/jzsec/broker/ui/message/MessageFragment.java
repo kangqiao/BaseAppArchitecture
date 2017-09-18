@@ -1,5 +1,6 @@
 package com.jzsec.broker.ui.message;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import com.jzsec.broker.R;
 import com.jzsec.broker.base.BaseLazyFragment;
 import com.jzsec.broker.ui.market.SecuritiesMarketInfoActivity;
 import com.jzsec.broker.ui.rxokgo.RxOkGoFragment;
+import com.jzsec.broker.view.webview.TestWebViewActivity;
 import com.thefinestartist.finestwebview.FinestWebView;
 
 import io.reactivex.annotations.NonNull;
@@ -48,6 +50,10 @@ public class MessageFragment extends BaseLazyFragment {
             new FinestWebView.Builder(_mActivity).show("http://www.baidu.com");
         });
 
+        _click2(R.id.tv_test_webview, (Object) -> {
+            startActivity(new Intent(_mActivity, TestWebViewActivity.class));
+        });
+
         _click(R.id.tv_RxJava_OkGO, (Void) -> {
             openMainFragment(RxOkGoFragment.newInstance());
         });
@@ -61,6 +67,10 @@ public class MessageFragment extends BaseLazyFragment {
             public void accept(@NonNull Object o) throws Exception {
                 openMainFragment(ListContainerFragment.newInstance());
             }
+        });
+
+        _click2(R.id.tv_test_draw_view, (Object) -> {
+           openMainFragment(TestViewFragment.newInstance());
         });
     }
 }

@@ -17,8 +17,8 @@ import java.util.ArrayList;
  * http://blog.csdn.net/lintax/article/details/70988565
  * Android root检测方法小结
  */
-public class Root {
-    private static String LOG_TAG = Root.class.getName();
+public class RootUtil {
+    private static String LOG_TAG = RootUtil.class.getName();
 
     /**
      * 由于每种方法各有其特色与缺陷，所以我最终将这些方法加起来了。
@@ -48,6 +48,14 @@ public class Root {
         return false;
     }
 
+    /**
+     * 我们可以查看发布的系统版本，是test-keys（测试版），还是release-keys（发布版）。
+     * 可以先在adb shell中运行下命令查看：
+     * 这个返回结果“release-keys”，代表此系统是正式发布版。
+     * 在实际情况下，我遇到过某些厂家的正式发布版本，也是test-keys，可能大家对这个标识也不是特别注意吧。
+     * 所以具体是否使用，还要多考虑考虑呢。也许能解决问题，也许会给自己带来些麻烦。
+     * @return
+     */
     public static boolean checkDeviceDebuggable() {
         String buildTags = android.os.Build.TAGS;
         if (buildTags != null && buildTags.contains("test-keys")) {
@@ -57,6 +65,19 @@ public class Root {
         return false;
     }
 
+    /**
+     *通常可以分为2种：
+     * 1，不完全Root
+     * 2，完全Root
+     * 目前获取Android root 权限常用方法是通过各种系统漏洞，
+     * 替换或添加SU程序到设备，获取Root权限，而在获取root权限以后，
+     * 会装一个程序用以提醒用户是否给予程序最高权限，可以一定程度上防止恶意软件，
+     * 通常会使用Superuser或者 SuperSU ，这种方法通常叫做“不完全Root”。
+     * 而 “完全ROOT”是指，替换设备原有的ROM，以实现取消secure设置。
+     *
+     * Superuser.apk是一个被广泛使用的用来root安卓设备的软件，所以可以检查这个app是否存在
+     * @return
+     */
     public static boolean checkSuperuserApk() {
         try {
             File file = new File("/system/app/Superuser.apk");

@@ -47,16 +47,16 @@ task clean(type: Delete) {
 ext {
     applicationId = "com.jzsec.broker"
 
-    minSdkVersion = 16
-    targetSdkVersion = 26 //23
-    compileSdkVersion = 26 //24 //23
-    buildToolsVersion =  '26.0.0' //'24.0.2' //'23.0.3'
+    minSdkVersion = 19 //16
+    targetSdkVersion = 25 //26 //23
+    compileSdkVersion = 25 //26 //24 //23
+    buildToolsVersion =  '25.0.2' //'26.0.0' //'24.0.2' //'23.0.3'
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 
     versionCode = 0
-    versionName = '0.1.1'
+    versionName = '0.1.2'
 
     supportLibVersion = '25.3.1' //'24.2.1' //'23.4.0'
     playLibVersion = '8.4.0'

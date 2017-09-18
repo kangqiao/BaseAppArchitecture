@@ -1,8 +1,11 @@
 package com.jzsec.broker.view.webview;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
+import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -21,12 +24,19 @@ public class TestWebViewActivity extends BaseActivity {
     private Handler handler = new Handler() {
 
 
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         public void handleMessage(Message msg) {
             if (msg.what == 404) {//主页不存在
                 //载入本地 assets 文件夹下面的错误提示页面 404.html
                 web.loadUrl("file:///android_asset/404.html");
             } else {
                 web.loadUrl(HOMEPAGE);
+                web.evaluateJavascript("", new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String value) {
+
+                    }
+                });
             }
         }
     };

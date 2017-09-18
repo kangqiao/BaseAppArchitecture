@@ -11,10 +11,10 @@ import java.util.Stack;
  * Created by zhaopan on 16/8/4.
  * e-mail: kangqiao610@gmail.com
  */
-public class AppManager{
+public class AppManager implements Cloneable{
     private static final String TAG = "AppManager";
     private static class AppManagerHolder {
-        public static final AppManager INSTANCE = new AppManager();
+        private static final AppManager INSTANCE = new AppManager();
     }
 
     public static AppManager getInstance(){
@@ -26,6 +26,7 @@ public class AppManager{
     private AppManager(){
         sActivityStack = new Stack<BaseActivity>();
     }
+
 
     /**
      * 添加Activity到栈

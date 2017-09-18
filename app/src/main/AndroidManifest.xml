@@ -155,7 +155,12 @@
 
         </activity>
 
-
+        <activity
+            android:name=".view.webview.TestWebViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:process="com.jzsec.broker.webview"
+            android:theme="@style/AppTheme" />
 
         <activity
             android:name=".ui.recyclerview.diffutil.TestDiffUtilsActivity"

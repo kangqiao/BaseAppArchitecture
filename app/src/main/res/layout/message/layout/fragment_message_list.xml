@@ -24,6 +24,14 @@
         android:text="打开FinestWebView页面" />
 
     <TextView
+        android:id="@+id/tv_test_webview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:padding="@dimen/margin_normal"
+        android:text="Test WebView" />
+
+    <TextView
         android:id="@+id/tv_RxJava_OkGO"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,4 +54,12 @@
         android:background="@android:color/holo_blue_dark"
         android:padding="@dimen/margin_normal"
         android:text="ListContainerLayout" />
+
+    <TextView
+        android:id="@+id/tv_test_draw_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:padding="@dimen/margin_normal"
+        android:text="自定义View Draw" />
 </LinearLayout>
