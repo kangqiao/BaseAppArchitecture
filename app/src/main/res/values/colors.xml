@@ -84,4 +84,6 @@
 
     <color name="custom_key_grayl">#c8cacc</color>
     <color name="custom_key_grayl_pressed">#f58349</color>
+
+    <drawable name="toolbar_bg">#30000000</drawable>
 </resources>

@@ -105,7 +105,7 @@ public class MainFragment extends BaseFragment {
     }
 
     @Override
-    protected void onFragmentResult(int requestCode, int resultCode, Bundle data) {
+    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
         super.onFragmentResult(requestCode, resultCode, data);
         if (requestCode == REQ_MSG && resultCode == RESULT_OK) {
 

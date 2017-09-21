@@ -215,5 +215,9 @@ public class MyFragment extends BaseLazyFragment {
                 openMainFragment(FileProviderFragment.newInstance());
             }
         });
+
+        _click2(R.id.tv_palette, (Object) ->{
+            openMainFragment(PaletteViewFragment.newInstance());
+        });
     }
 }
